@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+def SpringVersion = '4.0.0.RELEASE'
+def SpringDataMongoVersion = '1.6.0.RELEASE'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Meeting Room Booking',
+                   'Implementation-Version': version
+    }
+}
+
+ext{
+	testng = "org.testng:testng:6.1.1"
+	jackson = 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.0.1'
+	
+	spring = [
+            web           : "org.springframework:spring-web:${SpringVersion}",
+            webmvc        : "org.springframework:spring-webmvc:${SpringVersion}",
+            core          : "org.springframework:spring-core:${SpringVersion}",
+            beans         : "org.springframework:spring-beans:${SpringVersion}",
+            expression    : "org.springframework:spring-expression:${SpringVersion}",
+            contextSupport: "org.springframework:spring-context-support:${SpringVersion}",
+            jdbc          : "org.springframework:spring-jdbc:${SpringVersion}",
+            mongo         : "org.springframework.data:spring-data-mongodb:${SpringDataMongoVersion}",
+            test          : "org.springframework:spring-test:${SpringVersion}"
+    ]
+    
+    jersey = [
+		server : 'com.sun.jersey:jersey-server:1.8',
+		inmemorytest : 'com.sun.jersey.jersey-test-framework:jersey-test-framework-inmemory:1.8'
+	]
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile spring.web,spring.core,spring.test,jersey.server,jackson
+    testCompile testng,jersey.inmemorytest
+}
