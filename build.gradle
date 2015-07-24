@@ -17,7 +17,7 @@ jar {
 }
 
 ext{
-	testng = "org.testng:testng:6.1.1"
+	testng = "org.testng:testng:6.9.4"
 	jackson = 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.0.1'
 	
 	spring = [
@@ -43,6 +43,6 @@ repositories {
 }
 
 dependencies {
-    compile spring.web,spring.core,spring.test,jersey.server,jackson
-    testCompile testng,jersey.inmemorytest
+    compile spring.web,spring.core,spring.test,jersey.server,jackson,jersey.inmemorytest
+    testCompile testng
 }

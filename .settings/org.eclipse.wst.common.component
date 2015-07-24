@@ -2,7 +2,6 @@
 <project-modules id="moduleCoreId" project-version="2.0">
 	<wb-module deploy-name="MeetingRoomBooking">
 		<property name="context-root" value="MeetingRoomBooking"/>
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
 		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.0.0.RELEASE/6ce2dda16a3c1581920fc17551f3ae17d26499aa/spring-web-4.0.0.RELEASE.jar">
@@ -18,6 +17,9 @@
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.0.1/76da95595560b9c9fb558ec81840781bcdbb32c0/jackson-jaxrs-json-provider-2.0.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/com.sun.jersey.jersey-test-framework/jersey-test-framework-inmemory/1.8/79840314fe66277d8dd0bf9deae697795049fd7f/jersey-test-framework-inmemory-1.8.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar">
@@ -50,10 +52,22 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.0.1/bdb2695eaaff9fe9e6583b041e7e025aa53198c9/jackson-module-jaxb-annotations-2.0.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/com.sun.jersey.jersey-test-framework/jersey-test-framework-core/1.8/dfec98ab3c9cda7775e7ac6ee42fb68c6eee76d5/jersey-test-framework-core-1.8.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.0.0.RELEASE/199be03c976524b6427dff31078227bfc703400b/spring-expression-4.0.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.0.1/36e5996abe8655a6471b82af5ac1cd6786aecf85/jackson-annotations-2.0.1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.servlet/3.0/12222fbf2168045bad25e08c7f91de7da25180a5/javax.servlet-3.0.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/junit/junit/4.8.2/c94f54227b08100974c36170dcb53329435fe5ad/junit-4.8.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//home/cts1/.gradle/caches/modules-2/files-2.1/com.sun.jersey/jersey-client/1.8/89f74128c8371c95e2d88470686473b8745023c0/jersey-client-1.8.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 	</wb-module>
