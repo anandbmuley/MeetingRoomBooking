@@ -1,11 +1,12 @@
-package com.merobo.models;
+package com.merobo.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Team {
+public class TeamTo {
 
 	@JsonProperty
 	private String name;
+	private String city;
 
 	public String getName() {
 		return name;
@@ -15,9 +16,14 @@ public class Team {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Team [name=" + name + "]";
+	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 }

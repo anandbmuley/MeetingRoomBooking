@@ -7,7 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.merobo.models.Team;
+import com.merobo.dtos.TeamTo;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.test.framework.JerseyTest;
@@ -61,29 +61,37 @@ public class TeamResourceTest extends JerseyTest {
 	public void shouldAddTeam() {
 
 		// GIVEN
-		int expecteStatus = 200;
-		Team team = new Team();
-		team.setName("ajay");
+		// int expecteStatus = 200;
+		TeamTo team = new TeamTo();
+		team.setName("akshay1111");
 		// WHEN
-		// Entity<Team> userEntity = Entity.entity(team,
-		// MediaType.APPLICATION_JSON);
-		// target("team/add").request().post(team); // Here we send POST request
-		// Response response = target("users/find").queryParam("name",
-		// "ajay").request().get(); //Here we send GET request for retrieving
-		// results
-		// Assert.assertEquals("ajay", ((Object)
-		// response).readEntity(Team.class).getName());
-
-		WebResource resource = resource().path("team/add");
-		resource.type(MediaType.APPLICATION_JSON).header("Content-type",
-				MediaType.APPLICATION_JSON);
-		resource.accept(MediaType.APPLICATION_JSON);
-		ClientResponse clientResponse = resource.post(ClientResponse.class,
-				team);
-
+		WebResource service = resource().path("team/add");
+		ClientResponse resp = service.type(MediaType.APPLICATION_JSON).post(
+				ClientResponse.class, team);
+		System.out.println("Got stuff: " + resp);
+		String text = resp.getEntity(String.class);
+		System.out.println("Got Entity"+text);
 		// THEN
-		Assert.assertEquals(clientResponse.getStatus(), expecteStatus);
+		Assert.assertEquals(200, resp.getStatus());
+
 	}
 
+	@Test
+	public void shouldDeleteTeam() {
+		// GIVEN
+
+		TeamTo team = new TeamTo();
+		team.setName("akshay111");
+		// WHEN
+
+		WebResource service = resource().path("team/delete");
+		ClientResponse resp = service.accept(MediaType.APPLICATION_JSON)
+				.type(MediaType.APPLICATION_JSON)
+				.delete(ClientResponse.class, team);
+		System.out.println("Got stuff: " + resp);
+		// THEN
+		Assert.assertEquals(200, resp.getStatus());
+
+	}
 
 }
