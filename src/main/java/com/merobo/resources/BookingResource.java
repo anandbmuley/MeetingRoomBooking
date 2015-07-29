@@ -33,6 +33,7 @@ public class BookingResource {
 	public Response bookRoom(BookingTo bookingTo) {
 		System.out.println("hi");
 		BookingBean entity = new BookingBean();
+		//entity.setId("11");
 		entity.setTeam(bookingTo.getTeam());
 		System.out.println(entity.getTeam());
 		System.out.println("hello");
@@ -42,7 +43,7 @@ public class BookingResource {
 		entity.setEndTime(bookingTo.getEndTime());
 
 		bookingRepositories.save(entity);
-		return Response.ok("Team " + entity.getTeam() + " booked").build();
+		return Response.ok(bookingTo).build();
 
 	}
 
