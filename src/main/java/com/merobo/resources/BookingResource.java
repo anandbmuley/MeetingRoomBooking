@@ -1,5 +1,6 @@
 package com.merobo.resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,33 +18,29 @@ import org.springframework.stereotype.Component;
 
 import com.merobo.beans.BookingBean;
 import com.merobo.dtos.BookingTo;
-import com.merobo.repositories.BookingRepositories;
+import com.merobo.services.BookingService;
+import com.merobo.services.BookingServiceImpl;
 
 @Component
 @Path("booking")
 public class BookingResource {
-	
+
 	@Autowired
-	private BookingRepositories bookingRepositories;
+	private BookingService bookingService;
+
+	BookingBean bookingBean = new BookingBean();
+	List<BookingBean> list = new ArrayList<BookingBean>();
+
+	// BookingTo bookingTo =new BookingTo();
 
 	@POST
 	@Path("bookroom")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response bookRoom(BookingTo bookingTo) {
-		System.out.println("hi");
-		BookingBean entity = new BookingBean();
-		//entity.setId("11");
-		entity.setTeam(bookingTo.getTeam());
-		System.out.println(entity.getTeam());
-		System.out.println("hello");
-		entity.setDate(bookingTo.getDate());
-		System.out.println(entity.getDate());
-		entity.setStartTime(bookingTo.getStartTime());
-		entity.setEndTime(bookingTo.getEndTime());
-
-		bookingRepositories.save(entity);
-		return Response.ok(bookingTo).build();
+		BookingTo bookingTo2 = new BookingTo();
+		bookingTo2 = bookingService.bookRoom(bookingTo);
+		return Response.ok(bookingTo2).build();
 
 	}
 
@@ -51,7 +48,7 @@ public class BookingResource {
 	@Path("list")
 	@Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	public Response getAllTeamBookings() {
-		List<BookingBean> teams = bookingRepositories.findAll();
+		List<BookingBean> teams = bookingService.findAll();
 		return Response.ok(teams).build();
 
 	}
@@ -61,10 +58,9 @@ public class BookingResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteTeam(BookingTo teamTo) {
-		List<BookingBean> s = bookingRepositories
-				.deleteByTeam(teamTo.getTeam());
-		System.out.println(s);
-		if (!s.isEmpty())
+		List<BookingBean> list = bookingService.deleteTeam(teamTo.getTeam());
+		System.out.println(list);
+		if (!list.isEmpty())
 			return Response.ok(
 					"team " + teamTo.getTeam() + "booking is  Deleted").build();
 		else
@@ -80,11 +76,14 @@ public class BookingResource {
 	@Path("find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findTeamBooking(@QueryParam("team") String name) {
-		BookingBean bookingBean = bookingRepositories.findByTeam(name);
-		if (bookingBean != null) {
-			return Response.ok(bookingBean).build();
+		System.out.println(name);
+		BookingTo bookingTo = bookingService.findTeamBooking(name);
+		System.out.println(bookingTo);
+		if (bookingTo != null) {
+			return Response.ok(bookingTo).build();
 		} else {
-			return Response.status(Response.Status.NOT_FOUND).build();
+			return Response.ok().status(Response.Status.NOT_FOUND).build();
+			// return Response.ok(" "+ bookingBean+"not available" ).build();
 		}
 	}
 

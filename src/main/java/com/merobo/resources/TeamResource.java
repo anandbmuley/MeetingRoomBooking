@@ -21,33 +21,35 @@ import org.springframework.stereotype.Component;
 import com.merobo.beans.TeamBean;
 import com.merobo.dtos.TeamTo;
 import com.merobo.repositories.TeamRepository;
+import com.merobo.services.TeamService;
 
 @Component
 @Path("team")
 public class TeamResource {
 
 	@Autowired
-	private TeamRepository teamRepository;
+	private TeamService teamService;
 
 	private static Set<String> l1 = new HashSet<String>();
+	TeamTo teamTo = new TeamTo();
 
 	@POST
 	@Path("add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addTeam(TeamTo teamTo) {
-		TeamBean teamBean = new TeamBean();
-		teamBean.setName(teamTo.getName());
-		teamBean.setCity(teamTo.getCity());
-		teamRepository.save(teamBean);
-		return Response.ok("Team " + teamTo.getName()+" from  "+teamBean.getCity() + " Added").build();
+
+		teamTo =teamService.addTeam(teamTo);
+		return Response.ok(
+				"Team " + teamTo.getName() + " from  " + teamTo.getCity()
+						+ " Added").build();
 	}
 
 	@GET
 	@Path("list")
 	@Produces(javax.ws.rs.core.MediaType.APPLICATION_JSON)
 	public Response getAllTeam() {
-		List<TeamBean> teams = teamRepository.findAll();
+		List<TeamBean> teams = teamService.getAllTeam();
 		return Response.ok(teams).build();
 
 	}
@@ -57,40 +59,29 @@ public class TeamResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteTeam(TeamTo teamTo) {
-		List<TeamBean> s= teamRepository.deleteByName(teamTo.getName());
-		System.out.println(s);
-		if(!s.isEmpty())
-		return Response.ok("team " + teamTo.getName() + " Deleted").build();
-		else 
-			return Response.ok("team " + teamTo.getName() + " not Deleted because it is not available").build();
+		List<TeamBean> list = teamService.deleteTeam(teamTo);
+		System.out.println(list);
+		if (!(list == null))
+			return Response.ok("team " + teamTo.getName() + " Deleted").build();
+		else
+			return Response.ok(
+					"team " + teamTo.getName()
+							+ " not Deleted because it is not available")
+					.build();
 
 	}
 
-	@GET
-	@Path("find1")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response findTeam1(@QueryParam("name") String name) {
-		Iterator<String> it = l1.iterator();
-		while (it.hasNext()) {
-			String s = (String) it.next();
-			if (s.equalsIgnoreCase(name)) {
-				return Response.ok("present").build();
-			}
-		}
-		return Response.ok("not present").build();
-
-	}
 
 	@GET
 	@Path("find")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response findTeam(@QueryParam("name") String name) {
-		TeamBean s=(TeamBean) teamRepository.findByName(name);
-		System.out.println(s);
-		if(s !=null)
-			return Response.ok("present").build();
+		TeamTo teamTo =  teamService.findTeam(name);
+		//System.out.println(teamTo);
+		if (teamTo != null)
+			return Response.ok(teamTo).build();
 		else
-		return Response.ok("not present").build();
+			return Response.ok().status(Response.Status.NOT_FOUND).build();
 
 	}
 
