@@ -1,7 +1,6 @@
 package com.merobo.resources;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 import com.merobo.beans.TeamBean;
 import com.merobo.dtos.TeamTo;
-import com.merobo.repositories.TeamRepository;
 import com.merobo.services.TeamService;
 
 @Component

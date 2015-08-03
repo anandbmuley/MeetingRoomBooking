@@ -1,3 +1,4 @@
 .gradle
 /build/
 test-output
+src/main/webapp/node_modules
