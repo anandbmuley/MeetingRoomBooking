@@ -1,7 +1,6 @@
 var app = angular.module('MeetingRoomUI',[
     'ngRoute',
-    'MRControllers',
-    'MRServices']);
+    'MRControllers']);
 
 app.config(['$routeProvider',function($routeProvider){
 	$routeProvider.
@@ -16,4 +15,3 @@ app.config(['$routeProvider',function($routeProvider){
 }]);
 
 var controllers = angular.module('MRControllers',[]);
-var services = angular.module('MRServices',[]);
