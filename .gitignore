@@ -5,3 +5,4 @@ src/main/webapp/node_modules
 .settings/
 .classpath
 bin/
+.project
