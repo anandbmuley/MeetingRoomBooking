@@ -8,9 +8,9 @@ app.config(['$routeProvider',function($routeProvider){
 			templateUrl : 'views/Home.html',
 			controller : 'HomeController'
 		}).
-		when('/book',{
-			templateUrl : 'views/Booking.html',
-			controller : 'BookingController'
+		when('/teams',{
+			templateUrl : 'views/Teams.html',
+			controller : 'TeamsController'
 		});
 }]);
 

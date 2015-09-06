@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Meeting Room</title>
+<title>MEROBO</title>
 <!-- Bootstrap Config -->
-<link rel="stylesheet" type="text/css"
-	href="node_modules/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/justified-nav.css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -16,40 +15,32 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
-<script type="text/javascript"
-	src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
 <!-- Bootstrap Config -->
 
 <script type="text/javascript" src="node_modules/angular/angular.js"></script>
-<script type="text/javascript"
-	src="node_modules/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="node_modules/angular-route/angular-route.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="scripts/app.js"></script>
- <script type="text/javascript"
-	src="scripts/controllers/HomeController.js"></script> 
+<!-- Controllers -->
+<script type="text/javascript" src="scripts/controllers/HomeController.js"></script> 
+<script type="text/javascript" src="scripts/controllers/TeamsController.js"></script> 
+<!-- Services -->
 <script type="text/javascript" src="scripts/services/BookingService.js"></script>	
-<!-- <script type="text/javascript" src="scripts/controllers.js"></script> -->
 </head>
 <body>
 	<div class="container">
 		<div class="masthead">
-			<h3 class="text-info">Meeting Room Booking 111</h3>
+			<h3 class="text-info">
+				<div class="site-title">MEROBO</div>
+				<div class="site-subtitle">Meeting Room Booking</div>
+			</h3>
 			<nav>
 				<ul class="nav nav-justified">
-					<li><a href="#">Home</a></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Meeting <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#/book">Book</a></li>
-						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Teams <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#/team/add">Add</a></li>
-							<li><a href="#/team/search">List</a></li>
-						</ul></li>
+					<li><a href="#/">Home</a></li>
+					<li><a href="#/teams">Teams</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Contact</a></li>
 				</ul>
@@ -57,21 +48,7 @@
 		</div>
 		<br>
 		<div id="content-area" ng-view></div>
-	
-
-	<h1>Hi This is aki</h1>
-	
-		<ul>
-			
-			<li ng-repeat="team in teams">
-			     <span>{{team.name}}</span>
-				
-				<h2>{{team.snippet}} </h2>
-				</li>
-				 
-		</ul>
-	<button type="button" ng-click="addTeam()"></button>
-</div>
+	</div>
 
 </body>
 </html>

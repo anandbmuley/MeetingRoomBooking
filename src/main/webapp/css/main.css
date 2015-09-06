@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+.site-title {
+	font-size: 30px;
+	color: #01BF9D;
+}
+
+.site-subtitle {
+	font-size: 13px;
+	color: #01BF9D;
+}
+
+.btn-success {
+	background-color: #01BF9D !important;
+	border-color: #01BF9D !important;
+}
+
+.panel-heading {
+	background-color: #01BF9D !important;
+	border-color: #01BF9D !important;
+}
+
+.panel-border {
+	border-color: #01BF9D;
+}
+
+.header-container {
+	background-color: #01BF9D;
+}
+
+.header-container h4 {
+	color: white !important;
+}
+
+.team-name-label {
+	font-size: 20px;
+}
+
+.booking-time-label {
+	font-size: 12px;
+}
+
+.booked-attime {
+	font-size: 10px;
+}
+
+.time-slot-available {
+	font-size: 20px;
+	color: #01BF9D;
+}
