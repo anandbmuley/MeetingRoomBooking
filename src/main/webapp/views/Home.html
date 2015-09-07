@@ -4,18 +4,18 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <a href="#" class="list-group-item active text-center panel-heading">
+		  <div id="pinnacle-room" class="list-group-item active text-center panel-heading">
 		    <h3 class="list-group-item-heading">PINNACLE</h3>
-		  </a>
-		  <a href="#" class="list-group-item">
+		  </div>
+		  <div ng-click="bookroomPopup()" class="list-group-item">
 		  	<div class="row">
 		  		<div class="col-md-7" style="text-align: left;">
 		  			<div class="list-group-item-heading time-slot-available">Available</div>
-		  			<div class="list-group-item-text booking-time-label">08:00 AM to 02:00 PM</div>
+		  			<div class="list-group-item-text booking-time-label">{{startTime | date : 'shortTime'}} to {{endTime | date : 'shortTime'}}</div>
 		  		</div>
 		  	</div>
-		  </a>
-		  <a href="#" class="list-group-item">
+		  </div>
+		  <div ng-click="bookroomPopup()" class="list-group-item">
 		  	<div class="row">
 		  		<div class="col-md-7" style="text-align: left;">
 		  			<div class="list-group-item-heading team-name-label">CVoS</div>
@@ -26,8 +26,8 @@
 		  			<div class="list-group-item-text">Anand Muley</div>
 		  		</div>
 		  	</div>
-		  </a>
-		   <a href="#" class="list-group-item">
+		  </div>
+		   <div href="#" class="list-group-item">
 		  	<div class="row">
 		  		<div class="col-md-7" style="text-align: left;">
 		  			<div class="list-group-item-heading team-name-label">KANBAN</div>
@@ -38,15 +38,15 @@
 		  			<div class="list-group-item-text">Someone</div>
 		  		</div>
 		  	</div>
-		  </a>
+		  </div>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <a href="#" class="list-group-item active text-center panel-heading">
+		  <div href="#" class="list-group-item active text-center panel-heading">
 		    <h3 class="list-group-item-heading">OTHER</h3>
-		  </a>
-		  <a href="#" class="list-group-item">
+		  </div>
+		  <div href="#" class="list-group-item">
 		  	<div class="row">
 		  		<div class="col-md-7" style="text-align: left;">
 		  			<div class="list-group-item-heading team-name-label">MYO2</div>
@@ -57,15 +57,39 @@
 		  			<div class="list-group-item-text">Someone</div>
 		  		</div>
 		  	</div>
-		  </a>
-		  <a href="#" class="list-group-item">
+		  </div>
+		  <div href="#" class="list-group-item">
 		  	<div class="row">
 		  		<div class="col-md-7" style="text-align: left;">
 		  			<div class="list-group-item-heading team-name-label team-name-label">Available</div>
 		  			<div class="list-group-item-text booking-time-label">03:00 PM to 05:00 PM</div>
 		  		</div>
 		  	</div>
-		  </a>
+		  </div>
 		</div>
 	</div>
 </div>
+<!-- Room Booking Modal -->
+<script type="text/ng-template" id="BookRoomModal.html">
+<div class="modal-header">
+	<h3 class="modal-title">Select Timeslot</h3>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="timelabel">Start Time </div>
+			<timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="timelabel">End Time </div>
+			<timepicker ng-model="endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="bookIt()">Book It</button>
+</div>
+</script>

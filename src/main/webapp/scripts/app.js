@@ -1,6 +1,7 @@
 var app = angular.module('MeetingRoomUI',[
     'ngRoute',
-    'MRControllers']);
+    'MRControllers',
+    'ui.bootstrap']);
 
 app.config(['$routeProvider',function($routeProvider){
 	$routeProvider.
