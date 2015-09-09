@@ -1,31 +1,28 @@
 package com.merobo.dtos;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class BookingTo {
 
-	@JsonProperty
-	private String team;
-	private Date date = new Date();
+	private String id;
+	private String teamName;
 	private String startTime;
 	private String endTime;
+	private String bookedBy;
+	private String bookedWhen;
 
-	public String getTeam() {
-		return team;
+	public String getId() {
+		return id;
 	}
 
-	public void setTeam(String team) {
-		this.team = team;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public Date getDate() {
-		return date;
+	public String getTeamName() {
+		return teamName;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
 
 	public String getStartTime() {
@@ -44,15 +41,36 @@ public class BookingTo {
 		this.endTime = endTime;
 	}
 
+	public String getBookedBy() {
+		return bookedBy;
+	}
+
+	public void setBookedBy(String bookedBy) {
+		this.bookedBy = bookedBy;
+	}
+
+	public String getBookedWhen() {
+		return bookedWhen;
+	}
+
+	public void setBookedWhen(String bookedWhen) {
+		this.bookedWhen = bookedWhen;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result
+				+ ((bookedBy == null) ? 0 : bookedBy.hashCode());
+		result = prime * result
+				+ ((bookedWhen == null) ? 0 : bookedWhen.hashCode());
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((startTime == null) ? 0 : startTime.hashCode());
-		result = prime * result + ((team == null) ? 0 : team.hashCode());
+		result = prime * result
+				+ ((teamName == null) ? 0 : teamName.hashCode());
 		return result;
 	}
 
@@ -65,33 +83,44 @@ public class BookingTo {
 		if (getClass() != obj.getClass())
 			return false;
 		BookingTo other = (BookingTo) obj;
-		if (date == null) {
-			if (other.date != null)
+		if (bookedBy == null) {
+			if (other.bookedBy != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!bookedBy.equals(other.bookedBy))
+			return false;
+		if (bookedWhen == null) {
+			if (other.bookedWhen != null)
+				return false;
+		} else if (!bookedWhen.equals(other.bookedWhen))
 			return false;
 		if (endTime == null) {
 			if (other.endTime != null)
 				return false;
 		} else if (!endTime.equals(other.endTime))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (startTime == null) {
 			if (other.startTime != null)
 				return false;
 		} else if (!startTime.equals(other.startTime))
 			return false;
-		if (team == null) {
-			if (other.team != null)
+		if (teamName == null) {
+			if (other.teamName != null)
 				return false;
-		} else if (!team.equals(other.team))
+		} else if (!teamName.equals(other.teamName))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "BookingTo [team=" + team + ", date=" + date + ", startTime="
-				+ startTime + ", endTime=" + endTime + "]";
+		return "BookingTo [id=" + id + ", teamName=" + teamName
+				+ ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", bookedBy=" + bookedBy + ", bookedWhen=" + bookedWhen + "]";
 	}
 
 }

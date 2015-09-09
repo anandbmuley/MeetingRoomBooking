@@ -2,20 +2,12 @@ package com.merobo.services;
 
 import java.util.List;
 
-import com.merobo.beans.BookingBean;
 import com.merobo.dtos.BookingTo;
 
 public interface BookingService {
 
-	
-	public BookingTo bookRoom(BookingTo bookingTo) ;
-	//public BookingBean save(BookingBean bookingBean);
+	BookingTo bookRoom(BookingTo bookingTo);
 
-	public List<BookingBean> findAll();
+	List<BookingTo> getAll();
 
-	public BookingTo findTeamBooking(String with);
-
-	public List<BookingBean> deleteTeam(String team);
-
-	
 }

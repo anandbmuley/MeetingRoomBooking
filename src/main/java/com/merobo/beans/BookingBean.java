@@ -1,7 +1,5 @@
 package com.merobo.beans;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,10 +8,11 @@ public class BookingBean {
 
 	@Id
 	private String id;
-	private String team;
-	private Date date = new Date();
+	private String teamName;
 	private String startTime;
 	private String endTime;
+	private String bookedBy;
+	private String bookedWhen;
 
 	public String getId() {
 		return id;
@@ -23,20 +22,12 @@ public class BookingBean {
 		this.id = id;
 	}
 
-	public String getTeam() {
-		return team;
+	public String getTeamName() {
+		return teamName;
 	}
 
-	public void setTeam(String team2) {
-		this.team = team2;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
 
 	public String getStartTime() {
@@ -55,16 +46,36 @@ public class BookingBean {
 		this.endTime = endTime;
 	}
 
+	public String getBookedBy() {
+		return bookedBy;
+	}
+
+	public void setBookedBy(String bookedBy) {
+		this.bookedBy = bookedBy;
+	}
+
+	public String getBookedWhen() {
+		return bookedWhen;
+	}
+
+	public void setBookedWhen(String bookedWhen) {
+		this.bookedWhen = bookedWhen;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result
+				+ ((bookedBy == null) ? 0 : bookedBy.hashCode());
+		result = prime * result
+				+ ((bookedWhen == null) ? 0 : bookedWhen.hashCode());
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((startTime == null) ? 0 : startTime.hashCode());
-		result = prime * result + ((team == null) ? 0 : team.hashCode());
+		result = prime * result
+				+ ((teamName == null) ? 0 : teamName.hashCode());
 		return result;
 	}
 
@@ -77,10 +88,15 @@ public class BookingBean {
 		if (getClass() != obj.getClass())
 			return false;
 		BookingBean other = (BookingBean) obj;
-		if (date == null) {
-			if (other.date != null)
+		if (bookedBy == null) {
+			if (other.bookedBy != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!bookedBy.equals(other.bookedBy))
+			return false;
+		if (bookedWhen == null) {
+			if (other.bookedWhen != null)
+				return false;
+		} else if (!bookedWhen.equals(other.bookedWhen))
 			return false;
 		if (endTime == null) {
 			if (other.endTime != null)
@@ -97,18 +113,19 @@ public class BookingBean {
 				return false;
 		} else if (!startTime.equals(other.startTime))
 			return false;
-		if (team == null) {
-			if (other.team != null)
+		if (teamName == null) {
+			if (other.teamName != null)
 				return false;
-		} else if (!team.equals(other.team))
+		} else if (!teamName.equals(other.teamName))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "BookingBean [id=" + id + ", team=" + team + ", date=" + date
-				+ ", startTime=" + startTime + ", endTime=" + endTime + "]";
+		return "BookingBean [id=" + id + ", teamName=" + teamName
+				+ ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", bookedBy=" + bookedBy + ", bookedWhen=" + bookedWhen + "]";
 	}
 
 }

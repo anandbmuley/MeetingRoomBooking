@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import com.merobo.beans.BookingBean;
 import com.merobo.config.RootConfig;
 import com.merobo.dtos.BookingTo;
-import com.merobo.repositories.BookingRepositories;
+import com.merobo.repositories.BookingRepository;
 import com.merobo.services.BookingService;
 import com.merobo.services.BookingServiceImpl;
 import com.sun.jersey.api.client.ClientResponse;

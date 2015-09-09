@@ -1,71 +1,61 @@
 <title>{{pageTitle}}</title>
+<div ng-if="message">
+	<div class="alert alert-success">{{message}}</div>
+</div>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-2" style="text-align: right;">Select Team</div>
+	<div class="col-md-2">
+		<select class="form-control input-md" ng-init="teamName='CVoS'" ng-model="teamName">
+			<option ng-repeat="team in teams.teamNames" value="{{team}}">{{team}}</option>
+		</select>	
+	</div>
+	<div class="col-md-2" style="text-align: right;">Select Member</div>
+	<div class="col-md-2">
+		<select class="form-control input-md" ng-model="bookedBy">
+			<option ng-repeat="member in teams.members | filter : teamName" value="{{member.name}}">{{member.name}}</option>
+		</select>	
+	</div>
+</div>
 <h3 class="text-center">{{pageTitle}}</h3>
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <div id="pinnacle-room" class="list-group-item active text-center panel-heading">
+		  <div id="pinnacle-room" ng-click="bookroomPopup()" class="list-group-item active text-center panel-heading">
 		    <h3 class="list-group-item-heading">PINNACLE</h3>
 		  </div>
-		  <div ng-click="bookroomPopup()" class="list-group-item">
-		  	<div class="row">
-		  		<div class="col-md-7" style="text-align: left;">
-		  			<div class="list-group-item-heading time-slot-available">Available</div>
-		  			<div class="list-group-item-text booking-time-label">{{startTime | date : 'shortTime'}} to {{endTime | date : 'shortTime'}}</div>
-		  		</div>
-		  	</div>
-		  </div>
-		  <div ng-click="bookroomPopup()" class="list-group-item">
-		  	<div class="row">
-		  		<div class="col-md-7" style="text-align: left;">
-		  			<div class="list-group-item-heading team-name-label">CVoS</div>
-		  			<div class="list-group-item-text booking-time-label">02:15 PM to 03:00 PM</div>
-		  		</div>
-		  		<div class="col-md-5" style="text-align: right;padding-top: 16px;">
-			  		<div class="list-group-item-text booked-attime">08:00 AM</div>
-		  			<div class="list-group-item-text">Anand Muley</div>
-		  		</div>
-		  	</div>
-		  </div>
-		   <div href="#" class="list-group-item">
-		  	<div class="row">
-		  		<div class="col-md-7" style="text-align: left;">
-		  			<div class="list-group-item-heading team-name-label">KANBAN</div>
-		  			<div class="list-group-item-text booking-time-label">03:00 PM to 04:00 PM</div>
-		  		</div>
-		  		<div class="col-md-5" style="text-align: right;padding-top: 16px;">
-			  		<div class="list-group-item-text booked-attime">09:00 AM</div>
-		  			<div class="list-group-item-text">Someone</div>
-		  		</div>
-		  	</div>
-		  </div>
+			<div ng-repeat="booking in bookings.pinnacle" class="list-group-item">
+				<div class="row">
+					<div class="col-md-7" style="text-align: left;">
+						<div class="list-group-item-heading team-name-label">{{booking.teamName}}</div>
+						<div class="list-group-item-text booking-time-label">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
+					</div>
+					<div class="col-md-5" style="text-align: right; padding-top: 16px;">
+						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
+						<div class="list-group-item-text">{{booking.bookedBy}}</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <div href="#" class="list-group-item active text-center panel-heading">
+		  <div href="#" ng-click="bookroomPopup()" class="list-group-item active text-center panel-heading">
 		    <h3 class="list-group-item-heading">OTHER</h3>
 		  </div>
-		  <div href="#" class="list-group-item">
-		  	<div class="row">
-		  		<div class="col-md-7" style="text-align: left;">
-		  			<div class="list-group-item-heading team-name-label">MYO2</div>
-		  			<div class="list-group-item-text booking-time-label">02:15 PM to 03:00 PM</div>
-		  		</div>
-		  		<div class="col-md-5" style="text-align: right;padding-top: 16px;">
-			  		<div class="list-group-item-text booked-attime">08:00 AM</div>
-		  			<div class="list-group-item-text">Someone</div>
-		  		</div>
-		  	</div>
-		  </div>
-		  <div href="#" class="list-group-item">
-		  	<div class="row">
-		  		<div class="col-md-7" style="text-align: left;">
-		  			<div class="list-group-item-heading team-name-label team-name-label">Available</div>
-		  			<div class="list-group-item-text booking-time-label">03:00 PM to 05:00 PM</div>
-		  		</div>
-		  	</div>
-		  </div>
+		  <div ng-repeat="booking in bookings.other" class="list-group-item">
+				<div class="row">
+					<div class="col-md-7" style="text-align: left;">
+						<div class="list-group-item-heading team-name-label">{{booking.teamName}}</div>
+						<div class="list-group-item-text booking-time-label">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
+					</div>
+					<div class="col-md-5" style="text-align: right; padding-top: 16px;">
+						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
+						<div class="list-group-item-text">{{booking.bookedBy}}</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

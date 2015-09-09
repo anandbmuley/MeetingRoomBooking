@@ -56,3 +56,8 @@
 .modal-footer{
 	text-align: center;
 }
+
+.list-group-item:HOVER{
+	cursor: pointer;
+	background-color: #b8ede3;
+}

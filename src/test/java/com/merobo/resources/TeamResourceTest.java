@@ -21,7 +21,7 @@ import com.merobo.beans.BookingBean;
 import com.merobo.beans.TeamBean;
 import com.merobo.config.RootConfig;
 import com.merobo.dtos.TeamTo;
-import com.merobo.repositories.BookingRepositories;
+import com.merobo.repositories.BookingRepository;
 import com.merobo.repositories.TeamRepository;
 import com.merobo.services.TeamService;
 import com.sun.jersey.api.client.ClientResponse;
