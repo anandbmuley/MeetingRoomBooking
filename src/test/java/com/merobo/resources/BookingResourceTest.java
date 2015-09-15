@@ -1,6 +1,5 @@
 package com.merobo.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -13,14 +12,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.merobo.beans.BookingBean;
+import com.merobo.actions.BookRoomAction;
 import com.merobo.config.RootConfig;
+import com.merobo.dataproviders.BookingTestDataProvider;
 import com.merobo.dtos.BookingTo;
-import com.merobo.repositories.BookingRepository;
+import com.merobo.dtos.MeetingRoomTo;
 import com.merobo.services.BookingService;
-import com.merobo.services.BookingServiceImpl;
 import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.core.DefaultResourceConfig;
 import com.sun.jersey.test.framework.AppDescriptor;
 import com.sun.jersey.test.framework.JerseyTest;
@@ -46,11 +44,6 @@ public class BookingResourceTest extends JerseyTest implements RootConfig {
 	public void setData() {
 		bookingResource = new BookingResource();
 		mockBookingService = context.mock(BookingService.class);
-		/*
-		 * mockBookingRepositories = context.mock(BookingRepositories.class);
-		 * ReflectionTestUtils.setField(bookingResource, "bookingRepositories",
-		 * mockBookingRepositories);
-		 */
 		ReflectionTestUtils.setField(bookingResource, "bookingService",
 				mockBookingService);
 		descriptor.getResourceConfig().getSingletons().add(bookingResource);
@@ -68,118 +61,50 @@ public class BookingResourceTest extends JerseyTest implements RootConfig {
 		super.tearDown();
 	}
 
-    @Test
-	public void shouldFindTeamBooking() {
+	@Test
+	public void shouldAddABooking() {
 		// GIVEN
-		int expecteStatus = 200;
-		final String name = "akshay1111111";
-		final BookingBean bookingBean = new BookingBean();
-		bookingBean.setTeam(name);
-		final BookingTo bookingTo = new BookingTo();
+		final BookingTo bookingTo = BookingTestDataProvider.bookRoom();
+		final BookRoomAction bookRoomAction = new BookRoomAction();
 
 		context.checking(new Expectations() {
 			{
-				oneOf(mockBookingService).findTeamBooking(with(name));
-				will(returnValue(bookingTo));
+				oneOf(mockBookingService).bookRoom(with(bookingTo));
+				will(bookRoomAction);
 			}
 		});
 		// WHEN
-		WebResource resource = resource().path("booking/find").queryParam(
-				"team", name);
-		ClientResponse actualClientResponse = resource
-				.get(ClientResponse.class);
-		BookingTo actual = actualClientResponse.getEntity(BookingTo.class);
+		ClientResponse response = resource().path("booking/add")
+				.accept(MediaType.APPLICATION_JSON)
+				.type(MediaType.APPLICATION_JSON)
+				.post(ClientResponse.class, bookingTo);
 
+		String bookingId = response.getEntity(String.class);
 		// THEN
-		Assert.assertEquals(actualClientResponse.getStatus(), expecteStatus);
-		//Assert.assertEquals(actual.getTeam(), name);
-	}
-   
-	 @Test
-	public void shouldListTeamBooking() {
-		// GIVEN
-		int expecteStatus = 200;
-		final List<BookingBean> list = new ArrayList<BookingBean>();
-
-		// WHEN
-		context.checking(new Expectations() {
-			{
-				oneOf(mockBookingService).findAll();
-				will(returnValue(list));
-			}
-		});
-		WebResource resource = resource().path("booking/list");
-		ClientResponse actualClientResponse = resource
-				.get(ClientResponse.class);
-
-		// THEN
-		Assert.assertEquals(actualClientResponse.getStatus(), expecteStatus);
+		Assert.assertEquals(response.getStatus(), 200);
+		Assert.assertEquals(bookingId, "BID101");
 	}
 
 	@Test
-	public void shouldAddTeamBooking() {
-
-		int expecteStatus = 200;
-		final String name = "MCS";
-		final BookingBean bookingBean = new BookingBean();
-		bookingBean.setTeam(name);
-		final BookingTo bookingTo = new BookingTo();
-		bookingTo.setTeam(name);
-		/*
-		 * bookingTo.setDate(bookingBean.getDate());
-		 * bookingTo.setStartTime(bookingBean.getStartTime());
-		 * bookingTo.setEndTime(bookingBean.getEndTime());
-		 */
-		context.checking(new Expectations() {
-			{ /*
-				oneOf(mockBookingRepositories).save(with(bookingBean));
-				will(returnValue(bookingBean));      */                        
-				oneOf(mockBookingService).bookRoom(with(bookingTo));
-				will(returnValue(bookingTo));
-			}
-		});
-		// WHEN
-		System.out.println("before webresource");
-		WebResource resource = resource().path("booking/bookroom");
-		ClientResponse actualClientResponse = resource.type(
-				MediaType.APPLICATION_JSON).post(ClientResponse.class,
-				bookingTo);
-		BookingTo actual = actualClientResponse.getEntity(BookingTo.class);
-
-		// THEN
-		Assert.assertEquals(actualClientResponse.getStatus(), expecteStatus);
-		Assert.assertEquals(actual.getTeam(), name);
-
-	}
-
-
-	 @Test
-	public void shouldDeleteTeamBooking() {
+	public void shouldGetAllBookings() {
 		// GIVEN
-		final String name = "MCS";
 
-		final List<BookingBean> list = new ArrayList<BookingBean>();
-		BookingTo bookingTo = new BookingTo();
-		bookingTo.setTeam(name);
-		// WHEN
+		final List<BookingTo> allBookings = BookingTestDataProvider.getAll();
+
 		context.checking(new Expectations() {
 			{
-				oneOf(mockBookingService).deleteTeam(with(name));
-				will(returnValue(list));
+				oneOf(mockBookingService).getAll();
+				will(returnValue(allBookings));
 			}
 		});
-		// WHEN
-		WebResource resource = resource().path("booking/delete");
-		ClientResponse actualClientResponse = resource.type(
-				MediaType.APPLICATION_JSON).delete(ClientResponse.class,
-				bookingTo);
 
-		String actual = actualClientResponse.getEntity(String.class);
+		// WHEN
+		ClientResponse response = resource().path("booking/list")
+				.accept(MediaType.APPLICATION_JSON)
+				.type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+		MeetingRoomTo meetingRoomTo = response.getEntity(MeetingRoomTo.class);
 
 		// THEN
-		// Assert.assertEquals(actual.getClass(), "java.lang.String");
-		Assert.assertEquals(actualClientResponse.getStatus(), 200);
-
+		Assert.assertEquals(meetingRoomTo.getPinnacle().size(), 2);
 	}
-
 }

@@ -1,11 +1,12 @@
 package com.merobo.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MeetingRoomTo {
 
-	private List<BookingTo> pinnacle;
-	private List<BookingTo> other;
+	private List<BookingTo> pinnacle = new ArrayList<BookingTo>();
+	private List<BookingTo> other = new ArrayList<BookingTo>();
 
 	public List<BookingTo> getPinnacle() {
 		return pinnacle;
@@ -17,10 +18,6 @@ public class MeetingRoomTo {
 
 	public List<BookingTo> getOther() {
 		return other;
-	}
-
-	public void setOther(List<BookingTo> other) {
-		this.other = other;
 	}
 
 }
