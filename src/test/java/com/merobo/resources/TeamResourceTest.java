@@ -6,10 +6,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.hamcrest.Description;
 import org.jmock.Expectations;
-import org.jmock.api.Expectation;
-import org.jmock.api.Invocation;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -17,12 +14,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.merobo.beans.BookingBean;
 import com.merobo.beans.TeamBean;
 import com.merobo.config.RootConfig;
+import com.merobo.dataproviders.TeamTestDataProvider;
 import com.merobo.dtos.TeamTo;
-import com.merobo.repositories.BookingRepository;
-import com.merobo.repositories.TeamRepository;
 import com.merobo.services.TeamService;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -36,7 +31,6 @@ public class TeamResourceTest extends JerseyTest implements RootConfig {
 	private LowLevelAppDescriptor descriptor;
 	private TeamResource teamResource;
 	private TeamService mockTeamService;
-	private TeamTo teamTo;
 
 	public TeamResourceTest() {
 
@@ -71,11 +65,9 @@ public class TeamResourceTest extends JerseyTest implements RootConfig {
 	@Test
 	public void shouldFindTeam() {
 		// GIVEN
-		int expecteStatus = 404;
-		final String name = "akshay11";
-		/*
-		 * final TeamBean teamBean = new TeamBean(); teamBean.setName(name);
-		 */
+		final String name = "Maveric";
+		final TeamTo teamTo = TeamTestDataProvider.createTeamTo();
+
 		context.checking(new Expectations() {
 			{
 				oneOf(mockTeamService).findTeam(with(name));
@@ -88,12 +80,10 @@ public class TeamResourceTest extends JerseyTest implements RootConfig {
 				name);
 		ClientResponse actualClientResponse = resource
 				.get(ClientResponse.class);
-		// TeamTo actual = actualClientResponse.getEntity(TeamTo.class);
-		// System.out.println(actual);
+		TeamTo actual = actualClientResponse.getEntity(TeamTo.class);
 
 		// THEN
-		Assert.assertEquals(actualClientResponse.getStatus(), expecteStatus);
-		// Assert.assertEquals(actual.getName(), name);
+		Assert.assertEquals(actual.getName(), name);
 	}
 
 	@Test
@@ -103,15 +93,14 @@ public class TeamResourceTest extends JerseyTest implements RootConfig {
 		final List<TeamBean> list = new ArrayList<TeamBean>();
 		context.checking(new Expectations() {
 			{
-				oneOf(mockTeamService).getAllTeam();
+				oneOf(mockTeamService).getAllTeams();
 				will(returnValue(list));
 			}
 		});
 
 		// WHEN
-		WebResource resource = resource().path("team/list");
-		ClientResponse actualClientResponse = resource
-				.get(ClientResponse.class);
+		ClientResponse actualClientResponse = resource().path("team/list").get(
+				ClientResponse.class);
 
 		// THEN
 		Assert.assertEquals(actualClientResponse.getStatus(), expecteStatus);
@@ -120,28 +109,28 @@ public class TeamResourceTest extends JerseyTest implements RootConfig {
 	@Test
 	public void shouldAddTeam() {
 
-		final TeamBean teamBean = new TeamBean();
-		final TeamTo teamTo = new TeamTo();
-		teamTo.setName("akshay");
-		teamBean.setName(teamTo.getName()); // GIVEN
-		int expecteStatus = 200;
-		context.checking(new Expectations() {
+		final TeamTo teamTo = TeamTestDataProvider.createTeamTo();
+		final TeamTo updatedTeamTo = new TeamTo();
+		teamTo.setName(teamTo.getName());
+		teamTo.setId("55efe101e4b03091c264fcd3");
 
+		context.checking(new Expectations() {
 			{
-				oneOf(mockTeamService).addTeam(teamTo);
-				will(returnValue(teamTo));
+				oneOf(mockTeamService).addTeam(with(teamTo));
+				will(returnValue(updatedTeamTo));
 			}
 		});
 
 		// WHEN
-		WebResource service = resource().path("team/add");
-		ClientResponse resp = service.type(MediaType.APPLICATION_JSON).post(
-				ClientResponse.class, teamTo);
-		System.out.println("Got stuff: " + resp);
-		String text = resp.getEntity(String.class);
-		System.out.println("Got Entity" + text);
+		ClientResponse resp = resource().path("team/add")
+				.type(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)
+				.post(ClientResponse.class, teamTo);
+
 		// THEN
-		Assert.assertEquals(expecteStatus, resp.getStatus());
+		Assert.assertEquals(resp.getStatus(),
+				Response.Status.CREATED.getStatusCode(),
+				"Team Should Be Added Successfully");
 
 	}
 
@@ -159,11 +148,10 @@ public class TeamResourceTest extends JerseyTest implements RootConfig {
 			}
 		}); // WHEN
 
-		WebResource service = resource().path("team/delete");
-		ClientResponse resp = service.accept(MediaType.APPLICATION_JSON)
+		ClientResponse resp = resource().path("team/delete")
+				.accept(MediaType.APPLICATION_JSON)
 				.type(MediaType.APPLICATION_JSON)
 				.delete(ClientResponse.class, teamTo);
-		System.out.println("Got stuff: " + resp); // THEN
 		Assert.assertEquals(200, resp.getStatus());
 
 	}

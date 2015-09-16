@@ -49,6 +49,11 @@ ext{
 	
 }
 
+test{
+	useTestNG(){
+	}
+}
+
 repositories {
     mavenCentral()
 }
