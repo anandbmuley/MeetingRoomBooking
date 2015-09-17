@@ -1,12 +1,16 @@
+<head>
+	<!-- Services -->
+	<script type="text/javascript" src="../scripts/services/TeamService.js"></script>	
+</head>
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-4">
 		<div class="row">
 			<div class="col-md-6">
-				<input class="form-control input-md" type="text" placeholder="Enter Team Name"/>
+				<input ng-model="team.name" class="form-control input-md" type="text" placeholder="Enter Team Name"/>
 			</div>
 			<div class="col-md-3">
-				<button type="button" ng-click="createVisit()" class="btn btn-md btn-success btn-block">Add</button>			
+				<button type="button" ng-click="createTeam(team)" class="btn btn-md btn-success btn-block">Add</button>			
 			</div>
 		</div>
 	</div>
