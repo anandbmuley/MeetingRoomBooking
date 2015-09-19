@@ -11,7 +11,7 @@ app.service('TeamService',['$http',function($http){
 	
 	this.createTeam = function(team){
 		$http({
-			url : 'team/add',
+			url : 'rest/team/add',
 			method : 'POST',
 			headers : {
 				'Content-type':'application/json'
@@ -26,7 +26,7 @@ app.service('TeamService',['$http',function($http){
 	
 	this.fetchAll = function(teams){
 		$http({
-			url : 'team/list',
+			url : 'rest/team/list',
 			method : 'GET',
 			headers : {
 				'Content-type':'application/json'
@@ -35,6 +35,25 @@ app.service('TeamService',['$http',function($http){
 			teams.data = data;
 		}).error(function(data,status){
 			teams.message = 'Something went wrong!';
+		});
+	}
+	
+	this.addMember = function(team,memberName){
+		$http({
+			url : 'rest/team/addmember',
+			method : 'POST',
+			headers : {
+				'Content-type' : 'application/json'
+			},
+			data : {
+				'id':team.id,
+				'memberName':memberName
+			}
+		}).success(function(data,status){
+			team.data = data;
+			team.message = 'Member added successfully!';
+		}).error(function(data,status){
+			team.message = 'Something went wrong!';
 		});
 	}
 	

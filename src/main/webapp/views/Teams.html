@@ -1,16 +1,22 @@
-<head>
-	<!-- Services -->
-	<script type="text/javascript" src="../scripts/services/TeamService.js"></script>	
-</head>
 <div class="row">
 	<div class="col-md-1"></div>
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-7">
 				<input ng-model="team.name" class="form-control input-md" type="text" placeholder="Enter Team Name"/>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<button type="button" ng-click="createTeam(team)" class="btn btn-md btn-success btn-block">Add</button>			
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4" ng-if="selectedTeam">
+		<div class="row">
+			<div class="col-md-6">
+				<input ng-model="member.name" class="form-control input-md" type="text" placeholder="Enter Member Name"/>
+			</div>
+			<div class="col-md-3">
+				<button type="button" ng-click="addMember(selectedTeam,member)" class="btn btn-md btn-success btn-block">Add</button>			
 			</div>
 		</div>
 	</div>
@@ -23,35 +29,23 @@
 			<a href="#" class="list-group-item text-center header-container">
 				<h4 class="list-group-item-heading">TEAMS</h4>
 			</a>
-			<li class="list-group-item">
-				<span class="badge">10</span> 
-				CVoS
-			</li>
-			<li class="list-group-item">
-				<span class="badge">08</span> 
-				KANBAN	
+			<li ng-click="selectTeam(team)" ng-class="{'list-group-item-selected':team.name==selectedTeam.name}" ng-repeat="team in teams.data" class="list-group-item">
+				<span class="badge">{{team.memberTos.length}}</span> 
+				<div>{{team.name}}</div>
 			</li>
 		</ul>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-8" ng-if="selectedTeam">
 		<div class="panel panel-primary panel-border">
 			<div class="panel-heading">
-				<h3 class="panel-title">CVoS Team Members</h3>
+				<h3 class="panel-title">{{selectedTeam.name}} Team Members</h3>
 			</div>
 			<div class="panel-body text-center">
-				<div class="col-sm-3 col-md-3">
+				<div class="col-sm-3 col-md-3" ng-repeat="member in selectedTeam.memberTos">
 					<div class="thumbnail">
-						<img width="100" src="http://i.telegraph.co.uk/multimedia/archive/02183/baby-max_2183067b.jpg" alt="NA">
+						<img width="100" src="images/default-user.png" alt="NA">
 						<div class="caption">
-							PersonA
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3 col-md-3">
-					<div class="thumbnail">
-						<img width="100" src="http://ei.marketwatch.com//Multimedia/2014/04/11/Photos/MG/MW-BZ111_cute_b_20140411074006_MG.jpg?uuid=15c26634-c16e-11e3-9750-00212803fad6" alt="NA">
-						<div class="caption">
-							PersonB
+							{{member.name}}
 						</div>
 					</div>
 				</div>

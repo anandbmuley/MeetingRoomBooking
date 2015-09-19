@@ -14,4 +14,6 @@ public interface TeamService {
 
 	TeamTo findTeam(String name);
 
+	TeamTo addMember(String teamId, String memberName);
+
 }

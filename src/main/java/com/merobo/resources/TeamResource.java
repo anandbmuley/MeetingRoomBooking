@@ -60,4 +60,14 @@ public class TeamResource {
 		return Response.ok(teamTo).build();
 	}
 
+	@POST
+	@Path("addmember")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addMember(TeamTo teamTo) {
+		TeamTo teamToUpdated = teamService.addMember(teamTo.getId(),
+				teamTo.getMemberName());
+		return Response.ok(teamToUpdated).build();
+	}
+
 }
