@@ -49,19 +49,42 @@
 	color: #01BF9D;
 }
 
-.timelabel{
+.timelabel {
 	font-size: 20px;
 }
 
-.modal-footer{
+.modal-footer {
 	text-align: center;
 }
 
-.list-group-item:HOVER{
+.list-group-item:HOVER {
 	cursor: pointer;
 	background-color: #b8ede3;
 }
 
-.list-group-item-selected{
+.list-group-item-selected {
 	background-color: #b8ede3;
+}
+
+.css-teamform input.ng-invalid.ng-touched {
+	border-color: #F05749;
+	box-shadow: 0 0 10px #F05749;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color: #909;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: #909;
+	opacity: 1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #909;
+	opacity: 1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #909;
 }

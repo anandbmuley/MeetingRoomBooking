@@ -11,14 +11,17 @@
 		</div>
 	</div>
 	<div class="col-md-4" ng-if="selectedTeam">
-		<div class="row">
-			<div class="col-md-6">
-				<input ng-model="member.name" class="form-control input-md" type="text" placeholder="Enter Member Name"/>
+		<form name="form" class="css-teamform">
+			<div class="row">
+				<div class="col-md-6">
+					<input ng-model="member.name" autocomplete="on" required name="memberName" class="form-control input-md" type="text" placeholder="Enter Member Name" alphabet/>
+					<span ng-show="form.memberName.$error.alphabet">Member Name should be alphabet</span>
+				</div>
+				<div class="col-md-3">
+					<button type="button" ng-click="addMember(selectedTeam,member)" class="btn btn-md btn-success btn-block">Add</button>			
+				</div>
 			</div>
-			<div class="col-md-3">
-				<button type="button" ng-click="addMember(selectedTeam,member)" class="btn btn-md btn-success btn-block">Add</button>			
-			</div>
-		</div>
+		</form>
 	</div>
 </div>
 <br/>
