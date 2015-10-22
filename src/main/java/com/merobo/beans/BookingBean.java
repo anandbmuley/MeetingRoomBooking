@@ -13,6 +13,7 @@ public class BookingBean {
 	private String endTime;
 	private String bookedBy;
 	private String bookedWhen;
+	private String roomName;
 
 	public String getId() {
 		return id;
@@ -62,6 +63,22 @@ public class BookingBean {
 		this.bookedWhen = bookedWhen;
 	}
 
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+
+	@Override
+	public String toString() {
+		return "BookingBean [id=" + id + ", teamName=" + teamName
+				+ ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", bookedBy=" + bookedBy + ", bookedWhen=" + bookedWhen
+				+ ", roomName=" + roomName + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,6 +89,8 @@ public class BookingBean {
 				+ ((bookedWhen == null) ? 0 : bookedWhen.hashCode());
 		result = prime * result + ((endTime == null) ? 0 : endTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((roomName == null) ? 0 : roomName.hashCode());
 		result = prime * result
 				+ ((startTime == null) ? 0 : startTime.hashCode());
 		result = prime * result
@@ -108,6 +127,11 @@ public class BookingBean {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (roomName == null) {
+			if (other.roomName != null)
+				return false;
+		} else if (!roomName.equals(other.roomName))
+			return false;
 		if (startTime == null) {
 			if (other.startTime != null)
 				return false;
@@ -119,13 +143,6 @@ public class BookingBean {
 		} else if (!teamName.equals(other.teamName))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "BookingBean [id=" + id + ", teamName=" + teamName
-				+ ", startTime=" + startTime + ", endTime=" + endTime
-				+ ", bookedBy=" + bookedBy + ", bookedWhen=" + bookedWhen + "]";
 	}
 
 }

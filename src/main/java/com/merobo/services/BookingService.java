@@ -1,13 +1,12 @@
 package com.merobo.services;
 
-import java.util.List;
-
 import com.merobo.dtos.BookingTo;
+import com.merobo.dtos.MeetingRoomTo;
 
 public interface BookingService {
 
 	BookingTo bookRoom(BookingTo bookingTo);
 
-	List<BookingTo> getAll();
+	MeetingRoomTo getAll();
 
 }

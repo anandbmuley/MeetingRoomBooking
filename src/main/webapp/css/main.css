@@ -1,5 +1,27 @@
 @CHARSET "UTF-8";
 
+.registration-link {
+	font-size: 15px;
+	color: #01BF9D;
+}
+
+.registration-link:HOVER {
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+	color: #01BF9D;
+}
+
+.copyright {
+	color: gray;
+	font-size: 12px;
+}
+
+.page-title {
+	font-size: 20px;
+	color: #01BF9D;
+}
+
 .site-title {
 	font-size: 30px;
 	color: #01BF9D;

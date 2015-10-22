@@ -17,6 +17,7 @@ public abstract class BeanCreatorUtil {
 		bookingBean.setEndTime(bookingTo.getEndTime());
 		bookingBean.setStartTime(bookingTo.getStartTime());
 		bookingBean.setTeamName(bookingTo.getTeamName());
+		bookingBean.setRoomName(bookingTo.getRoomName());
 		return bookingBean;
 	}
 
@@ -31,6 +32,7 @@ public abstract class BeanCreatorUtil {
 			bookingTo.setId(bookingBean.getId());
 			bookingTo.setStartTime(bookingBean.getStartTime());
 			bookingTo.setTeamName(bookingBean.getTeamName());
+			bookingTo.setRoomName(bookingBean.getRoomName());
 			bookingTos.add(bookingTo);
 		}
 		return bookingTos;

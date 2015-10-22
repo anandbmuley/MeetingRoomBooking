@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MEROBO</title>
 <!-- Bootstrap Config -->
+<link rel="shortcut icon" type="image/png" href="images/capricorn.png"/>
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/justified-nav.css">
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -21,6 +22,7 @@
 
 <script type="text/javascript" src="node_modules/angular/angular.js"></script>
 <script type="text/javascript" src="node_modules/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="node_modules/angular-cookies/angular-cookies.js"></script>
 <script type="text/javascript" src="scripts/lib/ui-bootstrap-tpls-0.13.4.min.js"></script>
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -28,25 +30,36 @@
 <!-- Sample Data Provider -->
 <script type="text/javascript" src="scripts/dataproviders/SampleDataProvider.js"></script>
 <!-- Controllers -->
+<script type="text/javascript" src="scripts/controllers/LoginController.js"></script>
 <script type="text/javascript" src="scripts/controllers/HomeController.js"></script> 
 <script type="text/javascript" src="scripts/controllers/TeamsController.js"></script>
 <script type="text/javascript" src="scripts/controllers/BookRoomModalController.js"></script> 
 <!-- Services -->
 <script type="text/javascript" src="scripts/services/BookingService.js"></script>	
 <script type="text/javascript" src="scripts/services/TeamService.js"></script>
+<script type="text/javascript" src="scripts/services/AuthenticationService.js"></script>
 <!-- Validators -->
 <script type="text/javascript" src="scripts/validators/CustomValidators.js"></script>
 </head>
 <body>
 	<div class="container">
-		<div class="masthead">
+		<div ng-if="authenticated" class="masthead">
 			<h3 class="text-info">
-				<div class="site-title">MEROBO</div>
-				<div class="site-subtitle">Meeting Room Booking</div>
+				<div class="row">
+					<div class="col-md-2">
+						<div class="site-title">MEROBO</div>
+						<div class="site-subtitle">Meeting Room Booking</div>
+					</div>
+					<div class="col-md-8"></div>
+					<div class="col-md-2" align="right">
+						<div class="site-title">{{usr.teamName}}</div>
+						<div class="site-subtitle">{{usr.name}}</div>
+					</div>
+				</div>
 			</h3>
 			<nav>
 				<ul class="nav nav-justified">
-					<li><a href="#/">Home</a></li>
+					<li><a href="#/home">Home</a></li>
 					<li><a href="#/teams">Teams</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">Contact</a></li>

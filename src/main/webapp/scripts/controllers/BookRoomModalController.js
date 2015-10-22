@@ -1,5 +1,6 @@
 controllers.controller('BookRoomModalController',
-		['$scope','$modalInstance','BookingService','$filter',function($scope,$modalInstance,bookingService,$filter){
+		['$scope','$modalInstance','BookingService','$filter','$rootScope','$cookies','AuthenticationService',
+		 function($scope,$modalInstance,bookingService,$filter,$rootScope,$cookies,authenticationService){
 	
 	$scope.min = new Date();
 	$scope.min.setHours(8);
@@ -20,19 +21,16 @@ controllers.controller('BookRoomModalController',
 	
 	$scope.ismeridian = true
 	
-	$scope.team = {
-			members : ['Rohit Mehra']	
-	};
-		
-	
 	$scope.bookIt = function(teamName,bookedBy){
+		authenticationService.validateCookie($rootScope,'/home');
 		$scope.bookingModel = {
-				bookedBy : $scope.bookedBy,
+				bookedBy : $rootScope.usr.name,
 				startTime : $filter('date')($scope.startTime,'hh:mm a'),
 				endTime : $filter('date')($scope.endTime,'hh:mm a'),
-				teamName : $scope.teamName
+				teamName : $rootScope.usr.teamName,
+				roomName : $scope.roomName
 		}
-		bookingService.bookRoom($scope.bookingModel);
+		bookingService.bookRoom($scope.bookingModel,$scope);
 		$modalInstance.close();
 	}
 	

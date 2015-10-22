@@ -1,7 +1,11 @@
-controllers.controller('HomeController',['$scope','$modal','BookingService',function($scope,$modal,bookingService){
+controllers.controller('HomeController',
+		['$scope','$modal','BookingService','$rootScope','$location','$cookies','AuthenticationService',
+		 function($scope,$modal,bookingService,$rootScope,$location,$cookies,authenticationService){
 	$scope.pageTitle = 'Today\'s Bookings';
 	bookingService.getBookings($scope);
 	$scope.message = bookingService.getMessage();
+	
+	authenticationService.validateCookie($rootScope,'/home');
 	
 	$scope.teams = teams;
 	
@@ -9,7 +13,8 @@ controllers.controller('HomeController',['$scope','$modal','BookingService',func
 		
 	}
 	
-	$scope.bookroomPopup = function(){
+	$scope.bookroomPopup = function(roomName){
+		$scope.roomName = roomName;
 		var bookRoomModal = $modal.open({
 			animation : true,
 			scope : $scope,

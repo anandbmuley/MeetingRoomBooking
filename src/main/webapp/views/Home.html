@@ -2,27 +2,12 @@
 <div ng-if="message">
 	<div class="alert alert-success">{{message}}</div>
 </div>
-<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-2" style="text-align: right;">Select Team</div>
-	<div class="col-md-2">
-		<select class="form-control input-md" ng-init="teamName='CVoS'" ng-model="teamName">
-			<option ng-repeat="team in teams.teamNames" value="{{team}}">{{team}}</option>
-		</select>	
-	</div>
-	<div class="col-md-2" style="text-align: right;">Select Member</div>
-	<div class="col-md-2">
-		<select class="form-control input-md" ng-model="bookedBy">
-			<option ng-repeat="member in teams.members | filter : teamName" value="{{member.name}}">{{member.name}}</option>
-		</select>	
-	</div>
-</div>
 <h3 class="text-center">{{pageTitle}}</h3>
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <div id="pinnacle-room" ng-click="bookroomPopup()" class="list-group-item active text-center panel-heading">
+		  <div id="pinnacle-room" ng-click="bookroomPopup('PINNACLE')" class="list-group-item active text-center panel-heading">
 		    <h3 class="list-group-item-heading">PINNACLE</h3>
 		  </div>
 			<div ng-repeat="booking in bookings.pinnacle" class="list-group-item">
@@ -41,7 +26,7 @@
 	</div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <div href="#" ng-click="bookroomPopup()" class="list-group-item active text-center panel-heading">
+		  <div href="#" ng-click="bookroomPopup('OTHER')" class="list-group-item active text-center panel-heading">
 		    <h3 class="list-group-item-heading">OTHER</h3>
 		  </div>
 		  <div ng-repeat="booking in bookings.other" class="list-group-item">
@@ -62,7 +47,7 @@
 <!-- Room Booking Modal -->
 <script type="text/ng-template" id="BookRoomModal.html">
 <div class="modal-header">
-	<h3 class="modal-title">Select Timeslot</h3>
+	<h4 class="modal-title">{{usr.name}} is booking room on behalf of {{usr.teamName}} team</h4>
 </div>
 <div class="modal-body">
 	<div class="row">

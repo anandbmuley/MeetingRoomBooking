@@ -1,5 +1,6 @@
 app.service('BookingService',['$http',function($http){
-	
+
+	var self = this;
 	var message = '';
 	
 	this.getMessage = function(){
@@ -20,7 +21,7 @@ app.service('BookingService',['$http',function($http){
 		});
 	}
 	
-	this.bookRoom = function(booking){
+	this.bookRoom = function(booking,scope){
 		$http({
 			method : 'POST',
 			url : 'rest/booking/add',

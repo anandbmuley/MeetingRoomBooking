@@ -12,12 +12,13 @@ public class MeetingRoomTo {
 		return pinnacle;
 	}
 
-	public void setPinnacle(List<BookingTo> pinnacle) {
-		this.pinnacle = pinnacle;
-	}
-
 	public List<BookingTo> getOther() {
 		return other;
+	}
+
+	@Override
+	public String toString() {
+		return "MeetingRoomTo [pinnacle=" + pinnacle + ", other=" + other + "]";
 	}
 
 }

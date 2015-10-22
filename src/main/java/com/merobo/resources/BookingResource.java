@@ -1,7 +1,5 @@
 package com.merobo.resources;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.merobo.dtos.BookingTo;
-import com.merobo.dtos.MeetingRoomTo;
 import com.merobo.services.BookingService;
 
 @Component
@@ -37,10 +34,7 @@ public class BookingResource {
 	@Path("list")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllBookings() {
-		List<BookingTo> bookingTos = bookingService.getAll();
-		MeetingRoomTo meetingRoomTo = new MeetingRoomTo();
-		meetingRoomTo.setPinnacle(bookingTos);
-		return Response.ok(meetingRoomTo).build();
+		return Response.ok(bookingService.getAll()).build();
 	}
 
 }
