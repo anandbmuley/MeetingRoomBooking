@@ -7,21 +7,8 @@ controllers.controller('TeamsController',
 
 	authenticationService.validateCookie($rootScope,'/teams');
 	
-	$scope.createTeam = function(team){
-		teamService.createTeam(team);
-		team.name='';
-		teamService.fetchAll($scope.teams);
-	}
-	
 	$scope.selectTeam = function(team){
 		$scope.selectedTeam = team;
 	}
-	
-	$scope.addMember = function(team,member){
-		teamService.addMember(team,member.name);
-		member.name = '';
-		teamService.fetchAll($scope.teams);
-	}
-	
 	
 }]);

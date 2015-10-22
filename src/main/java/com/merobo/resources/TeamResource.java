@@ -8,7 +8,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -50,24 +49,6 @@ public class TeamResource {
 	public Response deleteTeam(TeamTo teamTo) {
 		teamService.deleteTeam(teamTo);
 		return Response.ok().build();
-	}
-
-	@GET
-	@Path("find")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response findTeam(@QueryParam("name") String name) {
-		TeamTo teamTo = teamService.findTeam(name);
-		return Response.ok(teamTo).build();
-	}
-
-	@POST
-	@Path("addmember")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response addMember(TeamTo teamTo) {
-		TeamTo teamToUpdated = teamService.addMember(teamTo.getId(),
-				teamTo.getMemberName());
-		return Response.ok(teamToUpdated).build();
 	}
 
 }

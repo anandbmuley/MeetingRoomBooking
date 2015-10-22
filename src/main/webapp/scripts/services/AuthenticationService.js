@@ -1,21 +1,24 @@
 app.service('AuthenticationService',['$http','$cookies','$location',function($http,$cookies,$location){
 
+	
 	function incrementDate(givenDate,mins){
 		return new Date(givenDate.getTime() + mins*60000);
 	}
 	
 	function addCookie($cookies,auth,data){
-		$cookies.put('auth',auth,{expires:incrementDate(new Date(), 1)});
-		$cookies.put('usr',JSON.stringify(data),{expires:incrementDate(new Date(), 1)});
+		var timeInMins = data.cookieTimeout;
+		$cookies.put('sesslimit',timeInMins,{expires:incrementDate(new Date(), timeInMins)});
+		$cookies.put('auth',auth,{expires:incrementDate(new Date(), timeInMins)});
+		$cookies.put('usr',JSON.stringify(data),{expires:incrementDate(new Date(), timeInMins)});
 	}
 	
-	this.login = function($scope,$rootScope,$location){
+	this.login = function(username,password,$scope,$rootScope,$location){
 		$http({
 			method : 'POST',
 			url : 'rest/authentication/login',
 			data : {
-				username : $scope.username,
-				password : $scope.password
+				username : username,
+				password : password
 			}
 		}).success(function(data,status){
 			addCookie($cookies,true,data);
@@ -49,7 +52,10 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	}
 	
 	this.validateCookie = function($rootScope,page){
-		if($rootScope.authenticated == undefined){
+		if($cookies.get('auth') == undefined){
+			$rootScope.authenticated = false;
+			$location.path('/login');
+		}else{
 			$rootScope.authenticated = $cookies.get('auth');
 			if($rootScope.authenticated){
 				$rootScope.usr = JSON.parse($cookies.get('usr'));

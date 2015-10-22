@@ -31,8 +31,10 @@
 <script type="text/javascript" src="scripts/dataproviders/SampleDataProvider.js"></script>
 <!-- Controllers -->
 <script type="text/javascript" src="scripts/controllers/LoginController.js"></script>
+<script type="text/javascript" src="scripts/controllers/UserController.js"></script>
 <script type="text/javascript" src="scripts/controllers/HomeController.js"></script> 
 <script type="text/javascript" src="scripts/controllers/TeamsController.js"></script>
+<script type="text/javascript" src="scripts/controllers/MereoboSessionController.js"></script>
 <script type="text/javascript" src="scripts/controllers/BookRoomModalController.js"></script> 
 <!-- Services -->
 <script type="text/javascript" src="scripts/services/BookingService.js"></script>	
@@ -50,7 +52,10 @@
 						<div class="site-title">MEROBO</div>
 						<div class="site-subtitle">Meeting Room Booking</div>
 					</div>
-					<div class="col-md-8"></div>
+					<div class="col-md-5"></div>
+					<div align="right" ng-controller="MeroboSessionController" class="col-md-3 session-msg">
+						{{sessionMessage}}
+					</div>
 					<div class="col-md-2" align="right">
 						<div class="site-title">{{usr.teamName}}</div>
 						<div class="site-subtitle">{{usr.name}}</div>

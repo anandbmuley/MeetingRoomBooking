@@ -61,9 +61,9 @@
 	</div>
 </div>
 <br/>
-<div class="row" ng-if="user.message">
+<div class="row" ng-if="message">
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
-		<div class="alert alert-danger">{{user.message}}</div>
+		<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
 	</div>
 </div>

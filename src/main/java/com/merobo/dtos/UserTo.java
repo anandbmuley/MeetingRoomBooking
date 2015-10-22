@@ -7,6 +7,8 @@ public class UserTo {
 	private String password;
 	private String name;
 	private String teamName;
+	// Timeout for cookies
+	private long cookieTimeout = 15;
 
 	public String getId() {
 		return id;
@@ -48,10 +50,15 @@ public class UserTo {
 		this.teamName = teamName;
 	}
 
+	public long getCookieTimeout() {
+		return cookieTimeout;
+	}
+
 	@Override
 	public String toString() {
 		return "UserTo [id=" + id + ", username=" + username + ", password="
-				+ password + ", name=" + name + ", teamName=" + teamName + "]";
+				+ password + ", name=" + name + ", teamName=" + teamName
+				+ ", cookieTimeout=" + cookieTimeout + "]";
 	}
 
 }

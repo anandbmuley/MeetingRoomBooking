@@ -13,7 +13,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 		controller : 'LoginController'
 	}).when('/create', {
 		templateUrl : 'CreateNew.html',
-		controller : 'LoginController'
+		controller : 'UserController'
 	}).when('/home', {
 		templateUrl : 'views/Home.html',
 		controller : 'HomeController'

@@ -2,18 +2,46 @@ package com.merobo.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.merobo.beans.TeamBean;
+import com.merobo.beans.UserBean;
 import com.merobo.dtos.TeamTo;
+import com.merobo.repositories.TeamRepository;
+import com.merobo.repositories.UserRepository;
+import com.merobo.utils.DtoCreatorUtil;
 
-public interface TeamService {
+@Service
+public class TeamService {
 
-	TeamTo addTeam(TeamTo teamTo);
+	@Autowired
+	private TeamRepository teamRepository;
 
-	List<TeamTo> getAllTeams();
+	@Autowired
+	private UserRepository userRepository;
 
-	void deleteTeam(TeamTo teamTo);
+	public TeamTo addTeam(TeamTo teamTo) {
+		TeamBean teamBean = new TeamBean();
+		teamBean.setName(teamTo.getName());
+		teamRepository.save(teamBean);
+		teamTo.setId(teamBean.getId());
+		return teamTo;
+	}
 
-	TeamTo findTeam(String name);
+	public List<TeamTo> getAllTeams() {
+		List<TeamBean> teams = teamRepository.findAll();
+		List<TeamTo> teamTos = DtoCreatorUtil.createTeamTos(teams);
+		for (TeamTo teamTo : teamTos) {
+			List<UserBean> users = userRepository.findByTeamName(teamTo
+					.getName());
+			teamTo.getMemberTos().addAll(DtoCreatorUtil.createUserTos(users));
+		}
+		return teamTos;
+	}
 
-	TeamTo addMember(String teamId, String memberName);
+	public void deleteTeam(TeamTo teamTo) {
+		teamRepository.deleteByName(teamTo.getName());
+	}
 
 }

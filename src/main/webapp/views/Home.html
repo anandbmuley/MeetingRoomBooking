@@ -17,6 +17,9 @@
 						<div class="list-group-item-text booking-time-label">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
 					</div>
 					<div class="col-md-5" style="text-align: right; padding-top: 16px;">
+						<div class="list-group-item-text">
+							<a title="Click to cancel this booking" class="cancel-booking">Cancel</a>
+						</div>
 						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
 						<div class="list-group-item-text">{{booking.bookedBy}}</div>
 					</div>
