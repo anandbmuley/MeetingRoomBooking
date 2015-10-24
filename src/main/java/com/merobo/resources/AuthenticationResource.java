@@ -1,5 +1,7 @@
 package com.merobo.resources;
 
+import java.util.Date;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.merobo.dtos.UserTo;
 import com.merobo.exceptions.UserServiceException;
 import com.merobo.services.UserService;
+import com.merobo.utils.DateConverterUtil;
 
 @Component
 @Path("authentication")
@@ -30,6 +33,8 @@ public class AuthenticationResource {
 		try {
 			userService.login(userTo);
 			userTo.setPassword("");
+			userTo.setLoginTime(DateConverterUtil.toString(new Date(),
+					DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
 			response = Response.ok(userTo).build();
 		} catch (UserServiceException e) {
 			response = Response.status(Response.Status.BAD_REQUEST)

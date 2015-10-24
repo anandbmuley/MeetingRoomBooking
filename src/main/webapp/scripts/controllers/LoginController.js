@@ -8,4 +8,8 @@ app.controller('LoginController',
 		authenticationService.login(username,password,$scope,$rootScope,$location);
 	}
 	
+	$scope.logout = function(){
+		authenticationService.logout();
+	}
+	
 }]);

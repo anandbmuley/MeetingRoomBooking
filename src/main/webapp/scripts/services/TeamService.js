@@ -9,18 +9,21 @@ app.service('TeamService',['$http',function($http){
 		return team;
 	}
 	
-	this.createTeam = function(team){
+	this.createTeam = function(scope){
 		$http({
 			url : 'rest/team/add',
 			method : 'POST',
 			headers : {
 				'Content-type':'application/json'
 			},
-			data : self.createTeamJSON(team.name)
+			data : self.createTeamJSON(scope.teamName)
 		}).success(function(data,status){
-			team.message = 'Team created successfully !';
+			scope.success = true;
+			scope.message = 'Team created successfully !';
+			scope.teamName = '';
 		}).error(function(data,status){
-			team.message = 'Something went wrong !';
+			scope.success = false;
+			scope.message = 'Something went wrong !';
 		});
 	}
 	

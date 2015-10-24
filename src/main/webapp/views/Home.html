@@ -16,9 +16,10 @@
 						<div class="list-group-item-heading team-name-label">{{booking.teamName}}</div>
 						<div class="list-group-item-text booking-time-label">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
 					</div>
-					<div class="col-md-5" style="text-align: right; padding-top: 16px;">
+					<div class="col-md-5" style="text-align: right;">
 						<div class="list-group-item-text">
-							<a title="Click to cancel this booking" class="cancel-booking">Cancel</a>
+							<span ng-class="{'active':booking.status=='BOOKED','cancelled':booking.status=='CANCELLED'}">{{booking.status}}</span>
+							<a ng-if="booking.status=='BOOKED' && usr.name==booking.bookedBy" ng-click="cancelBooking(booking.id)" title="Cancel Booking" class="cancel-booking glyphicon glyphicon-trash"></a>
 						</div>
 						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
 						<div class="list-group-item-text">{{booking.bookedBy}}</div>
@@ -38,7 +39,11 @@
 						<div class="list-group-item-heading team-name-label">{{booking.teamName}}</div>
 						<div class="list-group-item-text booking-time-label">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
 					</div>
-					<div class="col-md-5" style="text-align: right; padding-top: 16px;">
+					<div class="col-md-5" style="text-align: right;">
+						<div class="list-group-item-text">
+							<span ng-class="{'active':booking.status=='BOOKED','cancelled':booking.status=='CANCELLED'}">{{booking.status}}</span>
+							<a ng-if="booking.status=='BOOKED' && usr.name==booking.bookedBy" ng-click="cancelBooking(booking.id)" title="Cancel Booking" class="cancel-booking glyphicon glyphicon-trash"></a>
+						</div>
 						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
 						<div class="list-group-item-text">{{booking.bookedBy}}</div>
 					</div>
@@ -54,20 +59,35 @@
 </div>
 <div class="modal-body">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
 			<div class="timelabel">Start Time </div>
 			<timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 		</div>
 	</div>
 	<br/>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
 			<div class="timelabel">End Time </div>
 			<timepicker ng-model="endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 		</div>
 	</div>
 </div>
 <div class="modal-footer">
-	<button class="btn btn-primary" type="button" ng-click="bookIt()">Book It</button>
+	<div class="col-md-2"></div>
+	<div class="col-md-2">
+		<button class="btn btn-primary" type="button" ng-click="bookIt()">Book It</button>
+	</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-2">
+		 <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</div>
+<div class="row" ng-if="message">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
+	</div>
 </div>
 </script>

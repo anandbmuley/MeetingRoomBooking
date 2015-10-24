@@ -1,0 +1,46 @@
+<title>{{pageTitle}}</title>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<h3 class="text-info">
+			<div class="site-title">MEROBO</div>
+			<div class="site-subtitle">Meeting Room Booking</div>
+		</h3>
+	</div>
+</div>
+<form action="#" method="post">
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<input required="required" ng-model="teamName" type="text" placeholder="Enter Team Name" class="form-control input-lg" />
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4" align="center">
+		<button type="button" ng-click="create()" class="btn btn-lg btn-success">Create</button>
+	</div>
+</div>
+</form>
+<br/>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4" align="center">
+		<a class="registration-link" href="#/">Login</a>
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4 copyright" align="center">
+		&copy; Anand Muley
+	</div>
+</div>
+<br/>
+<div class="row" ng-if="message">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
+	</div>
+</div>

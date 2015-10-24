@@ -9,8 +9,9 @@ controllers.controller('HomeController',
 	
 	$scope.teams = teams;
 	
-	$scope.addTeam = function(){
-		
+	$scope.cancelBooking = function(bookingId){
+		$scope.bookingId = bookingId;
+		bookingService.cancelBooking($scope);
 	}
 	
 	$scope.bookroomPopup = function(roomName){
@@ -20,7 +21,7 @@ controllers.controller('HomeController',
 			scope : $scope,
 			templateUrl : 'BookRoomModal.html',
 			controller : 'BookRoomModalController',
-			size : 'sm'
+			size : 'md'
 		});
 	}
 	

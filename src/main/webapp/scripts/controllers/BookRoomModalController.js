@@ -1,6 +1,8 @@
 controllers.controller('BookRoomModalController',
-		['$scope','$modalInstance','BookingService','$filter','$rootScope','$cookies','AuthenticationService',
-		 function($scope,$modalInstance,bookingService,$filter,$rootScope,$cookies,authenticationService){
+		['$scope','$modalInstance','BookingService','$filter',
+		 '$rootScope','$cookies','AuthenticationService','$location',
+		 function($scope,$modalInstance,bookingService,$filter,
+				 $rootScope,$cookies,authenticationService,$location){
 	
 	$scope.min = new Date();
 	$scope.min.setHours(8);
@@ -17,7 +19,7 @@ controllers.controller('BookRoomModalController',
 	$scope.endTime.setMinutes($scope.startTime.getMinutes()+1);
 	
 	$scope.hstep = 1;
-	$scope.mstep = 15;
+	$scope.mstep = 1;
 	
 	$scope.ismeridian = true
 	
@@ -30,8 +32,7 @@ controllers.controller('BookRoomModalController',
 				teamName : $rootScope.usr.teamName,
 				roomName : $scope.roomName
 		}
-		bookingService.bookRoom($scope.bookingModel,$scope);
-		$modalInstance.close();
+		bookingService.bookRoom($scope.bookingModel,$scope,$modalInstance);
 	}
 	
 	$scope.cancel = function(){

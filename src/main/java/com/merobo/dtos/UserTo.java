@@ -9,6 +9,7 @@ public class UserTo {
 	private String teamName;
 	// Timeout for cookies
 	private long cookieTimeout = 15;
+	private String loginTime;
 
 	public String getId() {
 		return id;
@@ -54,11 +55,20 @@ public class UserTo {
 		return cookieTimeout;
 	}
 
+	public String getLoginTime() {
+		return loginTime;
+	}
+
+	public void setLoginTime(String loginTime) {
+		this.loginTime = loginTime;
+	}
+
 	@Override
 	public String toString() {
 		return "UserTo [id=" + id + ", username=" + username + ", password="
 				+ password + ", name=" + name + ", teamName=" + teamName
-				+ ", cookieTimeout=" + cookieTimeout + "]";
+				+ ", cookieTimeout=" + cookieTimeout + ", loginTime="
+				+ loginTime + "]";
 	}
 
 }

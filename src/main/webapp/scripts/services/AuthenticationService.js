@@ -8,8 +8,16 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	function addCookie($cookies,auth,data){
 		var timeInMins = data.cookieTimeout;
 		$cookies.put('sesslimit',timeInMins,{expires:incrementDate(new Date(), timeInMins)});
+		$cookies.put('loginTime',data.loginTime,{expires:incrementDate(new Date(), timeInMins)});
 		$cookies.put('auth',auth,{expires:incrementDate(new Date(), timeInMins)});
 		$cookies.put('usr',JSON.stringify(data),{expires:incrementDate(new Date(), timeInMins)});
+	}
+	
+	function removeCookies(){
+		$cookies.remove('sesslimit');
+		$cookies.remove('loginTime');
+		$cookies.remove('auth');
+		$cookies.remove('usr');
 	}
 	
 	this.login = function(username,password,$scope,$rootScope,$location){
@@ -30,6 +38,11 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 			$scope.success = false;
 			$scope.message = data;
 		});
+	}
+	
+	this.logout = function(){
+		removeCookies();
+		$location.path('/login');
 	}
 	
 	this.create = function($scope){

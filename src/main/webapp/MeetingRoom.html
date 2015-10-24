@@ -31,11 +31,16 @@
 <script type="text/javascript" src="scripts/dataproviders/SampleDataProvider.js"></script>
 <!-- Controllers -->
 <script type="text/javascript" src="scripts/controllers/LoginController.js"></script>
+<script type="text/javascript" src="scripts/controllers/LogoutController.js"></script>
 <script type="text/javascript" src="scripts/controllers/UserController.js"></script>
 <script type="text/javascript" src="scripts/controllers/HomeController.js"></script> 
+<script type="text/javascript" src="scripts/controllers/CreateTeamController.js"></script>
 <script type="text/javascript" src="scripts/controllers/TeamsController.js"></script>
 <script type="text/javascript" src="scripts/controllers/MereoboSessionController.js"></script>
 <script type="text/javascript" src="scripts/controllers/BookRoomModalController.js"></script> 
+<script type="text/javascript" src="scripts/controllers/AboutController.js"></script>
+<script type="text/javascript" src="scripts/controllers/ContactController.js"></script>
+ 
 <!-- Services -->
 <script type="text/javascript" src="scripts/services/BookingService.js"></script>	
 <script type="text/javascript" src="scripts/services/TeamService.js"></script>
@@ -52,13 +57,13 @@
 						<div class="site-title">MEROBO</div>
 						<div class="site-subtitle">Meeting Room Booking</div>
 					</div>
-					<div class="col-md-5"></div>
-					<div align="right" ng-controller="MeroboSessionController" class="col-md-3 session-msg">
-						{{sessionMessage}}
-					</div>
-					<div class="col-md-2" align="right">
+					<div class="col-md-8" align="center">
 						<div class="site-title">{{usr.teamName}}</div>
-						<div class="site-subtitle">{{usr.name}}</div>
+						<div class="site-subtitle bold-font">{{usr.name}}</div>
+					</div>
+					<div align="right" ng-controller="MeroboSessionController" class="col-md-2 session-msg" align="right">
+						<div class="site-subtitle">{{loginTimeMsg}}</div>
+						<div class="site-subtitle" style="color: red;">{{sessionMessage}}</div>
 					</div>
 				</div>
 			</h3>
@@ -66,8 +71,9 @@
 				<ul class="nav nav-justified">
 					<li><a href="#/home">Home</a></li>
 					<li><a href="#/teams">Teams</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="#/about">About</a></li>
+					<li><a href="#/contact">Contact</a></li>
+					<li><a href="#/logout">Logout</a></li>
 				</ul>
 			</nav>
 		</div>

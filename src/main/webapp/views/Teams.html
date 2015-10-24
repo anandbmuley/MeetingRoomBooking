@@ -3,9 +3,9 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-3">
 		<ul class="list-group">
-			<a href="#" class="list-group-item text-center header-container">
+			<div class="list-group-item active text-center panel-heading">
 				<h4 class="list-group-item-heading">TEAMS</h4>
-			</a>
+			</div>
 			<li ng-click="selectTeam(team)" ng-class="{'list-group-item-selected':team.name==selectedTeam.name}" ng-repeat="team in teams.data" class="list-group-item">
 				<span class="badge">{{team.memberTos.length}}</span> 
 				<div>{{team.name}}</div>

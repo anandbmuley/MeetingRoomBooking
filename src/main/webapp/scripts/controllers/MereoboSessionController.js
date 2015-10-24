@@ -4,7 +4,8 @@ app.controller('MeroboSessionController',
 	
 	if($cookies.get('sesslimit')!=undefined){
 		$scope.mins = parseInt($cookies.get('sesslimit'));
-		$scope.sessionMessage = 'Session would expire in '+$scope.mins+' mins';
+		$scope.loginTimeMsg = 'Login Time : '+$cookies.get('loginTime');
+		$scope.sessionMessage = 'Session Timeout : '+$scope.mins+' mins';
 	}
 	
 	var timerHandler;
@@ -20,7 +21,7 @@ app.controller('MeroboSessionController',
 		},60*1000);
 	}
 	
-	$scope.startTimer();
+	//$scope.startTimer();
 
 	$scope.myStopFunction = function() {
 		$interval.cancel(timerHandler);

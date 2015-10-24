@@ -20,6 +20,7 @@ ext{
 	testng = "org.testng:testng:6.9.4"
 	jackson = 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.0.1'
 	jmock='org.jmock:jmock:2.8.1'
+	json = 'org.json:json:20140107'
 	
 	spring = [
             web           : "org.springframework:spring-web:${SpringVersion}",
@@ -59,6 +60,7 @@ repositories {
 }
 
 dependencies {
+	compile json
     compile spring.web,spring.core,spring.test,jersey.server,jackson,jersey.inmemorytest
     compile jersey.spring,spring.mongo,spring.webmvc,hamcrest.core,hamcrest.library,jmock
     testCompile testng,jmock,hamcrest.core,hamcrest.library
