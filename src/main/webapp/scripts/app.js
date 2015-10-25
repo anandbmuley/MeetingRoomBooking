@@ -32,6 +32,9 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/contact', {
 		templateUrl : 'views/Contact.html',
 		controller : 'ContactController'
+	}).when('/dashboard', {
+		templateUrl : 'views/Dashboard.html',
+		controller : 'DashboardController'
 	});
 } ]);
 

@@ -1,0 +1,95 @@
+<title>{{pageTitle}}</title>
+<!-- Refresh Every 1 min -->
+<!-- <meta http-equiv="refresh" content="60" /> -->
+<div ng-if="message">
+	<div class="alert alert-success">{{message}}</div>
+</div>
+<h3 class="text-center">{{pageTitle}}</h3>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-5">
+		<div class="list-group">
+		  <div id="pinnacle-room" ng-click="bookroomPopup('PINNACLE')" class="list-group-item active text-center panel-heading">
+		    <h3 class="list-group-item-heading meeting-room">PINNACLE</h3>
+		  </div>
+			<div ng-repeat="booking in bookings.pinnacle" class="list-group-item">
+				<div class="row">
+					<div class="col-md-7" style="text-align: left;">
+						<div class="list-group-item-heading team-name-label">{{booking.teamName}}</div>
+						<div class="list-group-item-text booking-time-label-dashboard">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
+					</div>
+					<div class="col-md-5" style="text-align: right;">
+						<div class="list-group-item-text">
+							<span class="booking-status" ng-class="{'active':booking.status=='BOOKED','cancelled':booking.status=='CANCELLED'}">{{booking.status}}</span>
+							<a ng-if="booking.status=='BOOKED' && usr.name==booking.bookedBy" ng-click="cancelBooking(booking.id)" title="Cancel Booking" class="cancel-booking glyphicon glyphicon-trash"></a>
+						</div>
+						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
+						<div class="list-group-item-text booked-by-dashboard">{{booking.bookedBy}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="list-group">
+		  <div href="#" ng-click="bookroomPopup('OTHER')" class="list-group-item active text-center panel-heading">
+		    <h3 class="list-group-item-heading meeting-room">OTHER</h3>
+		  </div>
+		  <div ng-repeat="booking in bookings.other" class="list-group-item">
+				<div class="row">
+					<div class="col-md-6" style="text-align: left;">
+						<div class="list-group-item-heading team-name-label">{{booking.teamName}}</div>
+						<div class="list-group-item-text booking-time-label-dashboard">{{booking.startTime | date:'shortTime'}} to {{booking.endTime|date:'shortTime'}}</div>
+					</div>
+					<div class="col-md-6" style="text-align: right;">
+						<div class="list-group-item-text">
+							<span class="booking-status" ng-class="{'active':booking.status=='BOOKED','cancelled':booking.status=='CANCELLED'}">{{booking.status}}</span>
+							<a ng-if="booking.status=='BOOKED' && usr.name==booking.bookedBy" ng-click="cancelBooking(booking.id)" title="Cancel Booking" class="cancel-booking glyphicon glyphicon-trash"></a>
+						</div>
+						<div class="list-group-item-text booked-attime">{{booking.bookedWhen|date:'shortTime'}}</div>
+						<div class="list-group-item-text booked-by-dashboard">{{booking.bookedBy}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Room Booking Modal -->
+<script type="text/ng-template" id="BookRoomModal.html">
+<div class="modal-header">
+	<h4 class="modal-title">{{usr.name}} is booking room on behalf of {{usr.teamName}} team</h4>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="timelabel">Start Time </div>
+			<timepicker ng-model="startTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="timelabel">End Time </div>
+			<timepicker ng-model="endTime" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<div class="col-md-2"></div>
+	<div class="col-md-2">
+		<button class="btn btn-primary" type="button" ng-click="bookIt()">Book It</button>
+	</div>
+	<div class="col-md-4"></div>
+	<div class="col-md-2">
+		 <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</div>
+<div class="row" ng-if="message">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
+	</div>
+</div>
+</script>

@@ -1,2 +1,119 @@
 <title>{{pageTitle}}</title>
-<h2>About</h2>
+<div class="jumbotron jumbotron-custom">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item">
+          <img class="first-slide" src="images/Home.png" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <!-- <h1>Example headline.</h1>
+              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p> -->
+            </div>
+          </div>
+        </div>
+        <div class="item active">
+          <img class="second-slide" src="images/Book.png" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <!-- <h1>Another example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> -->
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="images/Teams.png" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <!-- <h1>One more for good measure.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading">
+				<span class="text-muted text-muted-custom">Create User</span>
+			</h2>
+			<p class="lead">Create a user account by visiting the <a class="links" href="#/login">Create User</a> Link. If the team does not appear in the drop down list, then
+			create a team via <a class="links" href="#/login">Create Team</a> Link</p>
+		</div>
+		<div class="col-md-5">
+			<img class="featurette-image img-responsive center-block" src="images/CreateUser.png" alt="Generic placeholder image">
+		</div>
+	</div>
+	<div class="row featurette">
+		<div class="col-md-7 col-md-push-5">
+			<h2 class="featurette-heading">
+				<span class="text-muted text-muted-custom">Book Room</span>
+			</h2>
+			<p class="lead">To book a room click on the room name. It will open a pop-up window.Select a start time and end time of the meeting.If there is a clash it would
+			an error message with the details of the person whose meeting is clashed with your booking.</p>
+		</div>
+		<div class="col-md-5 col-md-pull-7">
+			<img class="featurette-image img-responsive center-block" src="images/Book.png" alt="Generic placeholder image">
+		</div>
+	</div>
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading">
+				<span class="text-muted text-muted-custom">Cancel Booking</span>
+			</h2>
+			<p class="lead">
+				To cancel a booking click on the dustbin icon<span
+					title="Cancel Booking"
+					class="cancel-booking glyphicon glyphicon-trash cancel-icon"></span>
+				Note that booking with status cancelled are not shown.Hence once
+				cancelled if needed you will have to book a room again. Only the person who booked a meeting room for some meeting can cancel the booking.
+			</p>
+		</div>
+		<div class="col-md-5">
+			<img class="featurette-image img-responsive center-block"
+				src="images/Home.png" alt="Generic placeholder image">
+		</div>
+	</div>
+	<div class="row featurette">
+		<div class="col-md-7 col-md-push-5">
+			<h2 class="featurette-heading">
+				<span class="text-muted text-muted-custom">Session Timeout</span>
+			</h2>
+			<p class="lead">Your login session is valid for 15 mins since login time. Both these details are show on top right corner.
+			Once the session times out you would be redirected to login page.</p>
+		</div>
+		<div class="col-md-5 col-md-pull-7">
+			<img class="featurette-image img-responsive center-block" src="images/TimeOut.png" alt="Generic placeholder image">
+		</div>
+	</div>
+	<div class="row featurette">
+		<div class="col-md-7">
+			<h2 class="featurette-heading">
+				<span class="text-muted text-muted-custom">Teams</span>
+			</h2>
+			<p class="lead">
+				View Details about teams and members in them visit the teams tab
+			</p>
+		</div>
+		<div class="col-md-5">
+			<img class="featurette-image img-responsive center-block"
+				src="images/Teams.png" alt="Generic placeholder image">
+		</div>
+	</div>
+</div>

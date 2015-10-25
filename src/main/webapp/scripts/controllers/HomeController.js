@@ -2,6 +2,7 @@ controllers.controller('HomeController',
 		['$scope','$modal','BookingService','$rootScope','$location','$cookies','AuthenticationService',
 		 function($scope,$modal,bookingService,$rootScope,$location,$cookies,authenticationService){
 	$scope.pageTitle = 'Today\'s Bookings';
+	$rootScope.footerRelative = false;
 	bookingService.getBookings($scope);
 	$scope.message = bookingService.getMessage();
 	

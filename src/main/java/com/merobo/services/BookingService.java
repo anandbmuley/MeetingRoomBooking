@@ -1,6 +1,7 @@
 package com.merobo.services;
 
 import java.text.ParseException;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,9 @@ public class BookingService {
 				meetingRoomTo.getOther().add(bookingTo);
 			}
 		}
+		// Sorting by start time
+		Collections.sort(meetingRoomTo.getOther());
+		Collections.sort(meetingRoomTo.getPinnacle());
 		return meetingRoomTo;
 	}
 }

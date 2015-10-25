@@ -1,58 +1,57 @@
-<div ng-if="!authenticated">
-<title>{{pageTitle}}</title>
-<br><br><br><br><br>
-<div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-2">
-		<div class="site-title">MEROBO</div>
-		<div class="site-subtitle">Meeting Room Booking</div>
+<div class="login-container" ng-if="!authenticated">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-2">
+			<div class="site-title">MEROBO</div>
+			<div class="site-subtitle">Meeting Room Booking</div>
+		</div>
 	</div>
-</div>
-<form action="#" method="post">
-<div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
-		<input required="required" ng-model="username" type="text" placeholder="Username" class="form-control input-lg" />
+	<form action="#" method="post">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<input required="required" ng-model="username" type="text" placeholder="Username" class="form-control input-lg" />
+		</div>
 	</div>
-</div>
-<br>
-<div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
-		<input required="required" ng-model="password" type="password" placeholder="Password" class="form-control input-lg" />
+	<br>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<input required="required" ng-model="password" type="password" placeholder="Password" class="form-control input-lg" />
+		</div>
 	</div>
-</div>
-<br>
-<div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-4" align="center">
-		<button type="button" ng-click="login(username,password)" class="btn btn-lg btn-success">Login</button>
+	<br>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" align="center">
+			<button type="button" ng-click="login(username,password)" class="btn btn-lg btn-success">Login</button>
+		</div>
 	</div>
-</div>
-</form>
-<br/>
-<div class="row">
-	<div class="col-md-4">
+	</form>
+	<br/>
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-2" align="center">
+			<a class="registration-link" href="#/createteam">Create Team</a>
+		</div>
+		<div class="col-md-2" align="center">
+			<a class="registration-link" href="#/create">Create User</a>
+		</div>
 	</div>
-	<div class="col-md-2" align="center">
-		<a class="registration-link" href="#/createteam">Create Team</a>
+	<br/>
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4" align="center">
+			<a class="registration-link" href="#/dashboard">Dashboard</a>
+		</div>
 	</div>
-	<div class="col-md-2" align="center">
-		<a class="registration-link" href="#/create">Create User</a>
+	<br/>
+	<div class="row" ng-if="message">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
+		</div>
 	</div>
-</div>
-<br/>
-<div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-4 copyright" align="center">
-		&copy;Anand Muley
-	</div>
-</div>
-<br/>
-<div class="row" ng-if="message">
-	<div class="col-md-4"></div>
-	<div class="col-md-4">
-		<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
-	</div>
-</div>
 </div>

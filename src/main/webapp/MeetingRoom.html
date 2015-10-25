@@ -8,7 +8,7 @@
 <!-- Bootstrap Config -->
 <link rel="shortcut icon" type="image/png" href="images/capricorn.png"/>
 <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/justified-nav.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/justified-nav.css"> -->
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -40,6 +40,7 @@
 <script type="text/javascript" src="scripts/controllers/BookRoomModalController.js"></script> 
 <script type="text/javascript" src="scripts/controllers/AboutController.js"></script>
 <script type="text/javascript" src="scripts/controllers/ContactController.js"></script>
+<script type="text/javascript" src="scripts/controllers/DashboardController.js"></script>
  
 <!-- Services -->
 <script type="text/javascript" src="scripts/services/BookingService.js"></script>	
@@ -54,12 +55,10 @@
 			<h3 class="text-info">
 				<div class="row">
 					<div class="col-md-2">
-						<div class="site-title">MEROBO</div>
-						<div class="site-subtitle">Meeting Room Booking</div>
+						<div class="site-title">{{usr.teamName}}</div>
+						<div class="site-subtitle">{{usr.name}}</div>
 					</div>
 					<div class="col-md-8" align="center">
-						<div class="site-title">{{usr.teamName}}</div>
-						<div class="site-subtitle bold-font">{{usr.name}}</div>
 					</div>
 					<div align="right" ng-controller="MeroboSessionController" class="col-md-2 session-msg" align="right">
 						<div class="site-subtitle">{{loginTimeMsg}}</div>
@@ -67,7 +66,7 @@
 					</div>
 				</div>
 			</h3>
-			<nav>
+			<!-- <nav>
 				<ul class="nav nav-justified">
 					<li><a href="#/home">Home</a></li>
 					<li><a href="#/teams">Teams</a></li>
@@ -75,11 +74,50 @@
 					<li><a href="#/contact">Contact</a></li>
 					<li><a href="#/logout">Logout</a></li>
 				</ul>
-			</nav>
+			</nav> -->
+			<nav class="navbar navbar-inverse navbar-default">
+		        <div class="container-fluid">
+		          <div class="navbar-header">
+		            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		              <span class="sr-only">Toggle navigation</span>
+		              <span class="icon-bar"></span>
+		              <span class="icon-bar"></span>
+		              <span class="icon-bar"></span>
+		            </button>
+		            <a class="navbar-brand" href="#/home">MEROBO</a>
+		          </div>
+		          <div id="navbar" class="navbar-collapse collapse">
+		            <ul class="nav navbar-nav">
+		              <li><a href="#/home">Home</a></li>
+		              <li><a href="#/teams">Teams</a></li>
+		            </ul>
+		            <ul class="nav navbar-nav navbar-right">
+		              <li><a href="#/logout">Logout</a></li>
+		            </ul>
+		          </div><!--/.nav-collapse -->
+		        </div><!--/.container-fluid -->
+      		</nav>
 		</div>
 		<br>
 		<div id="content-area" ng-view></div>
 	</div>
-
+	<footer ng-class="{'footer-relative':footerRelative,'footer':!footerRelative}">
+		<div class="container">
+			<div class="row footer-row">
+				<div class="col-md-1 footer-link">
+					<a href="#/home">Site Home</a>
+				</div>
+				<div class="col-md-3"></div>
+				<div align="center" class="col-md-4 copyright">&copy; Anand Muley</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-2 footer-link">
+					<a href="#/about">How to use?</a>
+				</div>
+				<div class="col-md-1 footer-link">
+					<a href="#/contact">Contact</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
