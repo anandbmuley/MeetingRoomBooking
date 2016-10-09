@@ -32,7 +32,12 @@ ext{
             jdbc          : "org.springframework:spring-jdbc:${SpringVersion}",
             mongo         : "org.springframework.data:spring-data-mongodb:${SpringDataMongoVersion}",
             test          : "org.springframework:spring-test:${SpringVersion}",
-            jpa			  :'org.springframework.data:spring-data-jpa:1.8.1.RELEASE'
+            jpa			  :'org.springframework.data:spring-data-jpa:1.8.1.RELEASE',
+            security	  : [
+            	web	   : "org.springframework.security:spring-security-web:${SpringVersion}",
+            	core   : "org.springframework.security:spring-security-core:${SpringVersion}",
+            	config : "org.springframework.security:spring-security-config:${SpringVersion}"
+            ]
     ]
     
     jersey = [
@@ -60,7 +65,7 @@ repositories {
 }
 
 dependencies {
-	compile json
+	compile json,spring.security.web,spring.security.core,spring.security.config
     compile spring.web,spring.core,spring.test,jersey.server,jackson,jersey.inmemorytest
     compile jersey.spring,spring.mongo,spring.webmvc,hamcrest.core,hamcrest.library,jmock
     testCompile testng,jmock,hamcrest.core,hamcrest.library

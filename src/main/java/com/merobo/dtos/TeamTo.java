@@ -31,8 +31,7 @@ public class TeamTo {
 
 	@Override
 	public String toString() {
-		return "TeamTo [id=" + id + ", name=" + name + ", memberTos="
-				+ memberTos + "]";
+		return "TeamTo [id=" + id + ", name=" + name + ", memberTos=" + memberTos + "]";
 	}
 
 }

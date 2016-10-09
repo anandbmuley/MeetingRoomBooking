@@ -21,6 +21,13 @@ public class TeamService {
 	@Autowired
 	private UserRepository userRepository;
 
+	public void updateTeam(TeamTo teamTo) {
+		TeamBean teamBean = new TeamBean();
+		teamBean.setId(teamTo.getId());
+		teamBean.setName(teamTo.getName());
+		teamRepository.save(teamBean);
+	}
+
 	public TeamTo addTeam(TeamTo teamTo) {
 		TeamBean teamBean = new TeamBean();
 		teamBean.setName(teamTo.getName());
@@ -33,8 +40,7 @@ public class TeamService {
 		List<TeamBean> teams = teamRepository.findAll();
 		List<TeamTo> teamTos = DtoCreatorUtil.createTeamTos(teams);
 		for (TeamTo teamTo : teamTos) {
-			List<UserBean> users = userRepository.findByTeamName(teamTo
-					.getName());
+			List<UserBean> users = userRepository.findByTeamName(teamTo.getName());
 			teamTo.getMemberTos().addAll(DtoCreatorUtil.createUserTos(users));
 		}
 		return teamTos;

@@ -6,11 +6,25 @@
 	<display-name>Meeting Room Booking System</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>application-config.xml</param-value>
+		<param-value>
+			WEB-INF/spring/application-config.xml
+			<!-- WEB-INF/spring/spring-security.xml -->
+		</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<!-- <filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/rest/*</url-pattern>
+	</filter-mapping> -->
+
 	<servlet>
 		<servlet-name>meetingroom</servlet-name>
 		<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
@@ -24,7 +38,9 @@
 		<servlet-name>meetingroom</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+
 	<welcome-file-list>
 		<welcome-file>MeetingRoom.html</welcome-file>
 	</welcome-file-list>
+
 </web-app>
