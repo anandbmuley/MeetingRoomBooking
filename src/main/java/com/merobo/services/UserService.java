@@ -2,6 +2,7 @@ package com.merobo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.merobo.beans.UserBean;
 import com.merobo.dtos.UserTo;
@@ -16,15 +17,21 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private TokenGeneratorService tokenGeneratorService;
+
 	public void login(UserTo userTo) throws UserServiceException {
-		UserBean userBean = userRepository.findByUsernameAndPassword(
-				userTo.getUsername(), userTo.getPassword());
+		UserBean userBean = userRepository.findByUsernameAndPassword(userTo.getUsername(), userTo.getPassword());
 		if (userBean == null) {
 			throw new UserNotFoundException("User not found");
 		}
 		userTo.setName(userBean.getName());
 		userTo.setTeamName(userBean.getTeamName());
 		userTo.setId(userBean.getId());
+		if (!StringUtils.isEmpty(userTo.getAdminPasscode())) {
+			String token = tokenGeneratorService.validate(userTo.getAdminPasscode());
+			userTo.setAdminToken(token);
+		}
 	}
 
 	public void create(UserTo userTo) throws UserServiceException {

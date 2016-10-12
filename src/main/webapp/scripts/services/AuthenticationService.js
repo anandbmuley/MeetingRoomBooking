@@ -20,18 +20,22 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 		$cookies.remove('usr');
 	}
 	
-	this.login = function(username,password,$scope,$rootScope,$location){
+	this.login = function(username,password,$scope,$rootScope,$location,adminPasscode){
 		$http({
 			method : 'POST',
 			url : 'rest/authentication/login',
 			data : {
 				username : username,
-				password : password
+				password : password,
+				adminPasscode : adminPasscode!=undefined?window.btoa(adminPasscode):null
 			}
 		}).success(function(data,status){
 			addCookie($cookies,true,data);
 			$rootScope.usr = data;
 			$rootScope.authenticated = true;
+			if(data.adminToken!=null){
+				$rootScope.admin = true;
+			}
 			$location.path('/home');
 		}).error(function(data,status){
 			$rootScope.authenticated = false;

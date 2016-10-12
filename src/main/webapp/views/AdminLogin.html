@@ -1,0 +1,44 @@
+<div class="login-container" ng-if="!authenticated">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-2">
+			<div class="site-title">MEROBO</div>
+			<div class="site-subtitle">Meeting Room Booking</div>
+		</div>
+	</div>
+	<form action="#" method="post">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<input required="required" ng-model="username" type="text" placeholder="Username" class="form-control input-lg" />
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<input required="required" ng-model="password" type="password" placeholder="Password" class="form-control input-lg" />
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<input required="required" ng-model="adminPasscode" type="password" placeholder="Admin Passcode" class="form-control input-lg" />
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" align="center">
+			<button type="button" ng-click="login(username,password,adminPasscode)" class="btn btn-lg btn-success">Login</button>
+		</div>
+	</div>
+	</form>
+	<div class="row" ng-if="message">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
+		</div>
+	</div>
+</div>

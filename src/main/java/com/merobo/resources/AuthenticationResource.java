@@ -33,12 +33,10 @@ public class AuthenticationResource {
 		try {
 			userService.login(userTo);
 			userTo.setPassword("");
-			userTo.setLoginTime(DateConverterUtil.toString(new Date(),
-					DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
+			userTo.setLoginTime(DateConverterUtil.toString(new Date(), DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
 			response = Response.ok(userTo).build();
 		} catch (UserServiceException e) {
-			response = Response.status(Response.Status.BAD_REQUEST)
-					.entity(e.getMessage()).build();
+			response = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		}
 		return response;
 	}
@@ -53,8 +51,7 @@ public class AuthenticationResource {
 			userService.create(userTo);
 			response = Response.status(Response.Status.CREATED).build();
 		} catch (UserServiceException e) {
-			response = Response.status(Response.Status.CONFLICT)
-					.entity(e.getMessage()).build();
+			response = Response.status(Response.Status.CONFLICT).entity(e.getMessage()).build();
 		}
 
 		return response;

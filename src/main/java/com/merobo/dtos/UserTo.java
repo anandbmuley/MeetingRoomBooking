@@ -10,6 +10,8 @@ public class UserTo {
 	// Timeout for cookies
 	private long cookieTimeout = 15;
 	private String loginTime;
+	private String adminPasscode;
+	private String adminToken;
 
 	public String getId() {
 		return id;
@@ -63,12 +65,27 @@ public class UserTo {
 		this.loginTime = loginTime;
 	}
 
+	public String getAdminPasscode() {
+		return adminPasscode;
+	}
+
+	public void setAdminPasscode(String adminPasscode) {
+		this.adminPasscode = adminPasscode;
+	}
+
+	public String getAdminToken() {
+		return adminToken;
+	}
+
+	public void setAdminToken(String adminToken) {
+		this.adminToken = adminToken;
+	}
+
 	@Override
 	public String toString() {
-		return "UserTo [id=" + id + ", username=" + username + ", password="
-				+ password + ", name=" + name + ", teamName=" + teamName
-				+ ", cookieTimeout=" + cookieTimeout + ", loginTime="
-				+ loginTime + "]";
+		return "UserTo [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
+				+ ", teamName=" + teamName + ", cookieTimeout=" + cookieTimeout + ", loginTime=" + loginTime
+				+ ", adminPasscode=" + adminPasscode + ", adminToken=" + adminToken + "]";
 	}
 
 }

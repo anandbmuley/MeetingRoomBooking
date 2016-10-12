@@ -35,6 +35,12 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/dashboard', {
 		templateUrl : 'views/Dashboard.html',
 		controller : 'DashboardController'
+	}).when('/adminlogin', {
+		templateUrl : 'views/AdminLogin.html',
+		controller : 'AdministrationController'
+	}).when('/admin', {
+		templateUrl : 'views/Administration.html',
+		controller : 'AdministrationController'
 	});
 } ]);
 

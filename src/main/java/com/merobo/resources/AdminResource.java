@@ -1,5 +1,6 @@
 package com.merobo.resources;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -19,7 +20,7 @@ public class AdminResource {
 
 	@PUT
 	@Path("team/{id}")
-	public void update(@PathParam("id") String id,TeamTo teamTo) {
+	public void update(@PathParam("id") String id,TeamTo teamTo,HttpServletRequest httpServletRequest) {
 		teamTo.setId(id);
 		teamService.updateTeam(teamTo);
 	}
