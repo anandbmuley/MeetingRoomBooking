@@ -1,5 +1,13 @@
 @CHARSET "UTF-8";
 
+.font-large{
+	font-size: 20px;
+}
+
+.font-small{
+	font-size: 12px;
+}
+
 .active {
 	color: #01BF9D;
 }

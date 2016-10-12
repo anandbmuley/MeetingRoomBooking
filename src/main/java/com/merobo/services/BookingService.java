@@ -2,6 +2,7 @@ package com.merobo.services;
 
 import java.text.ParseException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +34,10 @@ public class BookingService {
 		bookingRepository.save(bookingBean);
 	}
 
-	public BookingTo bookRoom(BookingTo bookingTo)
-			throws BookingServiceException {
+	public BookingTo bookRoom(BookingTo bookingTo) throws BookingServiceException {
 		try {
 			bookingValidationService.validateBooking(bookingTo);
-			BookingBean bookingBean = BeanCreatorUtil
-					.createBookingBean(bookingTo);
+			BookingBean bookingBean = BeanCreatorUtil.createBookingBean(bookingTo);
 			bookingRepository.save(bookingBean);
 			bookingTo.setId(bookingBean.getId());
 		} catch (ParseException e) {
@@ -51,7 +50,7 @@ public class BookingService {
 	}
 
 	public MeetingRoomTo getAll() {
-		List<BookingBean> beans = bookingRepository.findAll();
+		List<BookingBean> beans = bookingRepository.findByStartTimeAfter(new Date());
 		List<BookingTo> bookingTos = DtoCreatorUtil.createBookingTos(beans);
 
 		MeetingRoomTo meetingRoomTo = new MeetingRoomTo();
@@ -61,8 +60,7 @@ public class BookingService {
 			}
 			if (MeetingRooms.PINNACLE.name().equals(bookingTo.getRoomName())) {
 				meetingRoomTo.getPinnacle().add(bookingTo);
-			} else if (MeetingRooms.OTHER.name()
-					.equals(bookingTo.getRoomName())) {
+			} else if (MeetingRooms.OTHER.name().equals(bookingTo.getRoomName())) {
 				meetingRoomTo.getOther().add(bookingTo);
 			}
 		}

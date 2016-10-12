@@ -1,6 +1,7 @@
 package com.merobo.utils;
 
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.merobo.beans.BookingBean;
