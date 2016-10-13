@@ -6,3 +6,4 @@ src/main/webapp/node_modules
 .classpath
 bin/
 .project
+.build
