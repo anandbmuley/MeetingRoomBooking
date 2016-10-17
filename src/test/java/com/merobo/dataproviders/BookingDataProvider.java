@@ -40,7 +40,8 @@ public class BookingDataProvider {
 			bookingToSTE.setRoomName(MeetingRooms.PINNACLE.name());
 			bookingToSTE.setTeamName("KANBAN");
 
-			return new Object[][] { { bookingTo }, { bookingToET },
+			return new Object[][] { 
+//				{ bookingTo }, { bookingToET },
 					{ bookingToSTE } };
 		} catch (ParseException parseException) {
 			parseException.printStackTrace();

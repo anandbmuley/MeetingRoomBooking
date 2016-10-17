@@ -1,9 +1,10 @@
-.gradle
 /build/
-test-output
-src/main/webapp/node_modules
-.settings/
-.classpath
-bin/
+/bin/
+.gradle
+.settings
 .project
-.build
+.classpath
+src/main/webapp/node_modules
+.tern-project
+.idea
+test-output
