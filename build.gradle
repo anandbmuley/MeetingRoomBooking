@@ -35,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    compile json, spring.security.web, spring.security.core, spring.security.config
+    compile json
     compile spring.web, spring.core, spring.test, jersey.server, jackson, jersey.inmemorytest
     compile jersey.spring, spring.mongo, spring.webmvc, hamcrest.core, hamcrest.library, jmock.core,jmock.legacy
     testCompile testng, jmock.core,jmock.legacy, hamcrest.core, hamcrest.library,groovy

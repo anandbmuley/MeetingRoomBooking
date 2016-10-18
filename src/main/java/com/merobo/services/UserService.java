@@ -17,9 +17,6 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private TokenGeneratorService tokenGeneratorService;
-
 	public void login(UserTo userTo) throws UserServiceException {
 		UserBean userBean = userRepository.findByUsernameAndPassword(userTo.getUsername(), userTo.getPassword());
 		if (userBean == null) {
@@ -28,10 +25,6 @@ public class UserService {
 		userTo.setName(userBean.getName());
 		userTo.setTeamName(userBean.getTeamName());
 		userTo.setId(userBean.getId());
-		if (!StringUtils.isEmpty(userTo.getAdminPasscode())) {
-			String token = tokenGeneratorService.validate(userTo.getAdminPasscode());
-			userTo.setAdminToken(token);
-		}
 	}
 
 	public void create(UserTo userTo) throws UserServiceException {

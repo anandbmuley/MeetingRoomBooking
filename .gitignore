@@ -8,3 +8,7 @@ src/main/webapp/node_modules
 .tern-project
 .idea
 test-output
+*.iml
+*.ipr
+*.iws
+out
