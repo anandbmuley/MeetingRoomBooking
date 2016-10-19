@@ -6,11 +6,11 @@ import com.merobo.beans.UserBean;
 import com.merobo.dtos.BookingTo;
 import com.merobo.dtos.TeamTo;
 import com.merobo.dtos.UserTo;
+import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,8 +29,12 @@ public abstract class DtoCreatorUtil {
         TeamTo teamTo = new TeamTo();
         teamTo.setId(teamBean.getId());
         teamTo.setName(teamBean.getName());
-        if (Optional.of(teamBean.getMembers()).isPresent()) {
-            List<UserTo> userTos = teamBean.getMembers().stream().flatMap(userBean -> Stream.of(DtoCreatorUtil.createUserTo(userBean))).collect(Collectors.toList());
+        if (!CollectionUtils.isEmpty(teamBean.getMembers())) {
+            List<UserTo> userTos = teamBean.getMembers()
+                    .stream()
+                    .flatMap(userBean ->
+                            Stream.of(DtoCreatorUtil.createUserTo(userBean))
+                    ).collect(Collectors.toList());
             teamTo.getMemberTos().addAll(userTos);
         }
         return teamTo;

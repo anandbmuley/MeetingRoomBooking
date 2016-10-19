@@ -1,11 +1,10 @@
 package com.merobo.repositories;
 
-import java.util.Date;
-import java.util.List;
-
+import com.merobo.beans.BookingBean;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.merobo.beans.BookingBean;
+import java.util.Date;
+import java.util.List;
 
 public interface BookingRepository extends MongoRepository<BookingBean, String> {
 

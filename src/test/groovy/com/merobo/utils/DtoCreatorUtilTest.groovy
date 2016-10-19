@@ -9,7 +9,21 @@ import org.testng.annotations.Test
 class DtoCreatorUtilTest {
 
     @Test
-    public void ShouldCreateTeamTo() {
+    public void ShouldCreateTeamToWithMembers() {
+        // GIVEN
+        TeamBean teamBean = new TeamBeanBuilder().withMembers().build()
+
+        // WHEN
+        TeamTo actual = DtoCreatorUtil.createTeamTo(teamBean)
+
+        // THEN
+        AssertionsCatalogue.assertTeamTo(actual)
+        assert actual.memberTos.size() == 1
+        actual.memberTos.forEach({ user -> AssertionsCatalogue.assertUserTo(user) })
+    }
+
+    @Test
+    public void ShouldCreateTeamToWithoutMembers() {
         // GIVEN
         TeamBean teamBean = new TeamBeanBuilder().build()
 
@@ -18,6 +32,7 @@ class DtoCreatorUtilTest {
 
         // THEN
         AssertionsCatalogue.assertTeamTo(actual)
+        assert actual.memberTos.size() == 0
     }
 
 }

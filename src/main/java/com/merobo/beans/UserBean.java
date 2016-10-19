@@ -13,6 +13,10 @@ public class UserBean {
 	private String name;
 	private String teamName;
 
+	public UserBean(){
+
+	}
+
 	public String getId() {
 		return id;
 	}
