@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,8 +25,13 @@ public class TeamService {
 
     public void updateTeam(TeamTo teamTo) {
         TeamBean teamBean = teamRepository.findOne(teamTo.getId());
+        System.out.print(teamBean);
+        String oldTeamName = teamBean.getName();
         teamBean.setName(teamTo.getName());
         teamRepository.save(teamBean);
+        List<UserBean> users = userRepository.findByTeamName(oldTeamName);
+        users.forEach(userBean -> userBean.setTeamName(teamTo.getName()));
+        userRepository.save(users);
     }
 
     public TeamTo addTeam(TeamTo teamTo) {
@@ -37,12 +43,12 @@ public class TeamService {
     }
 
     public List<TeamTo> getAllTeams() {
-        List<TeamTo> teamTos = teamRepository.findAll().stream().flatMap(teamBean -> Stream.of(DtoCreatorUtil.createTeamTo(teamBean))).collect(Collectors.toList());
-//        List<TeamTo> teamTos = DtoCreatorUtil.createTeamTos(teams);
-//        for (TeamTo teamTo : teamTos) {
-//            List<UserBean> users = userRepository.findByTeamName(teamTo.getName());
-//            teamTo.getMemberTos().addAll(DtoCreatorUtil.createUserTos(users));
-//        }
+        List<TeamTo> teamTos = teamRepository
+                .findAll()
+                .stream()
+                .flatMap(teamBean ->
+                        Stream.of(DtoCreatorUtil.createTeamTo(teamBean))
+                ).collect(Collectors.toList());
         return teamTos;
     }
 

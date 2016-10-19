@@ -50,7 +50,7 @@ public class BookingService {
 	}
 
 	public MeetingRoomTo getAll() {
-		List<BookingBean> beans = bookingRepository.findByStartTimeAfter(new Date());
+		List<BookingBean> beans = bookingRepository.findByEndTimeAfter(new Date());
 		List<BookingTo> bookingTos = DtoCreatorUtil.createBookingTos(beans);
 
 		MeetingRoomTo meetingRoomTo = new MeetingRoomTo();

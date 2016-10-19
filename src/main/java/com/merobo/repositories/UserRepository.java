@@ -1,17 +1,16 @@
 package com.merobo.repositories;
 
-import java.util.List;
-
+import com.merobo.beans.UserBean;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.merobo.beans.UserBean;
+import java.util.List;
 
 public interface UserRepository extends MongoRepository<UserBean, String> {
 
-	UserBean findByUsernameAndPassword(String username, String password);
+    UserBean findByUsernameAndPassword(String username, String password);
 
-	UserBean findByUsername(String username);
+    UserBean findByUsername(String username);
 
-	List<UserBean> findByTeamName(String teamName);
+    List<UserBean> findByTeamName(String teamName);
 
 }
