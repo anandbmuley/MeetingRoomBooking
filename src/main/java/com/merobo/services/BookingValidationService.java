@@ -40,6 +40,9 @@ public class BookingValidationService {
         } else if (bookingTo.getEndDateTime().equals(bookingBean.getStartTime())
                 || bookingTo.getEndDateTime().equals(bookingBean.getEndTime())) {
             throw new EndTimeClashesException(bookingBean.toJSON());
+        } else if (bookingBean.getEndTime().after(bookingTo.getStartDateTime())
+                && bookingBean.getEndTime().before(bookingTo.getEndDateTime())) {
+            throw new EndTimeClashesException(bookingBean.toJSON());
         }
     }
 }
