@@ -2,6 +2,8 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'groovy'
+apply plugin: 'jacoco'
+
 apply from: 'deployment.gradle'
 apply from: 'external-dependencies.gradle'
 
@@ -13,6 +15,18 @@ jar {
     }
 }
 
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/coverageReport")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
 
 buildscript {
     repositories {

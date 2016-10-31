@@ -88,12 +88,26 @@ class BookingValidationServiceTest extends RootTestConfig {
         // THEN
     }
 
-    @Test(expectedExceptions = StartTimeClashesException, enabled = false)
-    public void ShouldClashStartTimeEqualsOtherMeetingStartTime() throws BookingValidationServiceException, ParseException {
-        // GIVEN
+    @Test(expectedExceptions = EndTimeClashesException)
+    public void ShouldClashEndTimeOfExistingBooking() throws BookingValidationServiceException, ParseException {
+        // GIVEN : End time of existing booking lies between new booking start time and end time
+        BookingTo bookingTo = new BookingToBuilder()
+                .setStartTime("01:59 PM")
+                .setEndTime("03:10 PM").build()
+        BookingBean bookingBean = new BookingBeanBuilder().build()
+
+        // WHEN
+        bookingValidationService.checkForClash(bookingTo, bookingBean)
+
+        // THEN
+    }
+
+    @Test(expectedExceptions = StartTimeClashesException)
+    public void ShouldClashStartTimeEqualsExistingMeetingStartTime() throws BookingValidationServiceException, ParseException {
+        // GIVEN : Start Time Existing Booking StartTime
         BookingTo bookingTo = new BookingToBuilder()
                 .setStartTime("02:00 PM")
-                .setEndTime("03:10 PM").build()
+                .setEndTime("03:20 PM").build()
         BookingBean bookingBean = new BookingBeanBuilder().build()
 
         // WHEN
@@ -116,8 +130,8 @@ class BookingValidationServiceTest extends RootTestConfig {
         // THEN
     }
 
-    @Test(expectedExceptions = EndTimeClashesException, enabled = false)
-    public void ShouldClashEndTimeEqualsOtherMeetingStartTime() throws BookingValidationServiceException, ParseException {
+    @Test
+    public void ShouldNotClashEndTimeEqualsOtherMeetingStartTime() throws BookingValidationServiceException, ParseException {
         // GIVEN
         BookingTo bookingTo = new BookingToBuilder()
                 .setStartTime("01:00 PM")
