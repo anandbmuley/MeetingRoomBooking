@@ -11,6 +11,6 @@ public interface BookingRepository extends MongoRepository<BookingBean, String> 
 
 	List<BookingBean> findByRoomName(String roomName);
 
-	List<BookingBean> findByStartTimeAfter(Date startTime);
+	List<BookingBean> findByEndTimeAfter(Date startTime);
 
 }
