@@ -34,4 +34,15 @@ class UserBeanBuilder {
     public List<UserBean> build() {
         users
     }
+
+    public UserBean buildUser(){
+        UserBean userBean = new UserBean(
+                id: id,
+                username: username,
+                password: password,
+                name: name,
+                teamName: teamName
+        )
+        userBean
+    }
 }

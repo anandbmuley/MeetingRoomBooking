@@ -1,5 +1,6 @@
-def SpringVersion = '4.0.0.RELEASE'
+def SpringVersion = '4.3.2.RELEASE'
 def SpringDataMongoVersion = '1.6.0.RELEASE'
+def SpockVersion = '1.1-groovy-2.4-rc-3'
 
 ext {
     testng = "org.testng:testng:6.9.4"
@@ -43,5 +44,11 @@ ext {
     ]
 
     groovy = 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    spock = [
+            core : "org.spockframework:spock-core:$SpockVersion",
+            cglib : 'cglib:cglib-nodep:3.2.4',
+            objenesis : 'org.objenesis:objenesis:2.4'
+    ]
 
 }
