@@ -21,13 +21,22 @@ public class UserResource {
     @PUT
     @Path("{username}/resetpassword")
     public Response resetPassword(@PathParam("username") String username) {
-        Response response = Response.serverError().build();
+        Response response = null;
         try {
             userService.resetPassword(username);
             response = Response.noContent().build();
         } catch (UserNotFoundException e) {
             response = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            response = Response.serverError().entity(e.getMessage()).build();
         }
+        return response;
+    }
+
+    @PUT
+    @Path("{username}/password/{newpassword}")
+    public Response changePassword(@PathParam("username") String username, @PathParam("newpassword") String newpassword) {
+        Response response = Response.ok().build();
         return response;
     }
 }

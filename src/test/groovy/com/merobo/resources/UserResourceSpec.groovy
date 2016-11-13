@@ -46,4 +46,18 @@ class UserResourceSpec extends Specification{
 
     }
 
+    def "resetPassword - should return internal server error if some occured"(){
+        given:"username of the user to reset password"
+        def username = "action"
+        1 * mockUserService.resetPassword(username) >> {throw new Exception("Something went wrong")}
+
+        when:"password is reset"
+        Response actual = resource.resetPassword(username)
+
+        then:"internal server error is returned"
+        assert actual.status == Response.Status.INTERNAL_SERVER_ERROR.statusCode
+        String message = (String)actual.entity
+        assert message == "Something went wrong"
+    }
+
 }
