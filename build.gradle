@@ -52,5 +52,5 @@ dependencies {
     compile json
     compile spring.web, spring.core, spring.test, jersey.server, jackson, jersey.inmemorytest
     compile jersey.spring, spring.mongo, spring.webmvc, hamcrest.core, hamcrest.library, jmock.core,jmock.legacy
-    testCompile spock.core
+    testCompile spock.core,spock.cglib,spock.objenesis
 }
