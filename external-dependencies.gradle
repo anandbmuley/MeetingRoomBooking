@@ -44,4 +44,8 @@ ext {
 
     groovy = 'org.codehaus.groovy:groovy-all:2.4.7'
 
+    spock = [
+            core : "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
+    ]
+
 }

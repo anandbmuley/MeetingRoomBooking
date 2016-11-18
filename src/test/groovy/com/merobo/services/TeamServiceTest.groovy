@@ -5,52 +5,41 @@ import com.merobo.beans.UserBean
 import com.merobo.builders.TeamBeanBuilder
 import com.merobo.builders.TeamToBuilder
 import com.merobo.builders.UserBeanBuilder
-import com.merobo.common.RootTestConfig
 import com.merobo.dtos.TeamTo
 import com.merobo.repositories.TeamRepository
 import com.merobo.repositories.UserRepository
-import org.jmock.Expectations
-import org.testng.annotations.BeforeClass
-import org.testng.annotations.Test
+import spock.lang.Specification
 
-class TeamServiceTest extends RootTestConfig {
+class TeamServiceTest extends Specification {
 
     TeamService teamService
     TeamRepository mockTeamRepository
     UserRepository mockUserRepository
 
-    @BeforeClass
-    public void setUp() {
-        mockTeamRepository = context.mock(TeamRepository)
-        mockUserRepository = context.mock(UserRepository)
+    def setup() {
+        mockTeamRepository = Mock(TeamRepository)
+        mockUserRepository = Mock(UserRepository)
         teamService = new TeamService(
                 teamRepository: mockTeamRepository,
                 userRepository: mockUserRepository
         )
     }
 
-    @Test
-    public void ShouldUpdateTeamName() {
-        // GIVEN
+    def "updateTeam - should update TeamName"() {
+        given:"a teamTo with teamName"
         TeamTo teamTo = new TeamToBuilder().build()
         TeamBean teamBean = new TeamBeanBuilder().build()
         List<UserBean> users = new UserBeanBuilder().withUser(new UserBean(id: "UID201")).build()
 
-        context.checking(new Expectations() {
-            {
-                oneOf(mockTeamRepository).findOne(teamTo.id)
-                will(returnValue(teamBean))
-                oneOf(mockTeamRepository).save(teamBean)
-                oneOf(mockUserRepository).findByTeamName(teamBean.name)
-                will(returnValue(users))
-                oneOf(mockUserRepository).save(users)
-            }
-        })
-
-        // WHEN
+        when:"team details are updated"
         teamService.updateTeam(teamTo)
 
-        // THEN
+        then:"details are updated successfully"
+        1 * mockTeamRepository.findOne(teamTo.id) >> {teamBean}
+        1 * mockTeamRepository.save(teamBean)
+        1 * mockUserRepository.findByTeamName(teamBean.name) >> {users}
+        1 * mockUserRepository.save(users)
+        0 * _
     }
 
 }
