@@ -4,33 +4,31 @@ import com.merobo.beans.TeamBean
 import com.merobo.builders.TeamBeanBuilder
 import com.merobo.common.AssertionsCatalogue
 import com.merobo.dtos.TeamTo
-import org.testng.annotations.Test
+import spock.lang.Specification
 
-class DtoCreatorUtilTest {
+class DtoCreatorUtilTest extends Specification{
 
-    @Test
-    public void ShouldCreateTeamToWithMembers() {
-        // GIVEN
+    def "createTeamTo - should create TeamTo with members"() {
+        given:"a team bean with all details"
         TeamBean teamBean = new TeamBeanBuilder().withMembers().build()
 
-        // WHEN
+        when:"createTeamTo method is called"
         TeamTo actual = DtoCreatorUtil.createTeamTo(teamBean)
 
-        // THEN
+        then:"teamTo is created with all details"
         AssertionsCatalogue.assertTeamTo(actual)
         assert actual.memberTos.size() == 1
         actual.memberTos.forEach({ user -> AssertionsCatalogue.assertUserTo(user) })
     }
 
-    @Test
-    public void ShouldCreateTeamToWithoutMembers() {
-        // GIVEN
+    def "createTeamTo - should create TeamTo without members"() {
+        given:"a team bean without member details"
         TeamBean teamBean = new TeamBeanBuilder().build()
 
-        // WHEN
+        when:"createTeamTo method is called"
         TeamTo actual = DtoCreatorUtil.createTeamTo(teamBean)
 
-        // THEN
+        then:"teamTo is populated without member details"
         AssertionsCatalogue.assertTeamTo(actual)
         assert actual.memberTos.size() == 0
     }

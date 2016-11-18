@@ -48,7 +48,8 @@ ext {
     spock = [
             core : "org.spockframework:spock-core:$SpockVersion",
             cglib : 'cglib:cglib-nodep:3.2.4',
-            objenesis : 'org.objenesis:objenesis:2.4'
+            objenesis : 'org.objenesis:objenesis:2.4',
+            core : "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
     ]
 
 }
