@@ -12,28 +12,28 @@
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
-		<input required="required" ng-model="name" type="text" placeholder="Enter Name" class="form-control input-lg" />
+		<input required="required" ng-model="user.name" type="text" placeholder="Enter Name" class="form-control input-lg" />
 	</div>
 </div>
 <br>
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
-		<input required="required" ng-model="username" type="text" placeholder="Username" class="form-control input-lg" />
+		<input required="required" ng-model="user.username" type="text" placeholder="Username" class="form-control input-lg" />
 	</div>
 </div>
 <br>
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
-		<input required="required" ng-model="password" type="password" placeholder="Password" class="form-control input-lg" />
+		<input required="required" ng-model="user.password" type="password" placeholder="Password" class="form-control input-lg" />
 	</div>
 </div>
 <br>
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-4">
-		<select required="required" ng-model="teamName" class="form-control input-lg">
+		<select required="required" ng-model="user.teamName" class="form-control input-lg">
 			<option ng-repeat="team in teams.data" value="{{team.name}}">{{team.name}}</option>
 		</select>
 	</div>

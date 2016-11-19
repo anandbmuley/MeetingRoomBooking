@@ -3,11 +3,14 @@ apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'groovy'
 apply plugin: 'jacoco'
+apply plugin: 'jetty'
 
 apply from: 'deployment.gradle'
 apply from: 'external-dependencies.gradle'
 
 sourceCompatibility = 1.8
+
+httpPort = 8090
 
 jar {
     manifest {
