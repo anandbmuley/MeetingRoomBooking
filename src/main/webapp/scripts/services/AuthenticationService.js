@@ -50,14 +50,15 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	}
 	
 	this.create = function($scope){
+	    var user = $scope.user;
 		$http({
 			method : 'POST',
 			url : 'rest/authentication/create',
 			data : {
-				username : $scope.username,
-				password : $scope.password,
-				name : $scope.name,
-				teamName : $scope.teamName
+				username : user.username,
+				password : user.password,
+				name : user.name,
+				teamName : user.teamName
 			}
 		}).success(function(data,status){
 			$scope.message = 'Created Successfully!';

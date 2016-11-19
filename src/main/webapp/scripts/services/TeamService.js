@@ -16,11 +16,11 @@ app.service('TeamService',['$http',function($http){
 			headers : {
 				'Content-type':'application/json'
 			},
-			data : self.createTeamJSON(scope.teamName)
+			data : self.createTeamJSON(scope.team.name)
 		}).success(function(data,status){
 			scope.success = true;
 			scope.message = 'Team created successfully !';
-			scope.teamName = '';
+			scope.team.name = '';
 		}).error(function(data,status){
 			scope.success = false;
 			scope.message = 'Something went wrong !';
