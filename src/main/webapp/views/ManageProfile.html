@@ -1,0 +1,24 @@
+<br/>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="panel panel-primary panel-border">
+			<div class="panel-heading">
+				<h3 style="text-align:center;" class="panel-title">{{pageTitle}}</h3>
+			</div>
+			<div style="padding:5px 5px 0px 10px;" class="font-large default-color">Name</div>
+			<div style="padding:10px;">
+				<input required="required" ng-model="profile.name" type="text" placeholder="Enter name"
+					   class="form-control input-lg"/>
+			</div>
+			<div style="padding:5px 5px 0px 10px;" class="font-large default-color">Password</div>
+			<div style="padding:10px;">
+				<input required="required" ng-model="profile.password" type="password" placeholder="Enter new password"
+					   class="form-control input-lg"/>
+			</div>
+			<div style="padding:10px;text-align:center">
+				<button type="button" ng-click="create()" class="btn btn-md btn-success">SAVE</button>
+			</div>
+		</div>
+	</div>
+</div>

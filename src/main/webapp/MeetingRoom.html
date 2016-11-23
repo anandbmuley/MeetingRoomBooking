@@ -42,7 +42,7 @@
 <script type="text/javascript" src="scripts/controllers/ContactController.js"></script>
 <script type="text/javascript" src="scripts/controllers/DashboardController.js"></script>
 <script type="text/javascript" src="scripts/controllers/AdministrationController.js"></script>
- 
+<script type="text/javascript" src="scripts/controllers/ManageProfileController.js"></script>
 <!-- Services -->
 <script type="text/javascript" src="scripts/services/BookingService.js"></script>	
 <script type="text/javascript" src="scripts/services/TeamService.js"></script>
@@ -82,7 +82,8 @@
 		            <ul class="nav navbar-nav">
 		              <li><a href="#/home">Home</a></li>
 		              <li><a href="#/teams">Teams</a></li>
-		              <li ng-show="$rootScope.admin"><a href="#/admin">Administration</a></li>
+					  <li><a href="#/manageprofile">Manage Profile</a></li>
+					  <li ng-show="$rootScope.admin"><a href="#/admin">Administration</a></li>
 		            </ul>
 		            <ul class="nav navbar-nav navbar-right">
 		              <li><a href="#/logout">Logout</a></li>

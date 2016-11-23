@@ -17,7 +17,10 @@ app.config([ '$routeProvider', function($routeProvider) {
 	}).when('/create', {
 		templateUrl : 'views/CreateNew.html',
 		controller : 'UserController'
-	}).when('/createteam', {
+	}).when('/manageprofile', {
+       	templateUrl : 'views/ManageProfile.html',
+       	controller : 'ManageProfileController'
+    }).when('/createteam', {
 		templateUrl : 'views/CreateTeam.html',
 		controller : 'CreateTeamController'
 	}).when('/home', {

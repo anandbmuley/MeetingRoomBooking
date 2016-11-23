@@ -19,6 +19,14 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 		$cookies.remove('auth');
 		$cookies.remove('usr');
 	}
+
+	function getCookie(name){
+	    return $cookies.getObject(name);
+	}
+
+	this.getUser = function(){
+	    return getCookie('usr');
+	}
 	
 	this.login = function(username,password,$scope,$rootScope,$location,adminPasscode){
 		$http({
