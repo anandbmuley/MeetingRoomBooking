@@ -7,7 +7,8 @@ controllers.controller('ManageProfileController',
 
     authenticationService.validateCookie($rootScope,'/manageprofile');
 
-
-
+    $scope.updateProfile = function(){
+        authenticationService.updateProfile($scope);
+    }
 
 }]);
