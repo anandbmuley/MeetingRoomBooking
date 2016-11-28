@@ -45,7 +45,7 @@ public class UserService {
         userTo.setId(newUserBean.getId());
     }
 
-    public String encode(String password) {
+    private String encode(String password) {
         return Base64.getEncoder().withoutPadding().encodeToString(password.getBytes());
     }
 }
