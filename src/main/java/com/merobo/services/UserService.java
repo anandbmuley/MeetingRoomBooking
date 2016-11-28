@@ -20,7 +20,7 @@ public class UserService {
 
     public void resetPassword(String username) throws UserNotFoundException {
         UserBean userBean = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        userBean.setPassword("Password123");
+        userBean.setPassword(encode("Password123"));
         userRepository.save(userBean);
     }
 
@@ -47,5 +47,11 @@ public class UserService {
 
     private String encode(String password) {
         return Base64.getEncoder().withoutPadding().encodeToString(password.getBytes());
+    }
+
+    public void update(UserTo userTo) throws UserServiceException {
+        UserBean userBean = userRepository.findByUsername(userTo.getUsername()).orElseThrow(UserNotFoundException::new);
+        userBean.setPassword(encode(userTo.getPassword()));
+        userRepository.save(userBean);
     }
 }

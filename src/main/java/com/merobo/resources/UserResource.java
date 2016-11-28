@@ -1,6 +1,8 @@
 package com.merobo.resources;
 
+import com.merobo.dtos.UserTo;
 import com.merobo.exceptions.UserNotFoundException;
+import com.merobo.exceptions.UserServiceException;
 import com.merobo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,9 +36,16 @@ public class UserResource {
     }
 
     @PUT
-    @Path("{username}/password/{newpassword}")
-    public Response changePassword(@PathParam("username") String username, @PathParam("newpassword") String newpassword) {
-        Response response = Response.ok().build();
+    @Path("{username}")
+    public Response changePassword(@PathParam("username") String username, UserTo userTo) {
+        Response response = null;
+        try {
+            userTo.setUsername(username);
+            userService.update(userTo);
+            response = Response.noContent().build();
+        } catch (UserServiceException e) {
+            response = Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
         return response;
     }
 }

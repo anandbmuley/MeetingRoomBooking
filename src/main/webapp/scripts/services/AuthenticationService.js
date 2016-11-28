@@ -27,7 +27,24 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	this.getUser = function(){
 	    return getCookie('usr');
 	}
-	
+
+	this.updateProfile = function(scope){
+	    var profile = scope.profile;
+	    $http({
+	        method : "PUT",
+	        url : "rest/user/"+profile.username,
+	        data : {
+	            password : profile.password
+	        }
+	    }).success(function(data,status){
+	        scope.success = true;
+	        scope.message = "Details updated successfully!";
+	    }).error(function(data,status){
+            scope.success = false;
+            scope.message = "Something went wrong !";
+	    });
+	}
+
 	this.login = function(username,password,$scope,$rootScope,$location,adminPasscode){
 		$http({
 			method : 'POST',

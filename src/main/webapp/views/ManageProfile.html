@@ -17,7 +17,12 @@
 					   class="form-control input-lg"/>
 			</div>
 			<div style="padding:10px;text-align:center">
-				<button type="button" ng-click="create()" class="btn btn-md btn-success">SAVE</button>
+				<button type="button" ng-click="updateProfile()" class="btn btn-md btn-success">SAVE</button>
+			</div>
+		</div>
+		<div class="row" ng-if="message">
+			<div class="col-md-12">
+				<div align="center" class="alert" ng-class="{'alert-success':success,'alert-danger':!success}">{{message}}</div>
 			</div>
 		</div>
 	</div>
