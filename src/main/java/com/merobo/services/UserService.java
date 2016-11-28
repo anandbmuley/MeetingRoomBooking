@@ -9,6 +9,7 @@ import com.merobo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -24,7 +25,7 @@ public class UserService {
     }
 
     public void login(UserTo userTo) throws UserServiceException {
-        UserBean userBean = userRepository.findByUsernameAndPassword(userTo.getUsername(), userTo.getPassword()).orElseThrow(UserNotFoundException::new);
+        UserBean userBean = userRepository.findByUsernameAndPassword(userTo.getUsername(), encode(userTo.getPassword())).orElseThrow(UserNotFoundException::new);
         userTo.setName(userBean.getName());
         userTo.setTeamName(userBean.getTeamName());
         userTo.setId(userBean.getId());
@@ -37,11 +38,14 @@ public class UserService {
         }
         UserBean newUserBean = new UserBean();
         newUserBean.setName(userTo.getName());
-        newUserBean.setPassword(userTo.getPassword());
+        newUserBean.setPassword(encode(userTo.getPassword()));
         newUserBean.setTeamName(userTo.getTeamName());
         newUserBean.setUsername(userTo.getUsername());
         userRepository.save(newUserBean);
         userTo.setId(newUserBean.getId());
     }
 
+    public String encode(String password) {
+        return Base64.getEncoder().withoutPadding().encodeToString(password.getBytes());
+    }
 }
