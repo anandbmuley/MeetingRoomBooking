@@ -33,6 +33,7 @@ class UserServiceSpec extends Specification{
         given:"Username of the user to reset password"
         def username = "andie"
         1 * mockUserRepository.findByUsername(username) >> Optional.empty()
+        0 * _
 
         when:"password is reset"
         userService.resetPassword(username)
@@ -46,21 +47,24 @@ class UserServiceSpec extends Specification{
         def username = "ronnie"
         UserBean bean = userBeanBuilder.buildUser()
         1 * mockUserRepository.findByUsername(username) >> {Optional.of(bean)}
+        0 * _
 
         when:"password is reset"
-        userService.resetPassword(username)
+        String actual = userService.resetPassword(username)
 
         then:"password should be reset successfully"
         1 * mockUserRepository.save({UserBean it->
-            assert it.password == "UGFzc3dvcmQxMjM"
+            assert it.password != null
             true
         })
+        assert actual != null
     }
 
     def "create - should create user with encoded password"(){
         given:"user to register"
         UserTo userTo = new UserDtoBuilder().build()
         1 * mockUserRepository.findByUsername(userTo.username) >> Optional.empty()
+        0 * _
 
         when:"create method is called"
         userService.create(userTo)
@@ -81,6 +85,7 @@ class UserServiceSpec extends Specification{
         UserTo userTo = new UserDtoBuilder().build()
         UserBean bean = new UserBeanBuilder().buildUser()
         1 * mockUserRepository.findByUsername(userTo.username) >> Optional.of(bean)
+        0 * _
 
         when:"create method is called"
         userService.create(userTo)
@@ -94,6 +99,7 @@ class UserServiceSpec extends Specification{
         UserTo userTo = new UserDtoBuilder().build()
         UserBean userBean = new UserBeanBuilder().buildUser()
         1 * mockUserRepository.findByUsername(userTo.username) >> Optional.of(userBean)
+        0 * _
 
         when:"update method is called"
         userService.update(userTo)
@@ -109,6 +115,7 @@ class UserServiceSpec extends Specification{
         given:"new password for updation"
         UserTo userTo = new UserDtoBuilder().build()
         1 * mockUserRepository.findByUsername(userTo.username) >> Optional.empty()
+        0 * _
 
         when:"update method is called"
         userService.update(userTo)
