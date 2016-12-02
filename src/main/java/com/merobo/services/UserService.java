@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -18,10 +20,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void resetPassword(String username) throws UserNotFoundException {
+    public String resetPassword(String username) throws UserNotFoundException {
         UserBean userBean = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
-        userBean.setPassword(encode("Password123"));
+        String randomPwd = UUID.randomUUID().toString();
+        userBean.setPassword(encode(randomPwd));
         userRepository.save(userBean);
+        return randomPwd;
     }
 
     public void login(UserTo userTo) throws UserServiceException {
@@ -33,7 +37,7 @@ public class UserService {
 
     public void create(UserTo userTo) throws UserServiceException {
         Optional<UserBean> userBean = userRepository.findByUsername(userTo.getUsername());
-        if(userBean.isPresent()){
+        if (userBean.isPresent()) {
             throw new DuplicateUsernameException();
         }
         UserBean newUserBean = new UserBean();
@@ -53,5 +57,13 @@ public class UserService {
         UserBean userBean = userRepository.findByUsername(userTo.getUsername()).orElseThrow(UserNotFoundException::new);
         userBean.setPassword(encode(userTo.getPassword()));
         userRepository.save(userBean);
+    }
+
+    public void encodeAll() {
+        List<UserBean> userBeans = userRepository.findAll();
+        userBeans.stream().forEach(userBean -> {
+            userBean.setPassword(encode(userBean.getPassword()));
+            userRepository.save(userBean);
+        });
     }
 }

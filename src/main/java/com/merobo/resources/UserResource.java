@@ -1,5 +1,6 @@
 package com.merobo.resources;
 
+import com.merobo.dtos.PasswordDto;
 import com.merobo.dtos.UserTo;
 import com.merobo.exceptions.UserNotFoundException;
 import com.merobo.exceptions.UserServiceException;
@@ -20,13 +21,20 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
+    @POST
+    @Path("encodeall")
+    public Response encodeAllPasswords() {
+        userService.encodeAll();
+        return Response.ok().build();
+    }
+
     @PUT
     @Path("{username}/resetpassword")
     public Response resetPassword(@PathParam("username") String username) {
         Response response = null;
         try {
-            userService.resetPassword(username);
-            response = Response.noContent().build();
+            String newPwd = userService.resetPassword(username);
+            response = Response.ok(new PasswordDto(newPwd)).build();
         } catch (UserNotFoundException e) {
             response = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         } catch (Exception e) {
