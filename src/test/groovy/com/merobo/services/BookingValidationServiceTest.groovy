@@ -7,6 +7,7 @@ import com.merobo.dtos.BookingTo
 import com.merobo.exceptions.booking.EndTimeClashesException
 import com.merobo.exceptions.booking.StartTimeClashesException
 import com.merobo.repositories.BookingRepository
+import spock.lang.Ignore
 import spock.lang.Specification
 
 class BookingValidationServiceTest extends Specification {
@@ -92,6 +93,7 @@ class BookingValidationServiceTest extends Specification {
         0 * _
     }
 
+    @Ignore
     def "checkForClash - should clash StartTime equals existing meeting StartTime"(){
         given:"Start Time Existing Booking StartTime"
         BookingTo bookingTo = new BookingToBuilder()
