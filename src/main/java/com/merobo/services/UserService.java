@@ -8,6 +8,7 @@ import com.merobo.exceptions.UserServiceException;
 import com.merobo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Base64;
 import java.util.List;
@@ -55,7 +56,10 @@ public class UserService {
 
     public void update(UserTo userTo) throws UserServiceException {
         UserBean userBean = userRepository.findByUsername(userTo.getUsername()).orElseThrow(UserNotFoundException::new);
-        userBean.setPassword(encode(userTo.getPassword()));
+        if (!StringUtils.isEmpty(userTo.getPassword())) {
+            userBean.setPassword(encode(userTo.getPassword()));
+        }
+        userBean.setName(userTo.getName());
         userRepository.save(userBean);
     }
 

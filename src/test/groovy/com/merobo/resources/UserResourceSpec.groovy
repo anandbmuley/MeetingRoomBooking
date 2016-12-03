@@ -37,7 +37,7 @@ class UserResourceSpec extends Specification{
         assert actualPwdDto.newPassword == newPwd
     }
 
-    def "resetPassword - should return bad request error if username is not found"(){
+    def "resetPassword - should return not found error if username is not found"(){
         given:"username of the user to reset password"
         def username = "dummy"
         1 * mockUserService.resetPassword(username) >> {throw new UserNotFoundException()}
@@ -46,8 +46,8 @@ class UserResourceSpec extends Specification{
         when:"password is reset"
         Response actual = resource.resetPassword(username)
 
-        then:"bad request 400 error is returned"
-        assert actual.status == Response.Status.BAD_REQUEST.statusCode
+        then:"bad request 404 error is returned"
+        assert actual.status == Response.Status.NOT_FOUND.statusCode
         String message = (String)actual.entity
         assert message == "User not found"
 

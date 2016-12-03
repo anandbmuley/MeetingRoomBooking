@@ -17,6 +17,7 @@ class BookingBeanBuilder {
     String bookedWhen
     String roomName
     BookingStatus status
+    List<BookingBean> bookings = []
 
     public BookingBeanBuilder() throws ParseException {
         id = "562ba47c44ae605f13522a83"
@@ -43,6 +44,20 @@ class BookingBeanBuilder {
                 status: status
         )
         bookingBean
+    }
+
+    public List<BookingBean> buildBookings(){
+        bookings.add(new BookingBean(
+                id: id,
+                teamName: teamName,
+                startTime: startTime,
+                endTime: endTime,
+                bookedBy: bookedBy,
+                bookedWhen: bookedWhen,
+                roomName: roomName,
+                status: status
+        ))
+        bookings
     }
 
 }

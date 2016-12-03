@@ -34,7 +34,7 @@ public class AuthenticationResource {
 			userTo.setLoginTime(DateConverterUtil.toString(new Date(), DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
 			response = Response.ok(userTo).build();
 		} catch (UserServiceException e) {
-			response = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+			response = Response.status(Response.Status.BAD_REQUEST).entity("Authentication Failed !").build();
 		}
 		return response;
 	}

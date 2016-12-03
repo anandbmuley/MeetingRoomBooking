@@ -1,7 +1,9 @@
 package com.merobo.common
 
+import com.merobo.dtos.BookingTo
 import com.merobo.dtos.TeamTo
 import com.merobo.dtos.UserTo
+import com.merobo.utils.BookingStatus
 
 class AssertionsCatalogue {
 
@@ -22,8 +24,51 @@ class AssertionsCatalogue {
     public static void assertUserTo(UserTo userTo) {
         assert userTo.id == "da2f-3fa2-dai2-da2r"
         assert userTo.name == "Rocky"
-        assert userTo.username == "rockstar"
         assert userTo.password == null
         assert userTo.teamName == "Rock Solid"
+    }
+
+    public static void assertCreateUserTo(UserTo userTo) {
+        assert userTo.id == "UID101"
+        assert userTo.name == "Albert"
+        assert userTo.password == null
+        assert userTo.teamName == "Scientific Explorers"
+        assert userTo.cookieTimeout == 15
+        assert userTo.loginTime == null
+        assert userTo.adminPasscode == null
+        assert userTo.adminToken == null
+    }
+
+    public static void assertTeams(List<TeamTo> actualTeams) {
+        assert actualTeams.size() == 1
+        assert actualTeams[0].name == "Scientific Explorers"
+
+        assert actualTeams[0].memberTos.size() == 1
+        assert actualTeams[0].memberTos[0].name == "Albert"
+        assert actualTeams[0].memberTos[0].adminPasscode == null
+        assert actualTeams[0].memberTos[0].adminToken == null
+        assert actualTeams[0].memberTos[0].cookieTimeout == 15
+        assert actualTeams[0].memberTos[0].id == "UID101"
+        assert actualTeams[0].memberTos[0].loginTime == null
+        assert actualTeams[0].memberTos[0].password == null
+        assert actualTeams[0].memberTos[0].teamName == "Scientific Explorers"
+        assert actualTeams[0].memberTos[0].username == null
+    }
+
+    public static void assertBookingsTo(List<BookingTo> bookingTos) {
+        assert bookingTos.size() == 1
+        BookingTo bookingTo = bookingTos[0]
+        assert bookingTo.id == "562ba47c44ae605f13522a83"
+        assert bookingTo.teamName == "CVoS"
+        assert bookingTo.startTime == "02:00 PM"
+        assert bookingTo.startDateTime != null
+        assert bookingTo.endTime == "03:00 PM"
+        assert bookingTo.endDateTime != null
+        assert bookingTo.bookedBy == "Aron Johnson"
+        assert bookingTo.bookedWhen == "08:00 AM"
+        assert bookingTo.roomName == "PINNACLE"
+        assert bookingTo.status == BookingStatus.BOOKED
+
+
     }
 }

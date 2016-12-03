@@ -36,7 +36,7 @@ public class UserResource {
             String newPwd = userService.resetPassword(username);
             response = Response.ok(new PasswordDto(newPwd)).build();
         } catch (UserNotFoundException e) {
-            response = Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+            response = Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         } catch (Exception e) {
             response = Response.serverError().entity(e.getMessage()).build();
         }

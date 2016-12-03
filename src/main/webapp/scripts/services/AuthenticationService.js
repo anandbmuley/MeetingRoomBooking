@@ -34,7 +34,8 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	        method : "PUT",
 	        url : "rest/user/"+profile.username,
 	        data : {
-	            password : profile.password
+	            password : profile.password,
+	            name     : profile.name
 	        }
 	    }).success(function(data,status){
 	        scope.success = true;
