@@ -8,11 +8,11 @@ import com.merobo.repositories.UserRepository;
 import com.merobo.utils.DtoCreatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class TeamService {
@@ -25,7 +25,6 @@ public class TeamService {
 
     public void updateTeam(TeamTo teamTo) {
         TeamBean teamBean = teamRepository.findOne(teamTo.getId());
-        System.out.print(teamBean);
         String oldTeamName = teamBean.getName();
         teamBean.setName(teamTo.getName());
         teamRepository.save(teamBean);
@@ -43,12 +42,17 @@ public class TeamService {
     }
 
     public List<TeamTo> getAllTeams() {
-        List<TeamTo> teamTos = teamRepository
-                .findAll()
-                .stream()
-                .flatMap(teamBean ->
-                        Stream.of(DtoCreatorUtil.createTeamTo(teamBean))
-                ).collect(Collectors.toList());
+        List<UserBean> members = userRepository.findAll();
+        List<String> teamNames = members.stream().map(UserBean::getTeamName).collect(Collectors.toList());
+        List<TeamTo> teamTos = new ArrayList<>();
+        List<TeamBean> teams = teamRepository.findByNameIn(teamNames);
+        if (!CollectionUtils.isEmpty(teams)) {
+            teams.stream().forEach(teamBean -> {
+                List<UserBean> teamMembers = members.stream().filter(userBean -> userBean.getTeamName().equals(teamBean.getName())).collect(Collectors.toList());
+                teamBean.getMembers().addAll(teamMembers);
+                teamTos.add(DtoCreatorUtil.createTeamTo(teamBean));
+            });
+        }
         return teamTos;
     }
 

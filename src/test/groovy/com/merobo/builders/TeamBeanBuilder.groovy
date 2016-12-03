@@ -7,11 +7,13 @@ class TeamBeanBuilder {
 
     String id
     String name
-    List<UserBean> members
+    List<UserBean> members = []
+    List<TeamBean> teams
 
     public TeamBeanBuilder() {
         id = "dsa3-dsa3-gsa2-r3ca"
         name = "Australia"
+        teams = []
     }
 
     public TeamBeanBuilder withMembers() {
@@ -27,6 +29,11 @@ class TeamBeanBuilder {
         this
     }
 
+    public TeamBeanBuilder withTeam(TeamBean teamBean) {
+        teams.add(teamBean)
+        this
+    }
+
     public TeamBean build() {
         TeamBean teamBean = new TeamBean(
                 id: id,
@@ -34,6 +41,10 @@ class TeamBeanBuilder {
                 members: members
         )
         teamBean
+    }
+
+    public List<TeamBean> buildTeams() {
+        teams
     }
 
 }

@@ -21,7 +21,6 @@ public abstract class DtoCreatorUtil {
         userTo.setId(userBean.getId());
         userTo.setName(userBean.getName());
         userTo.setTeamName(userBean.getTeamName());
-        userTo.setUsername(userBean.getUsername());
         return userTo;
     }
 
@@ -38,17 +37,6 @@ public abstract class DtoCreatorUtil {
             teamTo.getMemberTos().addAll(userTos);
         }
         return teamTo;
-    }
-
-    public static List<TeamTo> createTeamTos(List<TeamBean> teams) {
-        List<TeamTo> teamTos = new ArrayList<TeamTo>();
-        for (TeamBean teamBean : teams) {
-            TeamTo teamTo = new TeamTo();
-            teamTo.setId(teamBean.getId());
-            teamTo.setName(teamBean.getName());
-            teamTos.add(teamTo);
-        }
-        return teamTos;
     }
 
     public static List<BookingTo> createBookingTos(
