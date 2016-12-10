@@ -1,6 +1,6 @@
 <title>{{pageTitle}}</title>
 <!-- Refresh Every 1 min -->
-<!--<meta http-equiv="refresh" content="60" />-->
+<meta ng-init="autorefresh" ng-if="autorefresh" http-equiv="refresh" content="10" />
 <div ng-if="message">
 	<div class="alert alert-success">{{message}}</div>
 </div>
