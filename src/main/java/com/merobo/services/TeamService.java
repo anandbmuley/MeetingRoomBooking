@@ -3,6 +3,7 @@ package com.merobo.services;
 import com.merobo.beans.TeamBean;
 import com.merobo.beans.UserBean;
 import com.merobo.dtos.TeamTo;
+import com.merobo.exceptions.NoDataFoundException;
 import com.merobo.repositories.TeamRepository;
 import com.merobo.repositories.UserRepository;
 import com.merobo.utils.DtoCreatorUtil;
@@ -12,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,6 +41,14 @@ public class TeamService {
         teamRepository.save(teamBean);
         teamTo.setId(teamBean.getId());
         return teamTo;
+    }
+
+    public List<TeamTo> getTeamList() throws NoDataFoundException {
+        List<TeamBean> teams = teamRepository.findAll();
+        if(CollectionUtils.isEmpty(teams)){
+            throw new NoDataFoundException("No teams found");
+        }
+        return teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
     }
 
     public List<TeamTo> getAllTeams() {

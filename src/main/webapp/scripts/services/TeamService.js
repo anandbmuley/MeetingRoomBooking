@@ -26,8 +26,22 @@ app.service('TeamService',['$http',function($http){
 			scope.message = 'Something went wrong !';
 		});
 	}
-	
+
 	this.fetchAll = function(teams){
+    		$http({
+    			url : 'rest/team/list/members',
+    			method : 'GET',
+    			headers : {
+    				'Content-type':'application/json'
+    			}
+    		}).success(function(data,status){
+    			teams.data = data;
+    		}).error(function(data,status){
+    			teams.message = 'Something went wrong!';
+    		});
+    }
+	
+	this.fetchTeamList = function(teams){
 		$http({
 			url : 'rest/team/list',
 			method : 'GET',
@@ -35,6 +49,7 @@ app.service('TeamService',['$http',function($http){
 				'Content-type':'application/json'
 			}
 		}).success(function(data,status){
+		    console.log('DATA');
 			teams.data = data;
 		}).error(function(data,status){
 			teams.message = 'Something went wrong!';

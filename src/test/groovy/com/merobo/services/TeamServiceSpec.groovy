@@ -6,12 +6,13 @@ import com.merobo.builders.TeamBeanBuilder
 import com.merobo.builders.TeamToBuilder
 import com.merobo.builders.UserBeanBuilder
 import com.merobo.common.AssertionsCatalogue
+import com.merobo.common.SharedSpecification
 import com.merobo.dtos.TeamTo
+import com.merobo.exceptions.NoDataFoundException
 import com.merobo.repositories.TeamRepository
 import com.merobo.repositories.UserRepository
-import spock.lang.Specification
 
-class TeamServiceSpec extends Specification {
+class TeamServiceSpec extends SharedSpecification {
 
     TeamService teamService
     TeamRepository mockTeamRepository
@@ -40,7 +41,6 @@ class TeamServiceSpec extends Specification {
         1 * mockTeamRepository.save(teamBean)
         1 * mockUserRepository.findByTeamName(teamBean.name) >> {users}
         1 * mockUserRepository.save(users)
-        0 * _
     }
 
     def "getAllTeams - should get all teams with team members"(){
@@ -57,7 +57,6 @@ class TeamServiceSpec extends Specification {
             assert names[0] == "Scientific Explorers"
             true
         }) >> {teams}
-        0 * _
 
         when:"getAllTeams is called"
         List<TeamTo> actualTeams = teamService.getAllTeams()
@@ -78,7 +77,6 @@ class TeamServiceSpec extends Specification {
             assert names[0] == "Scientific Explorers"
             true
         }) >> {teams}
-        0 * _
 
         when:"getAllTeams is called"
         List<TeamTo> actualTeams = teamService.getAllTeams()
@@ -86,6 +84,42 @@ class TeamServiceSpec extends Specification {
         then:"teams with member details are fetched"
         assert actualTeams.size() == 0
 
+    }
+
+    def "getTeamList - should throw no data found exception if no records found"(){
+        given:"none of the teams are created yet"
+        1 * mockTeamRepository.findAll() >> {[]}
+
+        when:"getTeamList is called"
+        teamService.getTeamList()
+
+        then:"NoDataFoundException is thrown"
+        thrown(NoDataFoundException)
+    }
+
+    def "getTeamList - should throw no data found exception if no records found null"(){
+        given:"none of the teams are created yet"
+        1 * mockTeamRepository.findAll() >> {null}
+
+        when:"getTeamList is called"
+        teamService.getTeamList()
+
+        then:"NoDataFoundException is thrown"
+        thrown(NoDataFoundException)
+    }
+
+    def "getTeamList - should create a team list"(){
+        given:"teams are created in the system"
+        def teams = new TeamBeanBuilder().withTeam(new TeamBean(id: "TID101",name: "Rangers")).buildTeams()
+        1 * mockTeamRepository.findAll() >> {teams}
+
+        when:"getTeamList is called"
+        List<TeamTo> actual = teamService.getTeamList()
+
+        then:"NoDataFoundException is thrown"
+        assert actual.size() == 1
+        assert actual[0].id == "TID101"
+        assert actual[0].name == "Rangers"
     }
 
 }
