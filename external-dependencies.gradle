@@ -47,8 +47,7 @@ ext {
 
     spock = [
             core : "org.spockframework:spock-core:$SpockVersion",
-            cglib : 'cglib:cglib-nodep:3.2.4',
-            objenesis : 'org.objenesis:objenesis:2.4'
+            cglib : 'cglib:cglib-nodep:3.2.4'
     ]
 
 }

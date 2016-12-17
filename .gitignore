@@ -5,6 +5,7 @@
 .project
 .classpath
 src/main/webapp/node_modules
+src/test/webapp/node_modules
 .tern-project
 .idea
 test-output
@@ -12,3 +13,4 @@ test-output
 *.ipr
 *.iws
 out
+src/test/webapp/coverage

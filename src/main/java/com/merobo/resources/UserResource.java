@@ -21,13 +21,6 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
-    @POST
-    @Path("encodeall")
-    public Response encodeAllPasswords() {
-        userService.encodeAll();
-        return Response.ok().build();
-    }
-
     @PUT
     @Path("{username}/resetpassword")
     public Response resetPassword(@PathParam("username") String username) {
