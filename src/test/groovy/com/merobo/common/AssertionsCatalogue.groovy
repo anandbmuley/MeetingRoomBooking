@@ -21,6 +21,10 @@ class AssertionsCatalogue {
         assert actual.id == "dsa3-dsa3-gsa2-r3ca"
     }
 
+    public static void assertTeamTo(){
+
+    }
+
     public static void assertUserTo(UserTo userTo) {
         assert userTo.id == "da2f-3fa2-dai2-da2r"
         assert userTo.name == "Rocky"

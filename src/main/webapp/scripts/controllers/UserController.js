@@ -2,7 +2,7 @@ app.controller('UserController',
 		['$scope','AuthenticationService','TeamService',
 		 function($scope,authenticationService,teamService){
 	$scope.teams = {};
-	teamService.fetchAll($scope.teams);
+	teamService.fetchAllTeams($scope.teams);
 	$scope.user = {};
 	
 	$scope.create = function(){

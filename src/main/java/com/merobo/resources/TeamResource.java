@@ -22,9 +22,27 @@ public class TeamResource {
 
     @POST
     @Path("add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response addTeam(TeamTo teamTo) {
         teamTo = teamService.addTeam(teamTo);
         return Response.status(Response.Status.CREATED).build();
+    }
+
+    @GET
+    @Path("list")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllTeams() {
+        List<TeamTo> teams = teamService.getAllTeams();
+        return Response.ok(teams).build();
+    }
+
+    @GET
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll() {
+        List<TeamTo> teams = teamService.getAll();
+        return Response.ok(teams).build();
     }
 
     @GET
@@ -47,6 +65,8 @@ public class TeamResource {
 
     @DELETE
     @Path("delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response deleteTeam(TeamTo teamTo) {
         teamService.deleteTeam(teamTo);
         return Response.ok().build();

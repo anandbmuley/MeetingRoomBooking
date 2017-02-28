@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,18 +52,30 @@ public class TeamService {
         return teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
     }
 
+    public List<TeamTo> getAll() {
+        List<TeamTo> teamTos = Collections.EMPTY_LIST;
+        List<TeamBean> teams = teamRepository.findAll();
+        if (!CollectionUtils.isEmpty(teams)) {
+            teamTos = teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
+        }
+        return teamTos;
+    }
+
     public List<TeamTo> getAllTeams() {
         List<UserBean> members = userRepository.findAll();
-        List<String> teamNames = members.stream().map(UserBean::getTeamName).collect(Collectors.toList());
         List<TeamTo> teamTos = new ArrayList<>();
-        List<TeamBean> teams = teamRepository.findByNameIn(teamNames);
-        if (!CollectionUtils.isEmpty(teams)) {
-            teams.stream().forEach(teamBean -> {
-                List<UserBean> teamMembers = members.stream().filter(userBean -> userBean.getTeamName().equals(teamBean.getName())).collect(Collectors.toList());
-                teamBean.getMembers().addAll(teamMembers);
-                teamTos.add(DtoCreatorUtil.createTeamTo(teamBean));
-            });
+        if (!CollectionUtils.isEmpty(members)) {
+            List<String> teamNames = members.stream().map(UserBean::getTeamName).collect(Collectors.toList());
+            List<TeamBean> teams = teamRepository.findByNameIn(teamNames);
+            if (!CollectionUtils.isEmpty(teams)) {
+                teams.stream().forEach(teamBean -> {
+                    List<UserBean> teamMembers = members.stream().filter(userBean -> teamBean.getName().equals(userBean.getTeamName())).collect(Collectors.toList());
+                    teamBean.getMembers().addAll(teamMembers);
+                    teamTos.add(DtoCreatorUtil.createTeamTo(teamBean));
+                });
+            }
         }
+
         return teamTos;
     }
 

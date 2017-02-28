@@ -55,6 +55,20 @@ app.service('TeamService',['$http',function($http){
 			teams.message = 'Something went wrong!';
 		});
 	}
+
+	this.fetchAllTeams = function(teams){
+    		$http({
+    			url : 'rest/team',
+    			method : 'GET',
+    			headers : {
+    				'Content-type':'application/json'
+    			}
+    		}).success(function(data,status){
+    			teams.data = data;
+    		}).error(function(data,status){
+    			teams.message = 'Something went wrong!';
+    		});
+    	}
 	
 	this.addMember = function(team,memberName){
 		$http({
