@@ -30,14 +30,6 @@ public class TeamResource {
     }
 
     @GET
-    @Path("list")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllTeams() {
-        List<TeamTo> teams = teamService.getAllTeams();
-        return Response.ok(teams).build();
-    }
-
-    @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
@@ -47,6 +39,7 @@ public class TeamResource {
 
     @GET
     @Path("list/members")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllTeam() {
         List<TeamTo> teams = teamService.getAllTeams();
         return Response.ok(teams).build();
@@ -54,6 +47,7 @@ public class TeamResource {
 
     @GET
     @Path("list")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response teamList() {
         try {
             List<TeamTo> teamList = teamService.getTeamList();

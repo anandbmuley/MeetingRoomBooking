@@ -75,6 +75,16 @@
 	border-color: #01BF9D !important;
 }
 
+.panel-heading-blocked{
+	background-color: #ff5722 !important;
+	border-color: #ff5722 !important;
+}
+
+.caution-highlight{
+    color: #ff5722 !important;
+    font-weight:bold;
+}
+
 .panel-border {
 	border-color: #01BF9D;
 }

@@ -4,12 +4,14 @@
 </div>
 <div class="text-center font-large">{{pageTitle}}</div>
 <div class="text-center font-small">Click on room name to book a meeting</div>
+<div class="text-center font-small caution-highlight">PINNACLE Room is blocked for RFP till 10th April.</div>
+<div class="text-center font-small caution-highlight">Please use alternate rooms on other floors till 20th. From 21st onwards please use Murli's Cabin in HR bay</div>
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		<div class="list-group">
-		  <div id="pinnacle-room" ng-click="bookroomPopup('PINNACLE')" class="list-group-item active text-center panel-heading">
-		    <h3 class="list-group-item-heading">PINNACLE</h3>
+		  <div id="pinnacle-room" ng-click="bookroomPopup('PINNACLE')" class="list-group-item active text-center panel-heading-blocked">
+		    <h3 class="list-group-item-heading">PINNACLE ALTERNATIVE</h3>
 		  </div>
 			<div ng-repeat="booking in bookings.pinnacle" class="list-group-item">
 				<div class="row">
