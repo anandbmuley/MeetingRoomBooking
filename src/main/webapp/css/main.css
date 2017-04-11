@@ -4,6 +4,13 @@
 	min-height: 570px !important;
 }
 
+.btn-custom{
+   background-color:#419eda;
+   background-image: -webkit-linear-gradient( top , #419eda, #2f7cb4);
+   color:#fff;
+   border-color:#419eda;
+}
+
 .font-large{
 	font-size: 20px;
 }
@@ -13,7 +20,7 @@
 }
 
 .active {
-	color: #01BF9D;
+	color: #55A3D4;
 }
 
 .cancelled {
@@ -30,20 +37,24 @@
 	padding-top: 12px;
 }
 
+.color-cat{
+    color: #C5B9A0;
+}
+
 .registration-link {
 	font-size: 15px;
-	color: #01BF9D;
+	color: #C5B9A0;
 }
 
 .registration-link:HOVER {
 	cursor: pointer;
 	font-weight: bold;
 	text-decoration: none;
-	color: #01BF9D;
+	color: #08173C;
 }
 
 .default-color {
-	color: #01BF9D;
+	color: #0C467E;
 }
 
 .page-title {
@@ -53,7 +64,7 @@
 
 .site-title {
 	font-size: 30px;
-	color: #01BF9D;
+	color: #C5B9A0;
 }
 
 .site-title-brand {
@@ -62,17 +73,18 @@
 
 .site-subtitle {
 	font-size: 13px;
-	color: #01BF9D;
+	color: #C5B9A0;
 }
 
 .btn-success {
-	background-color: #01BF9D !important;
-	border-color: #01BF9D !important;
+	background-color: #419eda !important;
+	border-color: #419eda !important;
 }
 
 .panel-heading {
-	background-color: #01BF9D !important;
-	border-color: #01BF9D !important;
+	background-color: #DFC6A9 !important;
+	border-color: #DFC6A9 !important;
+	color:white !important;
 }
 
 .panel-heading-blocked{
@@ -86,11 +98,11 @@
 }
 
 .panel-border {
-	border-color: #01BF9D;
+	border-color: #0C467E;
 }
 
 .header-container {
-	background-color: #01BF9D;
+	background-color: #56A4D4;
 }
 
 .header-container h4 {
@@ -138,7 +150,7 @@
 
 .time-slot-available {
 	font-size: 20px;
-	color: #01BF9D;
+	color: #0C467E;
 }
 
 .timelabel {
@@ -149,13 +161,25 @@
 	text-align: center;
 }
 
+.panel-background{
+    background-color:#F6F6F0;
+}
+
+.list-group-item{
+    background-color:#F6F6F0;
+}
+
+.list-group-item.active{
+    color:#071538;
+}
+
 .list-group-item:HOVER {
 	cursor: pointer;
-	background-color: #b8ede3;
+	background-color: #E7DFD4;
 }
 
 .list-group-item-selected {
-	background-color: #b8ede3;
+	background-color: #DCBFA6;
 }
 
 .css-teamform input.ng-invalid.ng-touched {
@@ -187,39 +211,52 @@
 }
 
 .navbar-inverse {
-	background-color: #01BF9D;
-	border-color: #01BF9D;
+	background-color: #F6F6F0;
+	border-color: #F6F6F0;
 }
 
 .navbar-inverse .navbar-brand {
-	color: white;
+	color: #08173C;
+}
+
+.navbar-inverse .navbar-brand:HOVER{
+    color:#08173C;
 }
 
 .navbar-inverse .navbar-nav>li>a {
-	color: white;
+	color: #08173C;
+}
+
+.navbar-inverse .navbar-nav>li>a:HOVER{
+    font-weight:bold;
+    color: #08173C;
 }
 
 .btn-primary {
-	background-color: #01BF9D;
-	border-color: #01BF9D;
+	background-color: #0C467E;
+	border-color: #0C467E;
 }
 
 .btn-link{
-	color: #01BF9D;
+	color: #0C467E;
 }
 
 .btn-link:hover, .btn-link:focus{
-	color: #01BF9D;
+	color: #0C467E;
 }
 
 .meeting-room-dashboard{
 	font-size: 35px;
 }
 
+.dashboard-page-title{
+    color:white;
+}
+
 .footer {
     width: 100%;
     height: 60px;
-    background-color: #f5f5f5;
+    background-color: #E7DFD4;
 }
 
 .footer-relative{
@@ -231,16 +268,15 @@
 }
 
 .copyright {
-	color: gray;
+	color: #071538;
 	font-size: 16px;
 }
 
 .footer-link a {
-	color: gray;
+	color: #071538;
 }
 
 .jumbotron-custom{
-	background-color: #6C8FAA;
 	padding-bottom: 15px;
 }
 
@@ -287,9 +323,17 @@
 }
 
 .links:HOVER {
-	color: white;
+	font-weight:bold;
+	color:#061437;
 }
 
 .cancel-icon{
 	font-size: 15px;
+}
+
+body{
+    background-image:url('../images/teleo/Be-more-dog-cat.jpg');
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
 }

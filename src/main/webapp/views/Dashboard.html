@@ -4,15 +4,13 @@
 <div ng-if="message">
 	<div class="alert alert-success">{{message}}</div>
 </div>
-<h3 class="text-center">{{pageTitle}}</h3>
-<div class="text-center font-small caution-highlight">PINNACLE Room is blocked till 10th April.</div>
-<div class="text-center font-small caution-highlight">Please use alternate rooms on other floors till 20th. From 21st onwards please use Murli's Cabin in HR bay</div>
+<h3 class="text-center dashboard-page-title">{{pageTitle}}</h3>
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-5">
 		<div class="list-group">
-		  <div id="pinnacle-room" ng-click="bookroomPopup('PINNACLE')" class="list-group-item active text-center  panel-heading-blocked">
-		    <h3 class="list-group-item-heading meeting-room">PINNACLE ALTERNATIVE</h3>
+		  <div id="pinnacle-room" ng-click="bookroomPopup('PINNACLE')" class="list-group-item active text-center panel-heading">
+		    <h3 class="list-group-item-heading meeting-room">PINNACLE</h3>
 		  </div>
 			<div ng-repeat="booking in bookings.pinnacle" class="list-group-item">
 				<div class="row">
