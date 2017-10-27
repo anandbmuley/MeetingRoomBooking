@@ -10,7 +10,7 @@ apply from: 'external-dependencies.gradle'
 
 sourceCompatibility = 1.8
 
-httpPort = 8090
+httpPort = 8092
 
 jar {
     manifest {
@@ -47,6 +47,7 @@ repositories {
 }
 
 dependencies {
+    compile swagger.core, swagger.ui
     compile json
     compile spring.web, spring.core, spring.test, jersey.server, jackson, jersey.inmemorytest
     compile jersey.spring, spring.mongo, spring.webmvc, hamcrest.core, hamcrest.library, jmock.core,jmock.legacy

@@ -1,6 +1,7 @@
 def SpringVersion = '4.3.2.RELEASE'
 def SpringDataMongoVersion = '1.6.0.RELEASE'
 def SpockVersion = '1.1-groovy-2.4-rc-3'
+def swaggerVersion = '2.6.1'
 
 ext {
     testng = "org.testng:testng:6.9.4"
@@ -50,6 +51,11 @@ ext {
             cglib : 'cglib:cglib-nodep:3.2.4',
             objenesis : 'org.objenesis:objenesis:2.4',
             core : "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
+    ]
+
+    swagger = [
+            core: "io.springfox:springfox-swagger2:$swaggerVersion",
+            ui  : "io.springfox:springfox-swagger-ui:$swaggerVersion"
     ]
 
 }
