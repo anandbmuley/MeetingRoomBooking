@@ -1,21 +1,25 @@
+apply plugin: 'jacoco'
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'groovy'
-apply plugin: 'jacoco'
-apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
 
 apply from: 'deployment.gradle'
 apply from: 'external-dependencies.gradle'
 
 sourceCompatibility = 1.8
-
-httpPort = 8090
+targetCompatibility = 1.8
 
 jar {
     manifest {
         attributes 'Implementation-Title': 'Meeting Room Booking'
     }
+    zip64 = true
+}
+
+war{
+    zip64 = true
 }
 
 jacoco {
@@ -33,16 +37,30 @@ jacocoTestReport {
 
 buildscript {
     repositories {
+        jcenter()
         maven {
-            url "https://jcenter.bintray.com"
+            url("https://jcenter.bintray.com")
+        }
+        maven {
+            url("https://plugins.gradle.org/m2/")
         }
     }
     dependencies {
         classpath 'com.bmuschko:gradle-cargo-plugin:2.2.3'
+        classpath "gradle.plugin.org.akhikhl.gretty:gretty:2.0.0"
     }
 }
 
+gretty {
+    httpPort = 8091
+    scanInterval = 1
+//	host = '127.0.0.1'
+    servletContainer = 'jetty8'
+    managedClassReload = true
+}
+
 repositories {
+    jcenter()
     mavenCentral()
 }
 
