@@ -53,7 +53,7 @@ public class TeamService {
     }
 
     public List<TeamTo> getAll() {
-        List<TeamTo> teamTos = Collections.EMPTY_LIST;
+        List<TeamTo> teamTos = Collections.emptyList();
         List<TeamBean> teams = teamRepository.findAll();
         if (!CollectionUtils.isEmpty(teams)) {
             teamTos = teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
