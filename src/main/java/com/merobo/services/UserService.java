@@ -63,4 +63,11 @@ public class UserService {
         userRepository.save(userBean);
     }
 
+    public void encodeAll() {
+        List<UserBean> userBeans = userRepository.findAll();
+        userBeans.stream().forEach(userBean -> {
+            userBean.setPassword(encode(userBean.getPassword()));
+            userRepository.save(userBean);
+        });
+    }
 }

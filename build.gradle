@@ -72,7 +72,6 @@ repositories {
 dependencies {
     compile json
     compile spring.web, spring.core, spring.test, jersey.server, jackson, jersey.inmemorytest
-    compile jersey.spring, spring.mongo, spring.webmvc, hamcrest.core, hamcrest.library, jmock.core,jmock.legacy
-    testCompile testng, jmock.core,jmock.legacy, hamcrest.core, hamcrest.library,groovy
-    testCompile spock.core,spock.cglib,spock.objenesis
+    compile jersey.spring, spring.mongo, spring.webmvc
+    testCompile spock.core,spock.cglib,spock.objenesis, groovy
 }

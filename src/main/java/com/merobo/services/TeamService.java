@@ -14,7 +14,6 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,7 +45,7 @@ public class TeamService {
 
     public List<TeamTo> getTeamList() throws NoDataFoundException {
         List<TeamBean> teams = teamRepository.findAll();
-        if(CollectionUtils.isEmpty(teams)){
+        if (CollectionUtils.isEmpty(teams)) {
             throw new NoDataFoundException("No teams found");
         }
         return teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
