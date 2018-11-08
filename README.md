@@ -10,7 +10,7 @@ queuing requests,prioritizing meetings,etc.
 Create a user account by visiting the Create User Link. If the team does not appear in the drop down list, then create a team via Create Team Link
 
 
-![Image of Create User](/images/CreateUser.png)
+![Image of Create User](https://github.com/AnandMuley/MeetingRoomBooking/raw/master/src/main/webapp/images/CreateUser.png)
 
 
 ## Copyright
