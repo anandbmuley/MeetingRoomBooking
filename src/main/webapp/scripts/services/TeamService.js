@@ -17,11 +17,11 @@ app.service('TeamService',['$http',function($http){
 				'Content-type':'application/json'
 			},
 			data : self.createTeamJSON(scope.team.name)
-		}).success(function(data,status){
+		}).then(function(response,status){
 			scope.success = true;
 			scope.message = 'Team created successfully !';
 			scope.team.name = '';
-		}).error(function(data,status){
+		},function(response,status){
 			scope.success = false;
 			scope.message = 'Something went wrong !';
 		});
@@ -34,9 +34,9 @@ app.service('TeamService',['$http',function($http){
     			headers : {
     				'Content-type':'application/json'
     			}
-    		}).success(function(data,status){
-    			teams.data = data;
-    		}).error(function(data,status){
+    		}).then(function(response,status){
+    			teams.data = response.data;
+    		},function(response,status){
     			teams.message = 'Something went wrong!';
     		});
     }
@@ -48,10 +48,9 @@ app.service('TeamService',['$http',function($http){
 			headers : {
 				'Content-type':'application/json'
 			}
-		}).success(function(data,status){
-		    console.log('DATA');
-			teams.data = data;
-		}).error(function(data,status){
+		}).then(function(response,status){
+			teams.data = response.data;
+		},function(response,status){
 			teams.message = 'Something went wrong!';
 		});
 	}
@@ -63,9 +62,9 @@ app.service('TeamService',['$http',function($http){
     			headers : {
     				'Content-type':'application/json'
     			}
-    		}).success(function(data,status){
-    			teams.data = data;
-    		}).error(function(data,status){
+    		}).then(function(response,status){
+    			teams.data = response.data;
+    		},function(response,status){
     			teams.message = 'Something went wrong!';
     		});
     	}
@@ -81,10 +80,10 @@ app.service('TeamService',['$http',function($http){
 				'id':team.id,
 				'memberName':memberName
 			}
-		}).success(function(data,status){
-			team.data = data;
+		}).then(function(response,status){
+			team.data = response.data;
 			team.message = 'Member added successfully!';
-		}).error(function(data,status){
+		},function(response,status){
 			team.message = 'Something went wrong!';
 		});
 	}

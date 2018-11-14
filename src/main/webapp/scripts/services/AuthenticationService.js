@@ -37,10 +37,10 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	            password : profile.password,
 	            name     : profile.name
 	        }
-	    }).success(function(data,status){
+	    }).then(function(response,status){
 	        scope.success = true;
 	        scope.message = "Details updated successfully!";
-	    }).error(function(data,status){
+	    },function(response,status){
             scope.success = false;
             scope.message = "Something went wrong !";
 	    });
@@ -55,24 +55,24 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 				password : password,
 				adminPasscode : adminPasscode!=undefined?window.btoa(adminPasscode):null
 			}
-		}).success(function(data,status){
-			addCookie($cookies,true,data);
-			$rootScope.usr = data;
+		}).then(function(response,status){
+			addCookie($cookies,true,response.data);
+			$rootScope.usr = response.data;
 			$rootScope.authenticated = true;
-			if(data.adminToken!=null){
+			if(response.data.adminToken!=null){
 				$rootScope.admin = true;
 			}
 			$location.path('/home');
-		}).error(function(data,status){
+		},function(errorResponse,status){
 			$rootScope.authenticated = false;
 			$scope.success = false;
-			$scope.message = data;
+			$scope.message = errorResponse.data;
 		});
 	}
 	
 	this.logout = function(){
 		removeCookies();
-		$location.path('/login');
+		$location.path('/');
 	}
 	
 	this.create = function($scope){
@@ -86,11 +86,11 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 				name : user.name,
 				teamName : user.teamName
 			}
-		}).success(function(data,status){
+		}).then(function(response,status){
 			$scope.message = 'Created Successfully!';
 			$scope.success = true;
-		}).error(function(data,status){
-			$scope.message = data.message;
+		},function(response,status){
+			$scope.message = response.data.message;
 			$scope.success = false;
 		});
 	}
@@ -98,14 +98,14 @@ app.service('AuthenticationService',['$http','$cookies','$location',function($ht
 	this.validateCookie = function($rootScope,page){
 		if($cookies.get('auth') == undefined){
 			$rootScope.authenticated = false;
-			$location.path('/login');
+			$location.path('/');
 		}else{
 			$rootScope.authenticated = $cookies.get('auth');
 			if($rootScope.authenticated){
 				$rootScope.usr = JSON.parse($cookies.get('usr'));
 				$location.path(page);
 			}else{
-				$location.path('/login');
+				$location.path('/');
 			}
 		}
 	}

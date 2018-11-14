@@ -4,11 +4,13 @@ var app = angular.module('MeetingRoomUI',
 		 'ui.bootstrap',
 		 'ngCookies']);
 
-app.config([ '$routeProvider', function($routeProvider) {
+app.config([ '$routeProvider','$locationProvider', function($routeProvider,$locationProvider) {
+
+    $locationProvider.html5Mode({
+    	    enabled : true
+    	});
+
 	$routeProvider.when('/', {
-		templateUrl : 'views/Login.html',
-		controller : 'LoginController'
-	}).when('/login', {
 		templateUrl : 'views/Login.html',
 		controller : 'LoginController'
 	}).when('/logout', {
@@ -42,6 +44,7 @@ app.config([ '$routeProvider', function($routeProvider) {
 	    templateUrl : 'views/general/ForgotPassword.html',
 	    controller  : 'ForgotPasswordController'
 	});
+
 } ]);
 
 var controllers = angular.module('MRControllers', []);

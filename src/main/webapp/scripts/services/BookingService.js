@@ -14,13 +14,13 @@ app.service('BookingService',['$http','$route',function($http,$route){
 			headers : {
 				'Content-type' : 'application/json'
 			}
-		}).success(function(data,status){
+		}).then(function(response,status){
 			scope.success = true;
 			scope.bookingMessage = 'Booking Cancelled';
 			self.getBookings(scope);
-		}).error(function(data,status){
+		},function(response,status){
 			scope.success = false;
-			scope.bookingMessage = data;
+			scope.bookingMessage = response.data;
 		});
 	}
 	
@@ -31,9 +31,9 @@ app.service('BookingService',['$http','$route',function($http,$route){
 			headers : {
 				'Content-type':'application/json'
 			}
-		}).success(function(data,status){
-			scope.bookings = data;
-		}).error(function(data,status){
+		}).then(function(response,status){
+			scope.bookings = response.data;
+		},function(response,status){
 			
 		});
 	}
@@ -46,15 +46,15 @@ app.service('BookingService',['$http','$route',function($http,$route){
 				'Content-type':'application/json'
 			},
 			data :  booking
-		}).success(function(data,status){
+		}).then(function(response,status){
 			scope.success=true;
 			booking.message = 'Room booked successfully !';
 			$modalInstance.close();
 			$route.reload();
-		}).error(function(data,status){
-			var existingBooking = JSON.parse(data);
+		},function(response,status){
+			var existingBooking = JSON.parse(response.data);
 			scope.success = false;
-			if(status == 400){
+			if(response.status == 400){
 				scope.message = 'Booking Clashes. Please get in touch with '+existingBooking.bookedBy+' from Team '+existingBooking.teamName;
 			}
 			booking.message = 'Something went wrong !';
