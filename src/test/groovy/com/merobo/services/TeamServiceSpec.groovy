@@ -57,7 +57,6 @@ class TeamServiceSpec extends SharedSpecification {
             assert names[0] == "Scientific Explorers"
             true
         }) >> { teams }
-        0 * _
 
         when: "getAllTeams is called"
         List<TeamTo> actualTeams = teamService.getAllTeams()
@@ -78,7 +77,6 @@ class TeamServiceSpec extends SharedSpecification {
             assert names[0] == "Scientific Explorers"
             true
         }) >> { teams }
-        0 * _
 
         when: "getAllTeams is called"
         List<TeamTo> actualTeams = teamService.getAllTeams()
