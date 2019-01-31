@@ -1,5 +1,5 @@
 def tomcatHost = System.getProperty("hostname") ?: 'localhost'
-def tomcatPort = System.getProperty("port") ?: 8080
+def tomcatPort = System.getProperty("port") ?: 4040
 def tomcatUser = System.getProperty("user") ?: 'admin'
 def tomcatPass = System.getProperty("pass") ?: 'admin'
 
