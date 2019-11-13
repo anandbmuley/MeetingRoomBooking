@@ -1,0 +1,24 @@
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <input type="text" name="username" placeholder="Username" [(ngModel)]="login.username">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input type="password" name="password" placeholder="Password" [(ngModel)]="login.password">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button (click)="authenticate()">Login</button>
+      </td>
+    </tr>
+    <tfoot>
+      <tr>
+        <td>{{message}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,26 @@
+<div align="center">
+    <table>
+        <tr>
+          <td>
+              <input type="text" placeholder="Name" name="name" [(ngModel)]="user.name">
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <input type="text" placeholder="Username" name="username" [(ngModel)]="user.username">
+          </td>
+        </tr>
+        <tr>
+          <td>
+              <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password">
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+              <button type="button" (click)="register()">Register</button>
+          </td>
+        </tr>
+      </table>
+</div>
+{{user|json}}<br/>
+{{message}}
