@@ -4,66 +4,45 @@ import com.merobo.dtos.TeamTo;
 import com.merobo.exceptions.NoDataFoundException;
 import com.merobo.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Component
-@Path("team")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@RestController
+@RequestMapping("teams")
 public class TeamResource {
 
     @Autowired
     private TeamService teamService;
 
-    @POST
-    @Path("add")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response addTeam(TeamTo teamTo) {
-        teamTo = teamService.addTeam(teamTo);
-        return Response.status(Response.Status.CREATED).build();
+    @PostMapping
+    public ResponseEntity addTeam(@RequestBody TeamTo teamTo) {
+        teamService.addTeam(teamTo);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GET
-    @Path("/")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
-        List<TeamTo> teams = teamService.getAll();
-        return Response.ok(teams).build();
-    }
-
-    @GET
-    @Path("list/members")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllTeam() {
+    @GetMapping("members")
+    public ResponseEntity<List<TeamTo>> getAllTeam() {
         List<TeamTo> teams = teamService.getAllTeams();
-        return Response.ok(teams).build();
+        return ResponseEntity.ok(teams);
     }
 
-    @GET
-    @Path("list")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response teamList() {
+    @GetMapping
+    public ResponseEntity<List<TeamTo>> teamList() {
         try {
             List<TeamTo> teamList = teamService.getTeamList();
-            return Response.ok(teamList).build();
+            return ResponseEntity.ok(teamList);
         } catch (NoDataFoundException e) {
-            return Response.status(Response.Status.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
-    @DELETE
-    @Path("delete")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteTeam(TeamTo teamTo) {
+    @DeleteMapping
+    public ResponseEntity deleteTeam(TeamTo teamTo) {
         teamService.deleteTeam(teamTo);
-        return Response.ok().build();
+        return ResponseEntity.ok().build();
     }
 
 }

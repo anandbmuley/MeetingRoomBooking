@@ -1,6 +1,9 @@
 package com.merobo.services;
 
 import com.merobo.beans.UserBean;
+import com.merobo.dtos.LoginResponseTo;
+import com.merobo.dtos.LoginTo;
+import com.merobo.dtos.RegisterUserTo;
 import com.merobo.dtos.UserTo;
 import com.merobo.exceptions.DuplicateUsernameException;
 import com.merobo.exceptions.UserNotFoundException;
@@ -29,25 +32,22 @@ public class UserService {
         return randomPwd;
     }
 
-    public void login(UserTo userTo) throws UserServiceException {
-        UserBean userBean = userRepository.findByUsernameAndPassword(userTo.getUsername(), encode(userTo.getPassword())).orElseThrow(UserNotFoundException::new);
-        userTo.setName(userBean.getName());
-        userTo.setTeamName(userBean.getTeamName());
-        userTo.setId(userBean.getId());
+    public LoginResponseTo login(LoginTo loginTo) throws UserServiceException {
+        UserBean userBean = userRepository.findByUsernameAndPassword(loginTo.getUsername(), encode(loginTo.getPassword())).orElseThrow(UserNotFoundException::new);
+        return new LoginResponseTo(userBean.getId(), userBean.getName(), userBean.getTeamName());
     }
 
-    public void create(UserTo userTo) throws UserServiceException {
-        Optional<UserBean> userBean = userRepository.findByUsername(userTo.getUsername());
+    public void create(RegisterUserTo registerUserTo) throws UserServiceException {
+        Optional<UserBean> userBean = userRepository.findByUsername(registerUserTo.getUsername());
         if (userBean.isPresent()) {
             throw new DuplicateUsernameException();
         }
         UserBean newUserBean = new UserBean();
-        newUserBean.setName(userTo.getName());
-        newUserBean.setPassword(encode(userTo.getPassword()));
-        newUserBean.setTeamName(userTo.getTeamName());
-        newUserBean.setUsername(userTo.getUsername());
+        newUserBean.setName(registerUserTo.getName());
+        newUserBean.setPassword(encode(registerUserTo.getPassword()));
+        newUserBean.setTeamName(registerUserTo.getTeamName());
+        newUserBean.setUsername(registerUserTo.getUsername());
         userRepository.save(newUserBean);
-        userTo.setId(newUserBean.getId());
     }
 
     private String encode(String password) {

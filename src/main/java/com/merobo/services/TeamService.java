@@ -26,13 +26,14 @@ public class TeamService {
     private UserRepository userRepository;
 
     public void updateTeam(TeamTo teamTo) {
-        TeamBean teamBean = teamRepository.findOne(teamTo.getId());
-        String oldTeamName = teamBean.getName();
-        teamBean.setName(teamTo.getName());
-        teamRepository.save(teamBean);
-        List<UserBean> users = userRepository.findByTeamName(oldTeamName);
-        users.forEach(userBean -> userBean.setTeamName(teamTo.getName()));
-        userRepository.save(users);
+        teamRepository.findById(teamTo.getId())
+                .ifPresent($ -> {
+                    List<UserBean> users = userRepository.findByTeamName($.getName());
+                    users.forEach(userBean -> userBean.setTeamName(teamTo.getName()));
+                    userRepository.saveAll(users);
+                    $.setName(teamTo.getName());
+                    teamRepository.save($);
+                });
     }
 
     public TeamTo addTeam(TeamTo teamTo) {

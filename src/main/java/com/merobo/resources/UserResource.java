@@ -1,51 +1,58 @@
 package com.merobo.resources;
 
 import com.merobo.dtos.PasswordDto;
+import com.merobo.dtos.RegisterUserTo;
 import com.merobo.dtos.UserTo;
 import com.merobo.exceptions.UserNotFoundException;
 import com.merobo.exceptions.UserServiceException;
 import com.merobo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-@Component
-@Path("user")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@RestController
+@RequestMapping("users")
 public class UserResource {
 
     @Autowired
     private UserService userService;
 
-    @PUT
-    @Path("{username}/resetpassword")
-    public Response resetPassword(@PathParam("username") String username) {
-        Response response = null;
+    @PostMapping
+    public ResponseEntity register(@RequestBody RegisterUserTo registerUserTo) {
+        ResponseEntity response;
         try {
-            String newPwd = userService.resetPassword(username);
-            response = Response.ok(new PasswordDto(newPwd)).build();
-        } catch (UserNotFoundException e) {
-            response = Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
-        } catch (Exception e) {
-            response = Response.serverError().entity(e.getMessage()).build();
+            userService.create(registerUserTo);
+            response = ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (UserServiceException e) {
+            response = ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
         return response;
     }
 
-    @PUT
-    @Path("{username}")
-    public Response changePassword(@PathParam("username") String username, UserTo userTo) {
-        Response response = null;
+    @PostMapping("{username}/resetpassword")
+    public ResponseEntity resetPassword(@PathVariable("username") String username) {
+        ResponseEntity response = null;
+        try {
+            String newPwd = userService.resetPassword(username);
+            response = ResponseEntity.ok(new PasswordDto(newPwd));
+        } catch (UserNotFoundException e) {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+        return response;
+    }
+
+    @PutMapping("{username}")
+    public ResponseEntity changePassword(@PathVariable("username") String username, @RequestBody UserTo userTo) {
+        ResponseEntity response = null;
         try {
             userTo.setUsername(username);
             userService.update(userTo);
-            response = Response.noContent().build();
+            response = ResponseEntity.noContent().build();
         } catch (UserServiceException e) {
-            response = Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
         return response;
     }

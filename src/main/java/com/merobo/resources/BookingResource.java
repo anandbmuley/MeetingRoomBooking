@@ -1,58 +1,42 @@
 package com.merobo.resources;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.merobo.dtos.BookingTo;
 import com.merobo.exceptions.BookingServiceException;
 import com.merobo.services.BookingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Component
-@Path("booking")
+@RestController
+@RequestMapping("bookings")
 public class BookingResource {
 
-	@Autowired
-	private BookingService bookingService;
+    @Autowired
+    private BookingService bookingService;
 
-	@POST
-	@Path("add")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response bookRoom(BookingTo bookingTo) {
-		Response response = null;
-		try {
-			bookingService.bookRoom(bookingTo);
-			response = Response.ok(bookingTo.getId()).build();
-		} catch (BookingServiceException e) {
-			response = Response.status(Response.Status.BAD_REQUEST)
-					.entity(e.getCause().getMessage()).build();
-		}
-		return response;
-	}
+    @PostMapping
+    public ResponseEntity bookRoom(BookingTo bookingTo) {
+        ResponseEntity response = null;
+        try {
+            bookingService.bookRoom(bookingTo);
+            response = ResponseEntity.ok(bookingTo.getId());
+        } catch (BookingServiceException e) {
+            response = ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getCause().getMessage());
+        }
+        return response;
+    }
 
-	@GET
-	@Path("list")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllBookings() {
-		return Response.ok(bookingService.getAll()).build();
-	}
+    @GetMapping
+    public ResponseEntity getAllBookings() {
+        return ResponseEntity.ok(bookingService.getAll());
+    }
 
-	@DELETE
-	@Path("cancel")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response cancelBooking(@QueryParam("bid") String bookingId) {
-		bookingService.cancelBooking(bookingId);
-		return Response.ok().build();
-	}
+    @DeleteMapping
+    public ResponseEntity cancelBooking(@RequestParam("bid") String bookingId) {
+        bookingService.cancelBooking(bookingId);
+        return ResponseEntity.ok().build();
+    }
 
 }

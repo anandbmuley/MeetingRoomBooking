@@ -1,77 +1,37 @@
-apply plugin: 'jacoco'
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'idea'
-apply plugin: 'groovy'
-apply plugin: 'org.akhikhl.gretty'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+    }
+}
 
-apply from: 'deployment.gradle'
-apply from: 'external-dependencies.gradle'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'merobo'
+    version = '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Meeting Room Booking'
-    }
-    zip64 = true
-}
-
-war{
-    zip64 = true
-}
-
-jacoco {
-    toolVersion = "0.7.6.201602180812"
-    reportsDir = file("$buildDir/coverageReport")
-}
-
-jacocoTestReport {
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination "${buildDir}/jacocoHtml"
-    }
-}
-
-tasks.withType(JavaCompile) {
-    options.compilerArgs << '-Xlint:unchecked'
-    options.deprecation = true
-}
-
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            url("https://jcenter.bintray.com")
-        }
-        maven {
-            url("https://plugins.gradle.org/m2/")
-        }
-    }
-    dependencies {
-        classpath 'com.bmuschko:gradle-cargo-plugin:2.2.3'
-        classpath "gradle.plugin.org.akhikhl.gretty:gretty:2.0.0"
-    }
-}
-
-gretty {
-    httpPort = 8091
-    scanInterval = 1
-//	host = '127.0.0.1'
-    servletContainer = 'jetty8'
-    managedClassReload = true
-}
-
-repositories {
-    jcenter()
-    mavenCentral()
-}
-
 dependencies {
-    compile json
-    compile spring.web, spring.core, spring.test, jersey.server, jackson, jersey.inmemorytest
-    compile jersey.spring, spring.mongo, spring.webmvc
-    testCompile spock.core,spock.cglib,spock.objenesis, groovy
+    // SWAGGER INTEGRATION
+    compile("io.springfox:springfox-swagger2:2.6.1")
+    compile("io.springfox:springfox-swagger-ui:2.6.1")
+
+    compile("org.json:json:20190722")
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    testCompile('org.codehaus.groovy:groovy-all:2.5.4')
+    testCompile('org.spockframework:spock-core:1.2-groovy-2.5')
 }

@@ -25,9 +25,8 @@ public abstract class DtoCreatorUtil {
     }
 
     public static TeamTo createTeamTo(TeamBean teamBean) {
-        TeamTo teamTo = new TeamTo();
+        TeamTo teamTo = new TeamTo(teamBean.getName());
         teamTo.setId(teamBean.getId());
-        teamTo.setName(teamBean.getName());
         if (!CollectionUtils.isEmpty(teamBean.getMembers())) {
             List<UserTo> userTos = teamBean.getMembers()
                     .stream()
