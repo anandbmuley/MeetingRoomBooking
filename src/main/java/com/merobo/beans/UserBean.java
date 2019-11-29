@@ -6,61 +6,70 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "users")
 public class UserBean {
 
-	@Id
-	private String id;
-	private String username;
-	private String password;
-	private String name;
-	private String teamName;
+    @Id
+    private String id;
+    private String name;
+    private String emailId;
+    private String contactNo;
+    private String username;
+    private String password;
+    private String teamName;
 
-	public UserBean(){
+    private UserBean() {
 
-	}
+    }
 
-	public String getId() {
-		return id;
-	}
+    public UserBean(String name, String emailId, String contactNo, String username, String password) {
+        this.name = name;
+        this.emailId = emailId;
+        this.contactNo = contactNo;
+        this.username = username;
+        this.password = password;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public String getEmailId() {
+        return emailId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getContactNo() {
+        return contactNo;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getTeamName() {
+        return teamName;
+    }
 
-	public String getTeamName() {
-		return teamName;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	@Override
-	public String toString() {
-		return "UserBean [id=" + id + ", username=" + username + ", password="
-				+ password + ", name=" + name + ", teamName=" + teamName + "]";
-	}
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
+    @Override
+    public String toString() {
+        return "UserBean [id=" + id + ", username=" + username + ", password="
+                + password + ", name=" + name + ", teamName=" + teamName + "]";
+    }
 }

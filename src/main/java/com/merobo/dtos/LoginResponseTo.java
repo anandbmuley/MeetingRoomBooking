@@ -1,31 +1,20 @@
 package com.merobo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.merobo.utils.DateConverterUtil;
+
+import java.util.Date;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginResponseTo {
 
-    private String id;
-    private String name;
-    private String teamName;
-    private long cookieTimeout = 15;
+    private final String loginTime;
 
-    public LoginResponseTo(String id, String name, String teamName) {
-        this.id = id;
-        this.name = name;
-        this.teamName = teamName;
+    public LoginResponseTo() {
+        loginTime = DateConverterUtil.toString(new Date(), DateConverterUtil.PATTERN_HH_MM_MERIDIAN);
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public long getCookieTimeout() {
-        return cookieTimeout;
+    public String getLoginTime() {
+        return loginTime;
     }
 }

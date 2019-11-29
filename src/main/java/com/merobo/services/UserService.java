@@ -33,8 +33,8 @@ public class UserService {
     }
 
     public LoginResponseTo login(LoginTo loginTo) throws UserServiceException {
-        UserBean userBean = userRepository.findByUsernameAndPassword(loginTo.getUsername(), encode(loginTo.getPassword())).orElseThrow(UserNotFoundException::new);
-        return new LoginResponseTo(userBean.getId(), userBean.getName(), userBean.getTeamName());
+        userRepository.findByUsernameAndPassword(loginTo.getUsername(), encode(loginTo.getPassword())).orElseThrow(UserNotFoundException::new);
+        return new LoginResponseTo();
     }
 
     public void create(RegisterUserTo registerUserTo) throws UserServiceException {
@@ -42,11 +42,11 @@ public class UserService {
         if (userBean.isPresent()) {
             throw new DuplicateUsernameException();
         }
-        UserBean newUserBean = new UserBean();
-        newUserBean.setName(registerUserTo.getName());
-        newUserBean.setPassword(encode(registerUserTo.getPassword()));
-        newUserBean.setTeamName(registerUserTo.getTeamName());
-        newUserBean.setUsername(registerUserTo.getUsername());
+        UserBean newUserBean = new UserBean(registerUserTo.getName(),
+                registerUserTo.getEmailId(),
+                registerUserTo.getContactNo(),
+                registerUserTo.getUsername(),
+                encode(registerUserTo.getPassword()));
         userRepository.save(newUserBean);
     }
 
@@ -66,7 +66,9 @@ public class UserService {
     public void encodeAll() {
         List<UserBean> userBeans = userRepository.findAll();
         userBeans.stream().forEach(userBean -> {
-            userBean.setPassword(encode(userBean.getPassword()));
+            userBean.setPassword(
+                    encode(userBean.getPassword())
+            );
             userRepository.save(userBean);
         });
     }

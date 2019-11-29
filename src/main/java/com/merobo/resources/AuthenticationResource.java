@@ -17,14 +17,12 @@ public class AuthenticationResource {
     private UserService userService;
 
     @PostMapping("login")
-    public ResponseEntity<LoginTo> login(@RequestBody LoginTo loginTo) {
-        ResponseEntity<LoginTo> response;
+    public ResponseEntity login(@RequestBody LoginTo loginTo) {
+        ResponseEntity response;
         try {
-            userService.login(loginTo);
-            loginTo.sucessfulLogin();
-            response = ResponseEntity.ok(loginTo);
+            response = ResponseEntity.ok(userService.login(loginTo));
         } catch (UserServiceException e) {
-            response = ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+            response = ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
         return response;
     }
