@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoomService, RoomDto } from 'src/app/services/room.service';
 
 @Component({
   selector: 'app-manage-rooms',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageRoomsComponent implements OnInit {
 
-  constructor() { }
+  room: RoomDto;
+  rooms: RoomDto[];
+
+  constructor(private roomService: RoomService) { }
+
+  newRoom() {
+    this.room = {
+      id: '', name: ''
+    };
+  }
+
+  addRoom() {
+    this.roomService.add(this.room).subscribe(() => {
+      this.newRoom();
+      this.fetchRooms();
+    });
+  }
+
+  fetchRooms() {
+    this.roomService.fetchAll().subscribe((roomsData: RoomDto[]) => {
+      this.rooms = roomsData;
+    });
+  }
 
   ngOnInit() {
+    this.newRoom();
+    this.fetchRooms();
   }
 
 }

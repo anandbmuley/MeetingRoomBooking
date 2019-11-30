@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AdminModule } from './admin/admin.module';
 
 import { CookieService } from 'ngx-cookie-service';
+import { RoomService } from './services/room.service';
+import { ManageRoomsComponent } from './admin/manage-rooms/manage-rooms.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { CookieService } from 'ngx-cookie-service';
     AdminModule,
     AppRoutingModule
   ],
-  providers: [ CookieService ],
+  providers: [ CookieService, RoomService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
