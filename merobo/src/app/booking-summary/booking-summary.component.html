@@ -1,0 +1,5 @@
+<div class="row">
+  <div class="col s12 m4" *ngFor="let room of rooms">
+    <room (click)="viewDetails(room)" [showBookings]="true" [room]="room"></room>
+  </div>
+</div>

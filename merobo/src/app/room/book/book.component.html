@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col s4 offset-s4">
+
+    <div *ngIf="rooms" class="row">
+      <div class="input-field col s6 offset-s3">
+        <select>
+          <option value="" selected>Select Room</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Materialize Select</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6 offset-s3">
+        <input placeholder="Booking Date" style="text-align: center;" type="text" class="datepicker"
+          (change)="onSelect($event,'BookingDate')" [(ngModel)]="bookingDate">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <input placeholder="Start Time" style="text-align: center;" type="text" class="timepicker"
+          (change)="onSelect($event,'StartTime')" [(ngModel)]="startTime">
+      </div>
+      <div class="col s6">
+        <input placeholder="End Time" style="text-align: center;" type="text" class="timepicker"
+          (change)="onSelect($event,'EndTime')" [(ngModel)]="endTime">
+      </div>
+    </div>
+
+    <div class="row">
+      <a (click)="bookRoom()" class="waves-effect waves-light btn">Book</a>
+    </div>
+
+    <div *ngIf="message" class="row">
+      {{ message }}
+    </div>
+
+  </div>
+</div>

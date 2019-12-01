@@ -5,108 +5,72 @@ import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Document(collection = "bookings")
 public class BookingBean {
 
     @Id
     private String id;
-    private String teamName;
-    private Date startTime;
-    private Date endTime;
-    private String bookedBy;
-    private String bookedWhen;
-    private String roomName;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+
+    private String roomId;
     private BookingStatus status;
+    private String bookedById;
+
+    public BookingBean() {
+    }
+
+    public BookingBean(LocalDateTime startTime, LocalDateTime endTime, String roomId, String bookedById) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.roomId = roomId;
+        this.bookedById = bookedById;
+        this.status = BookingStatus.BOOKED;
+    }
+
+    public boolean isBookedNow() {
+        final LocalDateTime now = LocalDateTime.now();
+        return Boolean.logicalAnd(
+                now.isAfter(startTime),
+                now.isBefore(endTime));
+    }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getBookedBy() {
-        return bookedBy;
-    }
-
-    public void setBookedBy(String bookedBy) {
-        this.bookedBy = bookedBy;
-    }
-
-    public String getBookedWhen() {
-        return bookedWhen;
-    }
-
-    public void setBookedWhen(String bookedWhen) {
-        this.bookedWhen = bookedWhen;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public String getRoomId() {
+        return roomId;
     }
 
     public BookingStatus getStatus() {
         return status;
     }
 
-    public BookingBean cancel() {
-        status = BookingStatus.CANCELLED;
-        return this;
-    }
-
-    public void setStatus(BookingStatus status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "BookingBean [id=" + id + ", teamName=" + teamName
-                + ", startTime=" + startTime + ", endTime=" + endTime
-                + ", bookedBy=" + bookedBy + ", bookedWhen=" + bookedWhen
-                + ", roomName=" + roomName + ", status=" + status + "]";
+    public String getBookedById() {
+        return bookedById;
     }
 
     public String toJSON() {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("teamName", teamName);
         jsonObject.put("startTime", startTime);
         jsonObject.put("endTime", endTime);
-        jsonObject.put("bookedBy", bookedBy);
-        jsonObject.put("bookedWhen", bookedWhen);
-        jsonObject.put("roomName", roomName);
         jsonObject.put("status", status);
         return jsonObject.toString();
+    }
+
+    public void cancel() {
+        status = BookingStatus.CANCELLED;
     }
 
 }

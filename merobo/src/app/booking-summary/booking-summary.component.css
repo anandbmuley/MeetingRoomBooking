@@ -1,0 +1,15 @@
+room:hover {
+    cursor: pointer;
+}
+
+.booked {
+    background-color: rgb(250, 176, 176);
+}
+
+.available {
+    color: teal;
+}
+
+.booked-by {
+    color: teal;
+}

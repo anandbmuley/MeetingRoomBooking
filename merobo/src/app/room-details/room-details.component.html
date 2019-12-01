@@ -1,0 +1,18 @@
+<div class="col s12 m7">
+  <h4 class="header">{{ room.name }}</h4>
+  <div class="card horizontal">
+    <div class="card-image">
+      <img src="assets/temp/sample-room.jpg">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <ul class="collection">
+          <booking></booking>
+        </ul>
+      </div>
+      <div class="card-action">
+        <button class="btn waves-effect waves-light" (click)="viewBookRoomPage(room.id)">Book</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,13 +13,24 @@ import { AdminModule } from './admin/admin.module';
 import { CookieService } from 'ngx-cookie-service';
 import { RoomService } from './services/room.service';
 import { ManageRoomsComponent } from './admin/manage-rooms/manage-rooms.component';
+import { RoomComponent } from './room/room.component';
+import { BookingComponent } from './booking/booking.component';
+import { RoomDetailsComponent } from './room-details/room-details.component';
+import { BookingSummaryComponent } from './booking-summary/booking-summary.component';
+import { BookingService } from './booking/services/booking.service';
+import { BookComponent } from './room/book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RoomComponent,
+    BookingComponent,
+    RoomDetailsComponent,
+    BookingSummaryComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +39,7 @@ import { ManageRoomsComponent } from './admin/manage-rooms/manage-rooms.componen
     AdminModule,
     AppRoutingModule
   ],
-  providers: [ CookieService, RoomService ],
+  providers: [ CookieService, RoomService, BookingService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

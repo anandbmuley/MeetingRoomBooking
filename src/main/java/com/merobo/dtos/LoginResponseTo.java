@@ -11,7 +11,7 @@ public class LoginResponseTo {
     private final String loginTime;
 
     public LoginResponseTo() {
-        loginTime = DateConverterUtil.toString(new Date(), DateConverterUtil.PATTERN_HH_MM_MERIDIAN);
+        loginTime = DateConverterUtil.toString(new Date(), DateConverterUtil.PATTERN_DD_MM_YYYY_HH_MM_MERIDIAN);
     }
 
     public String getLoginTime() {

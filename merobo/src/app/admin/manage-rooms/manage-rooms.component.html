@@ -1,41 +1,52 @@
-<h2>Manage Rooms</h2>
+<div class="row">
+  <div class="col s4 offset-s4">
 
-<div align="center">
-  <table border="1">
-    <tr>
-      <td colspan="2">
-        <input type="text" name="roomName" placeholder="Enter room name" [(ngModel)]="room.name">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <input type="checkbox" name="hasProjector" [(ngModel)]="room.hasProjector">
-        <label for="hasProjector">Projector</label>
-      </td>
-      <td>
-        <input type="checkbox" name="hasAc" [(ngModel)]="room.hasAc">
-        <label for="hasAc">AC</label>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2">
+    <div class="row">
+      <input type="text" name="roomName" placeholder="Enter room name" [(ngModel)]="room.name">
+    </div>
+
+    <div class="row">
+      <div class="col s6">
+        <label>
+          <input type="checkbox" name="hasProjector" [(ngModel)]="room.hasProjector" />
+          <span>Projector</span>
+        </label>
+      </div>
+      <div class="col">
+        <label>
+          <input type="checkbox" name="hasAc" [(ngModel)]="room.hasAc" />
+          <span>AC</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s2">
         <input type="number" name="capacity" placeholder="Capacity" [(ngModel)]="room.capacity">
-      </td>
-    </tr>
-    <tr>
-      <td align="center" colspan="2">
-        <button (click)="addRoom()">Add</button>
-      </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <a (click)="addRoom()" class="waves-effect waves-light btn">Add</a>
+    </div>
+
+    <div *ngIf="message" class="row">
+      {{ message }}
+    </div>
+
+  </div>
 </div>
 
 <div>
   <div *ngFor="let room of rooms">
-    <div class="room-card">
+    <!-- <room [room]="room"></room> -->
+    <!-- <div class="room-card">
       <h2>{{ room.name }}</h2>
       <div class="edit-icon">Edit</div>
-      <img class="facilities-icon" src="assets/images/projector.png" alt="">
-    </div>
+      <img *ngIf="room.hasProjector" class="facilities-icon" src="assets/images/projector.png"
+        alt="The room has Projector">
+      <img *ngIf="room.hasAc" class="facilities-icon" src="assets/images/ac.png" alt="The room has AC">
+      <span>{{ room.capacity }}</span>
+    </div> -->
   </div>
 </div>

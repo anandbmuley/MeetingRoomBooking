@@ -9,17 +9,18 @@ public class RoomBean {
     @Id
     private String id;
     private String name;
+    private Boolean hasProjector;
+    private Boolean hasAc;
+    private Integer capacity;
 
     public RoomBean() {
     }
 
-    public RoomBean(String name) {
+    public RoomBean(String name, Boolean hasProjector, Boolean hasAc, Integer capacity) {
         this.name = name;
-    }
-
-    public RoomBean(String id, String name) {
-        this.id = id;
-        this.name = name;
+        this.hasProjector = hasProjector;
+        this.hasAc = hasAc;
+        this.capacity = capacity;
     }
 
     public String getId() {
@@ -28,5 +29,17 @@ public class RoomBean {
 
     public String getName() {
         return name;
+    }
+
+    public Boolean hasProjector() {
+        return hasProjector;
+    }
+
+    public Boolean hasAc() {
+        return hasAc;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
     }
 }

@@ -8,7 +8,6 @@ import com.merobo.dtos.TeamTo;
 import com.merobo.dtos.UserTo;
 import org.springframework.util.CollectionUtils;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,25 +41,25 @@ public abstract class DtoCreatorUtil {
             List<BookingBean> bookingBeans) {
         List<BookingTo> bookingTos = new ArrayList<BookingTo>();
         for (BookingBean bookingBean : bookingBeans) {
-            try {
-                BookingTo bookingTo = new BookingTo();
-                bookingTo.setBookedBy(bookingBean.getBookedBy());
-                bookingTo.setBookedWhen(bookingBean.getBookedWhen());
-
-                bookingTo.setEndTime(DateConverterUtil.toString(
-                        bookingBean.getEndTime(),
-                        DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
-                bookingTo.setStartTime(DateConverterUtil.toString(
-                        bookingBean.getStartTime(),
-                        DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
-                bookingTo.setId(bookingBean.getId());
-                bookingTo.setTeamName(bookingBean.getTeamName());
-                bookingTo.setRoomName(bookingBean.getRoomName());
-                bookingTo.setStatus(bookingBean.getStatus());
-                bookingTos.add(bookingTo);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+//            try {
+            BookingTo bookingTo = new BookingTo(null, null, null);
+//                bookingTo.setBookedBy(bookingBean.getBookedBy());
+//                bookingTo.setBookedWhen(bookingBean.getBookedWhen());
+//
+//                bookingTo.setEndTime(DateConverterUtil.toString(
+//                        bookingBean.getEndTime(),
+//                        DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
+//                bookingTo.setStartTime(DateConverterUtil.toString(
+//                        bookingBean.getStartTime(),
+//                        DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
+//                bookingTo.setId(bookingBean.getId());
+//                bookingTo.setTeamName(bookingBean.getTeamName());
+//                bookingTo.setRoomName(bookingBean.getRoomName());
+//                bookingTo.setStatus(bookingBean.getStatus());
+            bookingTos.add(bookingTo);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
         }
         return bookingTos;
     }

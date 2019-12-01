@@ -1,136 +1,93 @@
 package com.merobo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.merobo.utils.BookingStatus;
-import com.merobo.utils.DateConverterUtil;
 
-import java.text.ParseException;
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDateTime;
 
-public class BookingTo implements Comparable<BookingTo> {
+import static com.merobo.utils.DateConverterUtil.formatTime;
+import static com.merobo.utils.DateConverterUtil.parseTime;
+
+public class BookingTo {
 
     private String id;
-    private String teamName;
     private String startTime;
-    private Date startDateTime;
+    private LocalDateTime startDateTime;
+
     private String endTime;
-    private Date endDateTime;
-    private String bookedBy;
-    private String bookedWhen;
-    private String roomName;
+    private LocalDateTime endDateTime;
+
+    private String bookedById;
+    private String roomId;
     private BookingStatus status;
+
+    @JsonCreator
+    public BookingTo(
+            @JsonProperty String startTime,
+            @JsonProperty String endTime,
+            @JsonProperty String bookedById) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.bookedById = bookedById;
+        this.startDateTime = parseTime(startTime);
+        this.endDateTime = parseTime(endTime);
+    }
+
+    public BookingTo(String id, LocalDateTime startDateTime, LocalDateTime endDateTime, String bookedById, String roomId, BookingStatus status) {
+        this.id = id;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.bookedById = bookedById;
+        this.roomId = roomId;
+        this.status = status;
+        this.startTime = formatTime(startDateTime);
+        this.endTime = formatTime(endDateTime);
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
     }
 
     public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) throws ParseException {
-        this.startTime = startTime;
-        this.startDateTime = DateConverterUtil.toDate(startTime,
-                DateConverterUtil.PATTERN_HH_MM_MERIDIAN);
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
     public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) throws ParseException {
-        this.endTime = endTime;
-        this.endDateTime = DateConverterUtil.toDate(endTime,
-                DateConverterUtil.PATTERN_HH_MM_MERIDIAN);
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
 
-    public String getBookedBy() {
-        return bookedBy;
+    public String getBookedById() {
+        return bookedById;
     }
 
-    public void setBookedBy(String bookedBy) {
-        this.bookedBy = bookedBy;
-    }
-
-    public String getBookedWhen() {
-        return bookedWhen;
-    }
-
-    public void setBookedWhen(String bookedWhen) {
-        this.bookedWhen = bookedWhen;
-    }
-
-    public String getRoomName() {
-        return roomName;
-    }
-
-    public void setRoomName(String roomName) {
-        this.roomName = roomName;
+    public String getRoomId() {
+        return roomId;
     }
 
     public BookingStatus getStatus() {
         return status;
     }
 
-    public void setStatus(BookingStatus status) {
-        this.status = status;
+    public void roomBooked(String id) {
+        startTime = null;
+        endTime = null;
+        startDateTime = null;
+        endDateTime = null;
+        bookedById = null;
+        roomId = null;
+        this.id = id;
     }
-
-    public Date getStartDateTime() {
-        return startDateTime;
-    }
-
-    public Date getEndDateTime() {
-        return endDateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "BookingTo [id=" + id + ", teamName=" + teamName
-                + ", startTime=" + startTime + ", startDateTime="
-                + startDateTime + ", endTime=" + endTime + ", endDateTime="
-                + endDateTime + ", bookedBy=" + bookedBy + ", bookedWhen="
-                + bookedWhen + ", roomName=" + roomName + ", status=" + status
-                + "]";
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BookingTo bookingTo = (BookingTo) o;
-        return Objects.equals(id, bookingTo.id) &&
-                Objects.equals(teamName, bookingTo.teamName) &&
-                Objects.equals(startTime, bookingTo.startTime) &&
-                Objects.equals(startDateTime, bookingTo.startDateTime) &&
-                Objects.equals(endTime, bookingTo.endTime) &&
-                Objects.equals(endDateTime, bookingTo.endDateTime) &&
-                Objects.equals(bookedBy, bookingTo.bookedBy) &&
-                Objects.equals(bookedWhen, bookingTo.bookedWhen) &&
-                Objects.equals(roomName, bookingTo.roomName) &&
-                status == bookingTo.status;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, teamName, startTime, startDateTime, endTime, endDateTime, bookedBy, bookedWhen, roomName, status);
-    }
-
-    @Override
-    public int compareTo(BookingTo o) {
-        return startDateTime.compareTo(o.getStartDateTime());
-    }
-
 }

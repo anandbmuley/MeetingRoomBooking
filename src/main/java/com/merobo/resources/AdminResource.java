@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -41,9 +40,5 @@ public class AdminResource {
         ).build();
     }
 
-    @GetMapping("rooms")
-    public ResponseEntity<List<RoomDto>> getAllRooms() {
-        return ResponseEntity.ok(roomService.fetchAll());
-    }
 
 }

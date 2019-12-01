@@ -8,17 +8,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @RestController
-@RequestMapping("bookings")
+@CrossOrigin
+@RequestMapping("rooms/{id}/bookings")
 public class BookingResource {
 
+    private final BookingService bookingService;
+
     @Autowired
-    private BookingService bookingService;
+    public BookingResource(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
+    @GetMapping("today/current")
+    public ResponseEntity getCurrentBookings(@PathVariable("id") String roomId) {
+        return bookingService.getCurrent(roomId).map(ResponseEntity::ok).orElseGet(ResponseEntity.notFound()::build);
+    }
 
     @PostMapping
-    public ResponseEntity bookRoom(BookingTo bookingTo) {
+    public ResponseEntity bookRoom(@PathVariable("id") String roomId, @RequestBody BookingTo bookingTo) {
         ResponseEntity response = null;
         try {
+            bookingTo.setRoomId(roomId);
             bookingService.bookRoom(bookingTo);
             response = ResponseEntity.ok(bookingTo.getId());
         } catch (BookingServiceException e) {
@@ -29,8 +43,18 @@ public class BookingResource {
     }
 
     @GetMapping
-    public ResponseEntity getAllBookings() {
-        return ResponseEntity.ok(bookingService.getAll());
+    public ResponseEntity getAllBookings(@PathVariable("id") String roomId) {
+        return ResponseEntity.ok(bookingService.getAll(roomId));
+    }
+
+    @GetMapping("today")
+    public ResponseEntity<List<BookingTo>> getTodaysBookings(@PathVariable("id") String roomId) {
+        return ResponseEntity.ok(bookingService.getAll(roomId, LocalDate.now()));
+    }
+
+    @GetMapping("{bookingDate}")
+    public ResponseEntity<List<BookingTo>> getBookingsFor(@PathVariable("id") String roomId, @PathVariable String bookingDate) {
+        return ResponseEntity.ok(bookingService.getAll(roomId, bookingDate));
     }
 
     @DeleteMapping

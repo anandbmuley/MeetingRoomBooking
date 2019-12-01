@@ -9,7 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  declarations: [AdminDashboardComponent, AdminComponent, ManageRoomsComponent],
+  declarations: [
+    AdminDashboardComponent,
+    AdminComponent,
+    ManageRoomsComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
