@@ -5,14 +5,14 @@ import java.util.List;
 
 public class MeetingRoomTo {
 
-	private List<BookingTo> pinnacle = new ArrayList<BookingTo>();
-	private List<BookingTo> other = new ArrayList<BookingTo>();
+	private List<BookingDto> pinnacle = new ArrayList<BookingDto>();
+	private List<BookingDto> other = new ArrayList<BookingDto>();
 
-	public List<BookingTo> getPinnacle() {
+	public List<BookingDto> getPinnacle() {
 		return pinnacle;
 	}
 
-	public List<BookingTo> getOther() {
+	public List<BookingDto> getOther() {
 		return other;
 	}
 

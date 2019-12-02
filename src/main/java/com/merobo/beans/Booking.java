@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
 @Document(collection = "bookings")
-public class BookingBean {
+public class Booking {
 
     @Id
     private String id;
@@ -19,10 +19,10 @@ public class BookingBean {
     private BookingStatus status;
     private String bookedById;
 
-    public BookingBean() {
+    public Booking() {
     }
 
-    public BookingBean(LocalDateTime startTime, LocalDateTime endTime, String roomId, String bookedById) {
+    public Booking(LocalDateTime startTime, LocalDateTime endTime, String roomId, String bookedById) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.roomId = roomId;

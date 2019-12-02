@@ -1,6 +1,6 @@
 package com.merobo.dtos;
 
-public class MemberTo {
+public class MemberDto {
 
 	private String name;
 
@@ -28,7 +28,7 @@ public class MemberTo {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MemberTo other = (MemberTo) obj;
+		MemberDto other = (MemberDto) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;

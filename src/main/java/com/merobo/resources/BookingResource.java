@@ -1,6 +1,6 @@
 package com.merobo.resources;
 
-import com.merobo.dtos.BookingTo;
+import com.merobo.dtos.BookingDto;
 import com.merobo.exceptions.BookingServiceException;
 import com.merobo.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +29,12 @@ public class BookingResource {
     }
 
     @PostMapping
-    public ResponseEntity bookRoom(@PathVariable("id") String roomId, @RequestBody BookingTo bookingTo) {
+    public ResponseEntity bookRoom(@PathVariable("id") String roomId, @RequestBody BookingDto bookingDto) {
         ResponseEntity response = null;
         try {
-            bookingTo.setRoomId(roomId);
-            bookingService.bookRoom(bookingTo);
-            response = ResponseEntity.ok(bookingTo.getId());
+            bookingDto.setRoomId(roomId);
+            bookingService.bookRoom(bookingDto);
+            response = ResponseEntity.ok(bookingDto.getId());
         } catch (BookingServiceException e) {
             response = ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getCause().getMessage());
@@ -48,12 +48,12 @@ public class BookingResource {
     }
 
     @GetMapping("today")
-    public ResponseEntity<List<BookingTo>> getTodaysBookings(@PathVariable("id") String roomId) {
+    public ResponseEntity<List<BookingDto>> getTodaysBookings(@PathVariable("id") String roomId) {
         return ResponseEntity.ok(bookingService.getAll(roomId, LocalDate.now()));
     }
 
     @GetMapping("{bookingDate}")
-    public ResponseEntity<List<BookingTo>> getBookingsFor(@PathVariable("id") String roomId, @PathVariable String bookingDate) {
+    public ResponseEntity<List<BookingDto>> getBookingsFor(@PathVariable("id") String roomId, @PathVariable String bookingDate) {
         return ResponseEntity.ok(bookingService.getAll(roomId, bookingDate));
     }
 

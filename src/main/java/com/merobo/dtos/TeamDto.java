@@ -6,14 +6,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamTo {
+public class TeamDto {
 
     private String id;
     private String name;
-    private List<UserTo> memberTos = new ArrayList<UserTo>();
+    private List<UserDto> memberTos = new ArrayList<UserDto>();
 
     @JsonCreator
-    public TeamTo(@JsonProperty String name) {
+    public TeamDto(@JsonProperty String name) {
         this.name = name;
     }
 
@@ -33,7 +33,7 @@ public class TeamTo {
         this.name = name;
     }
 
-    public List<UserTo> getMemberTos() {
+    public List<UserDto> getMemberTos() {
         return memberTos;
     }
 

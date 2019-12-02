@@ -6,11 +6,11 @@ import com.merobo.utils.DateConverterUtil;
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LoginResponseTo {
+public class LoginResponseDto {
 
     private final String loginTime;
 
-    public LoginResponseTo() {
+    public LoginResponseDto() {
         loginTime = DateConverterUtil.toString(new Date(), DateConverterUtil.PATTERN_DD_MM_YYYY_HH_MM_MERIDIAN);
     }
 

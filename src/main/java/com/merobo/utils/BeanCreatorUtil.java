@@ -1,17 +1,15 @@
 package com.merobo.utils;
 
 import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Date;
 
-import com.merobo.beans.BookingBean;
-import com.merobo.dtos.BookingTo;
+import com.merobo.beans.Booking;
+import com.merobo.dtos.BookingDto;
 
 public abstract class BeanCreatorUtil {
 
-	public static BookingBean createBookingBean(BookingTo bookingTo)
+	public static Booking createBookingBean(BookingDto bookingDto)
 			throws ParseException {
-		BookingBean bookingBean = new BookingBean();
+		Booking booking = new Booking();
 //		bookingBean.setBookedBy(bookingTo.getBookedBy());
 //		bookingBean.setBookedWhen(DateConverterUtil.toString(new Date(),
 //				DateConverterUtil.PATTERN_HH_MM_MERIDIAN));
@@ -23,7 +21,7 @@ public abstract class BeanCreatorUtil {
 //		bookingBean.setTeamName(bookingTo.getTeamName());
 //		bookingBean.setRoomName(bookingTo.getRoomName());
 //		bookingBean.setStatus(BookingStatus.BOOKED);
-		return bookingBean;
+		return booking;
 	}
 
 }

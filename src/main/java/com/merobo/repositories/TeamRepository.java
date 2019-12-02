@@ -1,16 +1,16 @@
 package com.merobo.repositories;
 
-import com.merobo.beans.TeamBean;
+import com.merobo.beans.Team;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface TeamRepository extends MongoRepository<TeamBean, String> {
+public interface TeamRepository extends MongoRepository<Team, String> {
 
-    List<TeamBean> deleteByName(String name);
+    List<Team> deleteByName(String name);
 
-    TeamBean findByName(String name);
+    Team findByName(String name);
 
-    List<TeamBean> findByNameIn(List<String> names);
+    List<Team> findByNameIn(List<String> names);
 
 }

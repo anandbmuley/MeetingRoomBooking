@@ -1,6 +1,6 @@
 package com.merobo.services;
 
-import com.merobo.beans.RoomBean;
+import com.merobo.beans.Room;
 import com.merobo.dtos.RoomDto;
 import com.merobo.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,12 @@ public class RoomService {
     }
 
     public String save(RoomDto roomDto) {
-        RoomBean roomBean = new RoomBean(roomDto.getName(),
+        Room room = new Room(roomDto.getName(),
                 roomDto.getHasProjector(),
                 roomDto.getHasAc(),
                 roomDto.getCapacity());
-        roomRepository.save(roomBean);
-        return roomBean.getId();
+        roomRepository.save(room);
+        return room.getId();
     }
 
     public List<RoomDto> fetchAll() {
@@ -40,8 +40,8 @@ public class RoomService {
     }
 
     public Optional<RoomDto> findOne(String id) {
-        return roomRepository.findById(id).map(roomBean -> new RoomDto(
-                roomBean.getId(), roomBean.getName(), roomBean.hasProjector(), roomBean.hasAc(), roomBean.getCapacity()
+        return roomRepository.findById(id).map(room -> new RoomDto(
+                room.getId(), room.getName(), room.hasProjector(), room.hasAc(), room.getCapacity()
         ));
     }
 }

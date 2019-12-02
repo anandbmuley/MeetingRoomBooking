@@ -3,13 +3,13 @@ package com.merobo.dtos;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class LoginTo {
+public class LoginDto {
 
     private String username;
     private String password;
 
     @JsonCreator
-    public LoginTo(
+    public LoginDto(
             @JsonProperty String username,
             @JsonProperty String password) {
         this.username = username;

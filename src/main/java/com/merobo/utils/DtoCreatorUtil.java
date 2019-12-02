@@ -1,11 +1,11 @@
 package com.merobo.utils;
 
-import com.merobo.beans.BookingBean;
-import com.merobo.beans.TeamBean;
-import com.merobo.beans.UserBean;
-import com.merobo.dtos.BookingTo;
-import com.merobo.dtos.TeamTo;
-import com.merobo.dtos.UserTo;
+import com.merobo.beans.Booking;
+import com.merobo.beans.Team;
+import com.merobo.beans.User;
+import com.merobo.dtos.BookingDto;
+import com.merobo.dtos.TeamDto;
+import com.merobo.dtos.UserDto;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -15,34 +15,34 @@ import java.util.stream.Stream;
 
 public abstract class DtoCreatorUtil {
 
-    public static UserTo createUserTo(UserBean userBean) {
-        UserTo userTo = new UserTo();
-        userTo.setId(userBean.getId());
-        userTo.setName(userBean.getName());
-        userTo.setTeamName(userBean.getTeamName());
-        return userTo;
+    public static UserDto createUserTo(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setName(user.getName());
+        userDto.setTeamName(user.getTeamName());
+        return userDto;
     }
 
-    public static TeamTo createTeamTo(TeamBean teamBean) {
-        TeamTo teamTo = new TeamTo(teamBean.getName());
-        teamTo.setId(teamBean.getId());
-        if (!CollectionUtils.isEmpty(teamBean.getMembers())) {
-            List<UserTo> userTos = teamBean.getMembers()
+    public static TeamDto createTeamTo(Team team) {
+        TeamDto teamDto = new TeamDto(team.getName());
+        teamDto.setId(team.getId());
+        if (!CollectionUtils.isEmpty(team.getMembers())) {
+            List<UserDto> userDtos = team.getMembers()
                     .stream()
                     .flatMap(userBean ->
                             Stream.of(DtoCreatorUtil.createUserTo(userBean))
                     ).collect(Collectors.toList());
-            teamTo.getMemberTos().addAll(userTos);
+            teamDto.getMemberTos().addAll(userDtos);
         }
-        return teamTo;
+        return teamDto;
     }
 
-    public static List<BookingTo> createBookingTos(
-            List<BookingBean> bookingBeans) {
-        List<BookingTo> bookingTos = new ArrayList<BookingTo>();
-        for (BookingBean bookingBean : bookingBeans) {
+    public static List<BookingDto> createBookingTos(
+            List<Booking> bookings) {
+        List<BookingDto> bookingDtos = new ArrayList<BookingDto>();
+        for (Booking booking : bookings) {
 //            try {
-            BookingTo bookingTo = new BookingTo(null, null, null);
+            BookingDto bookingDto = new BookingDto(null, null, null);
 //                bookingTo.setBookedBy(bookingBean.getBookedBy());
 //                bookingTo.setBookedWhen(bookingBean.getBookedWhen());
 //
@@ -56,12 +56,12 @@ public abstract class DtoCreatorUtil {
 //                bookingTo.setTeamName(bookingBean.getTeamName());
 //                bookingTo.setRoomName(bookingBean.getRoomName());
 //                bookingTo.setStatus(bookingBean.getStatus());
-            bookingTos.add(bookingTo);
+            bookingDtos.add(bookingDto);
 //            } catch (ParseException e) {
 //                e.printStackTrace();
 //            }
         }
-        return bookingTos;
+        return bookingDtos;
     }
 
 }

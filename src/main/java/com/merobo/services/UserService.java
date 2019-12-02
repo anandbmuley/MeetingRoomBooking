@@ -1,10 +1,10 @@
 package com.merobo.services;
 
-import com.merobo.beans.UserBean;
-import com.merobo.dtos.LoginResponseTo;
-import com.merobo.dtos.LoginTo;
-import com.merobo.dtos.RegisterUserTo;
-import com.merobo.dtos.UserTo;
+import com.merobo.beans.User;
+import com.merobo.dtos.LoginResponseDto;
+import com.merobo.dtos.LoginDto;
+import com.merobo.dtos.RegisterUserDto;
+import com.merobo.dtos.UserDto;
 import com.merobo.exceptions.DuplicateUsernameException;
 import com.merobo.exceptions.UserNotFoundException;
 import com.merobo.exceptions.UserServiceException;
@@ -25,47 +25,47 @@ public class UserService {
     private UserRepository userRepository;
 
     public String resetPassword(String username) throws UserNotFoundException {
-        UserBean userBean = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
+        User user = userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
         String randomPwd = UUID.randomUUID().toString();
-        userBean.setPassword(encode(randomPwd));
-        userRepository.save(userBean);
+        user.setPassword(encode(randomPwd));
+        userRepository.save(user);
         return randomPwd;
     }
 
-    public LoginResponseTo login(LoginTo loginTo) throws UserServiceException {
-        userRepository.findByUsernameAndPassword(loginTo.getUsername(), encode(loginTo.getPassword())).orElseThrow(UserNotFoundException::new);
-        return new LoginResponseTo();
+    public LoginResponseDto login(LoginDto loginDto) throws UserServiceException {
+        userRepository.findByUsernameAndPassword(loginDto.getUsername(), encode(loginDto.getPassword())).orElseThrow(UserNotFoundException::new);
+        return new LoginResponseDto();
     }
 
-    public void create(RegisterUserTo registerUserTo) throws UserServiceException {
-        Optional<UserBean> userBean = userRepository.findByUsername(registerUserTo.getUsername());
+    public void create(RegisterUserDto registerUserDto) throws UserServiceException {
+        Optional<User> userBean = userRepository.findByUsername(registerUserDto.getUsername());
         if (userBean.isPresent()) {
             throw new DuplicateUsernameException();
         }
-        UserBean newUserBean = new UserBean(registerUserTo.getName(),
-                registerUserTo.getEmailId(),
-                registerUserTo.getContactNo(),
-                registerUserTo.getUsername(),
-                encode(registerUserTo.getPassword()));
-        userRepository.save(newUserBean);
+        User newUser = new User(registerUserDto.getName(),
+                registerUserDto.getEmailId(),
+                registerUserDto.getContactNo(),
+                registerUserDto.getUsername(),
+                encode(registerUserDto.getPassword()));
+        userRepository.save(newUser);
     }
 
     private String encode(String password) {
         return Base64.getEncoder().withoutPadding().encodeToString(password.getBytes());
     }
 
-    public void update(UserTo userTo) throws UserServiceException {
-        UserBean userBean = userRepository.findByUsername(userTo.getUsername()).orElseThrow(UserNotFoundException::new);
-        if (!StringUtils.isEmpty(userTo.getPassword())) {
-            userBean.setPassword(encode(userTo.getPassword()));
+    public void update(UserDto userDto) throws UserServiceException {
+        User user = userRepository.findByUsername(userDto.getUsername()).orElseThrow(UserNotFoundException::new);
+        if (!StringUtils.isEmpty(userDto.getPassword())) {
+            user.setPassword(encode(userDto.getPassword()));
         }
-        userBean.setName(userTo.getName());
-        userRepository.save(userBean);
+        user.setName(userDto.getName());
+        userRepository.save(user);
     }
 
     public void encodeAll() {
-        List<UserBean> userBeans = userRepository.findAll();
-        userBeans.stream().forEach(userBean -> {
+        List<User> users = userRepository.findAll();
+        users.stream().forEach(userBean -> {
             userBean.setPassword(
                     encode(userBean.getPassword())
             );

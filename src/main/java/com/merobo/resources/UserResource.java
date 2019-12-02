@@ -1,8 +1,8 @@
 package com.merobo.resources;
 
 import com.merobo.dtos.PasswordDto;
-import com.merobo.dtos.RegisterUserTo;
-import com.merobo.dtos.UserTo;
+import com.merobo.dtos.RegisterUserDto;
+import com.merobo.dtos.UserDto;
 import com.merobo.exceptions.UserNotFoundException;
 import com.merobo.exceptions.UserServiceException;
 import com.merobo.services.UserService;
@@ -20,10 +20,10 @@ public class UserResource {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity register(@RequestBody RegisterUserTo registerUserTo) {
+    public ResponseEntity register(@RequestBody RegisterUserDto registerUserDto) {
         ResponseEntity response;
         try {
-            userService.create(registerUserTo);
+            userService.create(registerUserDto);
             response = ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (UserServiceException e) {
             response = ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
@@ -46,11 +46,11 @@ public class UserResource {
     }
 
     @PutMapping("{username}")
-    public ResponseEntity changePassword(@PathVariable("username") String username, @RequestBody UserTo userTo) {
+    public ResponseEntity changePassword(@PathVariable("username") String username, @RequestBody UserDto userDto) {
         ResponseEntity response = null;
         try {
-            userTo.setUsername(username);
-            userService.update(userTo);
+            userDto.setUsername(username);
+            userService.update(userDto);
             response = ResponseEntity.noContent().build();
         } catch (UserServiceException e) {
             response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

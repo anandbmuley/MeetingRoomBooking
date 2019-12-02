@@ -1,6 +1,6 @@
 package com.merobo.resources;
 
-import com.merobo.dtos.LoginTo;
+import com.merobo.dtos.LoginDto;
 import com.merobo.exceptions.UserServiceException;
 import com.merobo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ public class AuthenticationResource {
     private UserService userService;
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody LoginTo loginTo) {
+    public ResponseEntity login(@RequestBody LoginDto loginDto) {
         ResponseEntity response;
         try {
-            response = ResponseEntity.ok(userService.login(loginTo));
+            response = ResponseEntity.ok(userService.login(loginDto));
         } catch (UserServiceException e) {
             response = ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }

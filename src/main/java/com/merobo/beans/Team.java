@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "teams")
-public class TeamBean {
+public class Team {
 
     @Id
     private String id;
     private String name;
-    private List<UserBean> members = new ArrayList<>();
+    private List<User> members = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -30,11 +30,11 @@ public class TeamBean {
         this.name = name;
     }
 
-    public List<UserBean> getMembers() {
+    public List<User> getMembers() {
         return members;
     }
 
-    public void setMembers(List<UserBean> members) {
+    public void setMembers(List<User> members) {
         this.members = members;
     }
 

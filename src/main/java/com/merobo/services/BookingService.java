@@ -1,7 +1,7 @@
 package com.merobo.services;
 
-import com.merobo.beans.BookingBean;
-import com.merobo.dtos.BookingTo;
+import com.merobo.beans.Booking;
+import com.merobo.dtos.BookingDto;
 import com.merobo.exceptions.BookingServiceException;
 import com.merobo.repositories.BookingRepository;
 import com.merobo.utils.BookingStatus;
@@ -28,34 +28,34 @@ public class BookingService {
     }
 
     public void cancelBooking(String bookingId) {
-        Optional<BookingBean> bookingBean = bookingRepository.findById(bookingId);
+        Optional<Booking> bookingBean = bookingRepository.findById(bookingId);
         bookingBean.ifPresent($ -> {
             $.cancel();
             bookingRepository.save($);
         });
     }
 
-    public BookingTo bookRoom(BookingTo bookingTo) throws BookingServiceException {
-        BookingBean bookingBean = new BookingBean(bookingTo.getStartDateTime(), bookingTo.getEndDateTime(), bookingTo.getRoomId(), bookingTo.getBookedById());
-        bookingTo.roomBooked(bookingRepository.save(bookingBean).getId());
-        return bookingTo;
+    public BookingDto bookRoom(BookingDto bookingDto) throws BookingServiceException {
+        Booking booking = new Booking(bookingDto.getStartDateTime(), bookingDto.getEndDateTime(), bookingDto.getRoomId(), bookingDto.getBookedById());
+        bookingDto.roomBooked(bookingRepository.save(booking).getId());
+        return bookingDto;
     }
 
-    public List<BookingTo> getAll(String roomId, LocalDate bookedOn) {
+    public List<BookingDto> getAll(String roomId, LocalDate bookedOn) {
         return getAll(roomId).stream().filter(bookingTo ->
                 bookingTo.getStartDateTime().toLocalDate().equals(bookedOn)
         ).collect(Collectors.toList());
     }
 
-    public List<BookingTo> getAll(String roomId, String bookingDate) {
+    public List<BookingDto> getAll(String roomId, String bookingDate) {
         LocalDate bookedOn = DateConverterUtil.parseDate(bookingDate);
         return getAll(roomId, bookedOn);
     }
 
-    public List<BookingTo> getAll(String roomId) {
+    public List<BookingDto> getAll(String roomId) {
         return bookingRepository.findByRoomIdAndStatus(roomId, BookingStatus.BOOKED)
                 .stream().map(bookingBean ->
-                        new BookingTo(bookingBean.getId(), bookingBean.getStartTime(), bookingBean.getEndTime(),
+                        new BookingDto(bookingBean.getId(), bookingBean.getStartTime(), bookingBean.getEndTime(),
                                 bookingBean.getBookedById(), bookingBean.getRoomId(), bookingBean.getStatus())
                 ).collect(Collectors.toList());
 //        List<BookingBean> beans = bookingRepository.findByEndTimeAfter(new Date());
@@ -76,10 +76,10 @@ public class BookingService {
 //        Collections.sort(meetingRoomTo.getPinnacle());
     }
 
-    public Optional<BookingTo> getCurrent(String roomId) {
+    public Optional<BookingDto> getCurrent(String roomId) {
         return bookingRepository.findByRoomIdAndStatus(roomId, BookingStatus.BOOKED)
-                .stream().filter(BookingBean::isBookedNow).findAny().map(bookingBean ->
-                        new BookingTo(bookingBean.getId(), bookingBean.getStartTime(), bookingBean.getEndTime(),
+                .stream().filter(Booking::isBookedNow).findAny().map(bookingBean ->
+                        new BookingDto(bookingBean.getId(), bookingBean.getStartTime(), bookingBean.getEndTime(),
                                 bookingBean.getBookedById(), bookingBean.getRoomId(), bookingBean.getStatus())
                 );
     }

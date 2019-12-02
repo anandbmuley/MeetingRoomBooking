@@ -1,8 +1,8 @@
 package com.merobo.services;
 
-import com.merobo.beans.TeamBean;
-import com.merobo.beans.UserBean;
-import com.merobo.dtos.TeamTo;
+import com.merobo.beans.Team;
+import com.merobo.beans.User;
+import com.merobo.dtos.TeamDto;
 import com.merobo.exceptions.NoDataFoundException;
 import com.merobo.repositories.TeamRepository;
 import com.merobo.repositories.UserRepository;
@@ -25,62 +25,62 @@ public class TeamService {
     @Autowired
     private UserRepository userRepository;
 
-    public void updateTeam(TeamTo teamTo) {
-        teamRepository.findById(teamTo.getId())
+    public void updateTeam(TeamDto teamDto) {
+        teamRepository.findById(teamDto.getId())
                 .ifPresent($ -> {
-                    List<UserBean> users = userRepository.findByTeamName($.getName());
-                    users.forEach(userBean -> userBean.setTeamName(teamTo.getName()));
+                    List<User> users = userRepository.findByTeamName($.getName());
+                    users.forEach(userBean -> userBean.setTeamName(teamDto.getName()));
                     userRepository.saveAll(users);
-                    $.setName(teamTo.getName());
+                    $.setName(teamDto.getName());
                     teamRepository.save($);
                 });
     }
 
-    public TeamTo addTeam(TeamTo teamTo) {
-        TeamBean teamBean = new TeamBean();
-        teamBean.setName(teamTo.getName());
-        teamRepository.save(teamBean);
-        teamTo.setId(teamBean.getId());
-        return teamTo;
+    public TeamDto addTeam(TeamDto teamDto) {
+        Team team = new Team();
+        team.setName(teamDto.getName());
+        teamRepository.save(team);
+        teamDto.setId(team.getId());
+        return teamDto;
     }
 
-    public List<TeamTo> getTeamList() throws NoDataFoundException {
-        List<TeamBean> teams = teamRepository.findAll();
+    public List<TeamDto> getTeamList() throws NoDataFoundException {
+        List<Team> teams = teamRepository.findAll();
         if (CollectionUtils.isEmpty(teams)) {
             throw new NoDataFoundException("No teams found");
         }
         return teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
     }
 
-    public List<TeamTo> getAll() {
-        List<TeamTo> teamTos = Collections.emptyList();
-        List<TeamBean> teams = teamRepository.findAll();
+    public List<TeamDto> getAll() {
+        List<TeamDto> teamDtos = Collections.emptyList();
+        List<Team> teams = teamRepository.findAll();
         if (!CollectionUtils.isEmpty(teams)) {
-            teamTos = teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
+            teamDtos = teams.stream().map(DtoCreatorUtil::createTeamTo).collect(Collectors.toList());
         }
-        return teamTos;
+        return teamDtos;
     }
 
-    public List<TeamTo> getAllTeams() {
-        List<UserBean> members = userRepository.findAll();
-        List<TeamTo> teamTos = new ArrayList<>();
+    public List<TeamDto> getAllTeams() {
+        List<User> members = userRepository.findAll();
+        List<TeamDto> teamDtos = new ArrayList<>();
         if (!CollectionUtils.isEmpty(members)) {
-            List<String> teamNames = members.stream().map(UserBean::getTeamName).collect(Collectors.toList());
-            List<TeamBean> teams = teamRepository.findByNameIn(teamNames);
+            List<String> teamNames = members.stream().map(User::getTeamName).collect(Collectors.toList());
+            List<Team> teams = teamRepository.findByNameIn(teamNames);
             if (!CollectionUtils.isEmpty(teams)) {
-                teams.stream().forEach(teamBean -> {
-                    List<UserBean> teamMembers = members.stream().filter(userBean -> teamBean.getName().equals(userBean.getTeamName())).collect(Collectors.toList());
-                    teamBean.getMembers().addAll(teamMembers);
-                    teamTos.add(DtoCreatorUtil.createTeamTo(teamBean));
+                teams.stream().forEach(team -> {
+                    List<User> teamMembers = members.stream().filter(userBean -> team.getName().equals(userBean.getTeamName())).collect(Collectors.toList());
+                    team.getMembers().addAll(teamMembers);
+                    teamDtos.add(DtoCreatorUtil.createTeamTo(team));
                 });
             }
         }
 
-        return teamTos;
+        return teamDtos;
     }
 
-    public void deleteTeam(TeamTo teamTo) {
-        teamRepository.deleteByName(teamTo.getName());
+    public void deleteTeam(TeamDto teamDto) {
+        teamRepository.deleteByName(teamDto.getName());
     }
 
 }

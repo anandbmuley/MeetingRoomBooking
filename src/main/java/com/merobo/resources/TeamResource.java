@@ -1,6 +1,6 @@
 package com.merobo.resources;
 
-import com.merobo.dtos.TeamTo;
+import com.merobo.dtos.TeamDto;
 import com.merobo.exceptions.NoDataFoundException;
 import com.merobo.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,21 +18,21 @@ public class TeamResource {
     private TeamService teamService;
 
     @PostMapping
-    public ResponseEntity addTeam(@RequestBody TeamTo teamTo) {
-        teamService.addTeam(teamTo);
+    public ResponseEntity addTeam(@RequestBody TeamDto teamDto) {
+        teamService.addTeam(teamDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("members")
-    public ResponseEntity<List<TeamTo>> getAllTeam() {
-        List<TeamTo> teams = teamService.getAllTeams();
+    public ResponseEntity<List<TeamDto>> getAllTeam() {
+        List<TeamDto> teams = teamService.getAllTeams();
         return ResponseEntity.ok(teams);
     }
 
     @GetMapping
-    public ResponseEntity<List<TeamTo>> teamList() {
+    public ResponseEntity<List<TeamDto>> teamList() {
         try {
-            List<TeamTo> teamList = teamService.getTeamList();
+            List<TeamDto> teamList = teamService.getTeamList();
             return ResponseEntity.ok(teamList);
         } catch (NoDataFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -40,8 +40,8 @@ public class TeamResource {
     }
 
     @DeleteMapping
-    public ResponseEntity deleteTeam(TeamTo teamTo) {
-        teamService.deleteTeam(teamTo);
+    public ResponseEntity deleteTeam(TeamDto teamDto) {
+        teamService.deleteTeam(teamDto);
         return ResponseEntity.ok().build();
     }
 

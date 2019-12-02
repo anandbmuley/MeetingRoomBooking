@@ -1,7 +1,7 @@
 package com.merobo.services;
 
-import com.merobo.beans.BookingBean;
-import com.merobo.dtos.BookingTo;
+import com.merobo.beans.Booking;
+import com.merobo.dtos.BookingDto;
 import com.merobo.exceptions.BookingValidationServiceException;
 import com.merobo.exceptions.booking.BookingClashesException;
 import com.merobo.repositories.BookingRepository;
@@ -14,14 +14,14 @@ public class BookingValidationService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public void validateBooking(BookingTo bookingTo) throws BookingValidationServiceException {
+    public void validateBooking(BookingDto bookingDto) throws BookingValidationServiceException {
 //        List<BookingBean> existingBookings = bookingRepository.findByRoomName(bookingTo.getRoomName()).stream().filter(booking -> BookingStatus.BOOKED.equals(booking.getStatus())).collect(Collectors.toList());
 //        for (BookingBean bookingBean : existingBookings) {
 //            checkForClash(bookingTo, bookingBean);
 //        }
     }
 
-    public void checkForClash(BookingTo bookingTo, BookingBean bookingBean) throws BookingClashesException {
+    public void checkForClash(BookingDto bookingDto, Booking booking) throws BookingClashesException {
 //        if (bookingTo.getStartDateTime().after(bookingBean.getStartTime())
 //                && bookingTo.getStartDateTime().before(bookingBean.getEndTime())) {
 //            throw new StartTimeClashesException(bookingBean.toJSON());

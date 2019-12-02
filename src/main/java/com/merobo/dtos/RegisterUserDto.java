@@ -2,7 +2,7 @@ package com.merobo.dtos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-public class RegisterUserTo {
+public class RegisterUserDto {
 
     private String name;
     private String emailId;
@@ -12,7 +12,7 @@ public class RegisterUserTo {
     private String teamName;
 
     @JsonCreator
-    public RegisterUserTo(
+    public RegisterUserDto(
             String name,
             String emailId,
             String contactNo,

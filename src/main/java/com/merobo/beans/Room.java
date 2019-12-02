@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "rooms")
-public class RoomBean {
+public class Room {
 
     @Id
     private String id;
@@ -13,10 +13,10 @@ public class RoomBean {
     private Boolean hasAc;
     private Integer capacity;
 
-    public RoomBean() {
+    public Room() {
     }
 
-    public RoomBean(String name, Boolean hasProjector, Boolean hasAc, Integer capacity) {
+    public Room(String name, Boolean hasProjector, Boolean hasAc, Integer capacity) {
         this.name = name;
         this.hasProjector = hasProjector;
         this.hasAc = hasAc;

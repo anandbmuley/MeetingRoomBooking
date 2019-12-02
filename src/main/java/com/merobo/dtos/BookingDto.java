@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import static com.merobo.utils.DateConverterUtil.formatTime;
 import static com.merobo.utils.DateConverterUtil.parseTime;
 
-public class BookingTo {
+public class BookingDto {
 
     private String id;
     private String startTime;
@@ -23,7 +23,7 @@ public class BookingTo {
     private BookingStatus status;
 
     @JsonCreator
-    public BookingTo(
+    public BookingDto(
             @JsonProperty String startTime,
             @JsonProperty String endTime,
             @JsonProperty String bookedById) {
@@ -34,7 +34,7 @@ public class BookingTo {
         this.endDateTime = parseTime(endTime);
     }
 
-    public BookingTo(String id, LocalDateTime startDateTime, LocalDateTime endDateTime, String bookedById, String roomId, BookingStatus status) {
+    public BookingDto(String id, LocalDateTime startDateTime, LocalDateTime endDateTime, String bookedById, String roomId, BookingStatus status) {
         this.id = id;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;

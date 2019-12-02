@@ -1,7 +1,7 @@
 package com.merobo.resources;
 
 import com.merobo.dtos.RoomDto;
-import com.merobo.dtos.TeamTo;
+import com.merobo.dtos.TeamDto;
 import com.merobo.services.RoomService;
 import com.merobo.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,9 @@ public class AdminResource {
     }
 
     @PutMapping("/teams/{id}")
-    public ResponseEntity updateTeam(@PathVariable("id") String id, TeamTo teamTo) {
-        teamTo.setId(id);
-        teamService.updateTeam(teamTo);
+    public ResponseEntity updateTeam(@PathVariable("id") String id, TeamDto teamDto) {
+        teamDto.setId(id);
+        teamService.updateTeam(teamDto);
         return ResponseEntity.ok().build();
     }
 
