@@ -20,13 +20,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.login = {
-      username: "hulkhogan",
-      password: "password@123"
+      username: null,
+      password: null
     }
 
   }
-
-  
 
   authenticate() {
     this.authService.login(this.login);

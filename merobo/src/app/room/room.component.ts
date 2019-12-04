@@ -12,8 +12,10 @@ export class RoomComponent implements OnInit {
 
   @Input() showBookings = false;
   @Input() room: RoomDto;
-  
+
   currentBooking: BookingDto;
+  message = '';
+  isAvailable = false;
 
   constructor(private bookingService: BookingService) { }
 
@@ -24,8 +26,11 @@ export class RoomComponent implements OnInit {
   getCurrentBooking() {
     this.bookingService.getCurrent(this.room.id).subscribe((booking: BookingDto) => {
       this.currentBooking = booking;
-    },(error:HttpErrorResponse) => {
-      // console.log(error.status);
+    }, (error: HttpErrorResponse) => {
+      if (error.status == 404) {
+        this.message = 'AVAILABLE';
+        this.isAvailable = true;
+      }
       // console.log("Something went wrong");
     });
   }

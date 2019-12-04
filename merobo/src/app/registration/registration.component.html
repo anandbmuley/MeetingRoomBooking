@@ -1,36 +1,51 @@
-<div align="center">
-    <table>
-        <tr>
-          <td>
-              <input type="text" placeholder="Name" name="name" [(ngModel)]="user.name">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <input type="email" placeholder="EmailId" name="emailId" [(ngModel)]="user.emailId">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <input type="tel" placeholder="Contact No" name="contactNo" [(ngModel)]="user.contactNo">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <input type="text" placeholder="Username" name="username" [(ngModel)]="user.username">
-          </td>
-        </tr>
-        <tr>
-          <td>
-              <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password">
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-              <button type="button" (click)="register()">Register</button>
-          </td>
-        </tr>
-      </table>
+<div class="row">
+  <div class="col s10 offset-s1">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">MEROBO</span>
+        <br /><br /><br />
+        <div class="row">
+          <div class="col s10 offset-s1">
+
+            <div class="row">
+              <div class="col s6 offset-s3">
+                <input type="text" placeholder="Name" name="name" [(ngModel)]="user.name">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s6">
+                <input type="email" placeholder="EmailId" name="emailId" [(ngModel)]="user.emailId">
+              </div>
+              <div class="col s6">
+                <input type="tel" placeholder="Contact No" name="contactNo" [(ngModel)]="user.contactNo">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s6">
+                <input type="text" placeholder="Username" name="username" [(ngModel)]="user.username">
+              </div>
+              <div class="col s6">
+                <input type="password" placeholder="Password" name="password" [(ngModel)]="user.password">
+              </div>
+            </div>
+
+            <div class="row">
+              <button class="waves-effect waves-light btn" (click)="register()">REGISTER</button>
+            </div>
+
+            <div class="row">
+              {{message}}
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-action">
+        <a routerLink="/login">LOGIN</a>
+        <a routerLink="/forgot-password">FORGOT PASSWORD</a>
+      </div>
+    </div>
+  </div>
 </div>
-{{user|json}}<br/>
-{{message}}

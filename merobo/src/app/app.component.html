@@ -1,12 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <nav>
+  <nav *ngIf="authenticated">
     <div class="nav-wrapper">
       <a routerLink="/home" class="brand-logo">{{ title }}</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a routerLink="/home">HOME</a></li>
         <li><a routerLink="/admin/rooms">MANAGE ROOMS</a></li>
         <li><a routerLink="/rooms">BOOK ROOM</a></li>
+        <li><a routerLink="/logout">LOGOUT</a></li>
       </ul>
     </div>
   </nav>

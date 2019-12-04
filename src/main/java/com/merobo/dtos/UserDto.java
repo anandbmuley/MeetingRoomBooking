@@ -11,6 +11,13 @@ public class UserDto {
     private String adminPasscode;
     private String adminToken;
 
+    public UserDto() {
+    }
+
+    public UserDto(String name) {
+        this.name = name;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

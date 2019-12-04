@@ -31,6 +31,16 @@ export class BookingService {
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/today/current`
     return this.httpClient.get(url);
   }
+  
+  getTodays(roomId: string) {
+    let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/today`
+    return this.httpClient.get(url);
+  }
+
+  getAll(roomId: string) {
+    let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings`
+    return this.httpClient.get(url);
+  }
 
   book(roomId: string, bookingDto: BookingDto) {
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings`

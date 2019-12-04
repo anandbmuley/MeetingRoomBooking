@@ -8,16 +8,20 @@ import { AuthGuard } from './auth/auth.guard';
 import { ManageRoomsComponent } from './admin/manage-rooms/manage-rooms.component';
 import { RoomDetailsComponent } from './room-details/room-details.component';
 import { BookComponent } from './room/book/book.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {
     path: 'login', component: LoginComponent
   },
   {
+    path: 'logout', component: LogoutComponent
+  },
+  {
     path: 'register', component: RegistrationComponent
   },
   {
-    path: 'home', component: HomeComponent
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard]
   },
   {
     path: 'room-details/:id', component: RoomDetailsComponent

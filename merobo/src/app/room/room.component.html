@@ -1,8 +1,9 @@
-<div class="card">
+<div [ngClass]="{ 'room-available' : isAvailable }" class="card">
   <div class="card-content white-text">
     <span class="card-title">{{room.name}}</span>
-    <ul *ngIf="showBookings" class="collection">
-      <booking [currentBooking]="currentBooking"></booking>
+    <ul *ngIf="showBookings && currentBooking" class="collection">
+      <booking [data]="currentBooking"></booking>
     </ul>
+    <span style="color: teal;">{{ message }}</span>
   </div>
 </div>

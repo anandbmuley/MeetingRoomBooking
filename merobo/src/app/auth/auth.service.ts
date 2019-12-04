@@ -6,6 +6,11 @@ import { HttpClient } from '@angular/common/http';
 import { LoginDto, UserService } from '../user.service';
 import { Router } from '@angular/router';
 
+export interface AuthResponseDto {
+  userId: string
+  loginTime: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,25 +31,35 @@ export class AuthService {
     }
   }
 
-  createAuthCookie(){
+  createAuthCookie(user: AuthResponseDto) {
     this.cookieService.set('auth', 'true');
-    
+    this.cookieService.set('authId', user.userId);
+  }
+
+  getAuthId() {
+    return this.cookieService.get('authId');
   }
 
   login(loginDto: LoginDto) {
-    return this.userService.authenticate(loginDto).subscribe(() => {
-      this.createAuthCookie();
+    return this.userService.authenticate(loginDto).subscribe((foundUser: AuthResponseDto) => {
+      this.createAuthCookie(foundUser);
       this.handleRedirect();
     });
   }
 
   logout() {
     this.isLoggedIn = false;
+    this.cookieService.delete('auth');
+    this.cookieService.delete('authId');
+  }
+
+  isUserLoggedIn() {
+    return this.cookieService.get('auth') === 'true';
   }
 
   checkLogin(url: string): boolean {
-    if(this.cookieService.get('auth') === 'true'){
-        return true;
+    if (this.cookieService.get('auth') === 'true') {
+      return true;
     }
     this.redirectUrl = url;
     this.router.navigate(['/login']);

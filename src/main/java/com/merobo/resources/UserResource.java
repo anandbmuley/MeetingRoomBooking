@@ -45,6 +45,11 @@ public class UserResource {
         return response;
     }
 
+    @GetMapping("{userId}")
+    public ResponseEntity getUser(@PathVariable String userId) {
+        return userService.findBy(userId).map(ResponseEntity::ok).orElseGet(ResponseEntity.notFound()::build);
+    }
+
     @PutMapping("{username}")
     public ResponseEntity changePassword(@PathVariable("username") String username, @RequestBody UserDto userDto) {
         ResponseEntity response = null;

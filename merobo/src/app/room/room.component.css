@@ -9,3 +9,7 @@
 .card:hover {
     background-color: rgb(219, 219, 219);
 }
+
+.room-available {
+    background-color: rgb(156, 226, 156);
+}

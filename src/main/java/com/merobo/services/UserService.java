@@ -1,8 +1,8 @@
 package com.merobo.services;
 
 import com.merobo.beans.User;
-import com.merobo.dtos.LoginResponseDto;
 import com.merobo.dtos.LoginDto;
+import com.merobo.dtos.LoginResponseDto;
 import com.merobo.dtos.RegisterUserDto;
 import com.merobo.dtos.UserDto;
 import com.merobo.exceptions.DuplicateUsernameException;
@@ -33,8 +33,8 @@ public class UserService {
     }
 
     public LoginResponseDto login(LoginDto loginDto) throws UserServiceException {
-        userRepository.findByUsernameAndPassword(loginDto.getUsername(), encode(loginDto.getPassword())).orElseThrow(UserNotFoundException::new);
-        return new LoginResponseDto();
+        User founderUser = userRepository.findByUsernameAndPassword(loginDto.getUsername(), encode(loginDto.getPassword())).orElseThrow(UserNotFoundException::new);
+        return new LoginResponseDto(founderUser.getId());
     }
 
     public void create(RegisterUserDto registerUserDto) throws UserServiceException {
@@ -71,5 +71,9 @@ public class UserService {
             );
             userRepository.save(userBean);
         });
+    }
+
+    public Optional<UserDto> findBy(String userId) {
+        return userRepository.findById(userId).map($ -> new UserDto($.getName()));
     }
 }

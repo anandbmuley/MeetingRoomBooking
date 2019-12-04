@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService, RoomDto } from '../services/room.service';
-import { BookingService } from '../booking/services/booking.service';
+import { BookingService, BookingDto } from '../booking/services/booking.service';
 
 @Component({
   selector: 'app-room-details',
@@ -11,12 +11,15 @@ import { BookingService } from '../booking/services/booking.service';
 export class RoomDetailsComponent implements OnInit {
 
   room: RoomDto;
+  bookings: BookingDto[];
+
+  message: string;
 
   constructor(
     private route: ActivatedRoute,
     private roomService: RoomService,
-    private bookingService: BookingService,
-    private router: Router
+    private router: Router,
+    private bookingService: BookingService
   ) { }
 
   ngOnInit() {
@@ -24,10 +27,17 @@ export class RoomDetailsComponent implements OnInit {
     this.roomService.findOne(roomId).subscribe((roomData: RoomDto) => {
       this.room = roomData;
     });
+    this.bookingService.getTodays(roomId).subscribe((bookings: BookingDto[]) => {
+      this.bookings = bookings;
+    }, (errorResponse) => {
+      if(errorResponse.status == 404){
+        this.message = 'No bookings for today';
+      }
+    });
   }
 
   viewBookRoomPage(roomId: string) {
-    this.router.navigate(['rooms',roomId])
+    this.router.navigate(['rooms', roomId])
   }
 
 }

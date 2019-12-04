@@ -1,14 +1,18 @@
 <div class="col s12 m7">
-  <h4 class="header">{{ room.name }}</h4>
+  <h4 *ngIf="room" class="header">{{ room.name }}</h4>
   <div class="card horizontal">
     <div class="card-image">
       <img src="assets/temp/sample-room.jpg">
     </div>
     <div class="card-stacked">
       <div class="card-content">
-        <ul class="collection">
-          <booking></booking>
+        <ul *ngIf="bookings" class="collection">
+          <booking [data]="booking" *ngFor="let booking of bookings"></booking>
         </ul>
+        <div>
+          <h5 style="color: teal;">{{ message }}</h5>
+          <p style="color: darkslategray;">Hurry Up ! Book Now if you need it.</p>
+        </div>
       </div>
       <div class="card-action">
         <button class="btn waves-effect waves-light" (click)="viewBookRoomPage(room.id)">Book</button>

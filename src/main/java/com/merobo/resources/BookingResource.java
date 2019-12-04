@@ -6,8 +6,10 @@ import com.merobo.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class BookingResource {
         try {
             bookingDto.setRoomId(roomId);
             bookingService.bookRoom(bookingDto);
-            response = ResponseEntity.ok(bookingDto.getId());
+            response = ResponseEntity.created(URI.create(bookingDto.getId())).build();
         } catch (BookingServiceException e) {
             response = ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getCause().getMessage());
@@ -49,7 +51,8 @@ public class BookingResource {
 
     @GetMapping("today")
     public ResponseEntity<List<BookingDto>> getTodaysBookings(@PathVariable("id") String roomId) {
-        return ResponseEntity.ok(bookingService.getAll(roomId, LocalDate.now()));
+        List<BookingDto> todaysBookings = bookingService.getAll(roomId, LocalDate.now());
+        return CollectionUtils.isEmpty(todaysBookings) ? ResponseEntity.notFound().build() : ResponseEntity.ok(todaysBookings);
     }
 
     @GetMapping("{bookingDate}")
