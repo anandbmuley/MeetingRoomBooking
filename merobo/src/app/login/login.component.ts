@@ -10,7 +10,6 @@ import { AuthService } from '../auth/auth.service';
 export class LoginComponent implements OnInit {
 
   login: LoginDto;
-  message = '';
 
   constructor(private authService: AuthService) { }
 

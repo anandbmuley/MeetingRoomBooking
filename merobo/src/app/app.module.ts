@@ -29,6 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     MatSelectModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   providers: [CookieService, RoomService, BookingService],
   bootstrap: [AppComponent]

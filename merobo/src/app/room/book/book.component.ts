@@ -4,6 +4,7 @@ import { BookingService, BookingDto, BookingVO } from 'src/app/booking/services/
 import { RoomDto, RoomService } from 'src/app/services/room.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book',
@@ -14,23 +15,19 @@ export class BookComponent implements OnInit {
 
   roomId: string = "-1";
   booking: BookingDto;
-  // bookingDate: string;
   rooms: RoomDto[];
   hours: Array<number>;
   minutes: Array<number>;
   startHour: number;
 
-  message = '';
-
-  // startTimeModel: Time = new Time();
-  // endTimeModel: Time = new Time();
   bookingVO: BookingVO = new BookingVO();
 
   constructor(
     private route: ActivatedRoute,
     private bookingService: BookingService,
     private roomService: RoomService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
     this.hours = new Array();
     for (let i = 1; i <= 12; i++) {
@@ -63,7 +60,9 @@ export class BookComponent implements OnInit {
       endTime: bookingDtFormatted + ' ' + this.bookingVO.endTimeModel.getTime()
     };
     this.bookingService.book(this.roomId, this.booking).subscribe((status) => {
-      this.message = 'Booking saved successfully !';
+      this.snackBar.open('Room booked successfully !', null, {
+        duration: 3000
+      });
       this.bookingVO = new BookingVO();
     });
   }

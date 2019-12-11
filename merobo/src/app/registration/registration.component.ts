@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService, RegistrationDto } from '../user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',
@@ -9,13 +10,15 @@ import { UserService, RegistrationDto } from '../user.service';
 export class RegistrationComponent {
 
   user: RegistrationDto = new RegistrationDto();
-  message = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private snackBar: MatSnackBar) { }
 
   register() {
     this.userService.register(this.user).subscribe(() => {
-      this.message = 'Registration Successful !';
+      this.snackBar.open('Registration Successful 🍕', null, {
+        duration: 3000
+      });
       this.user = new RegistrationDto();
     });
   }

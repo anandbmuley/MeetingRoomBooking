@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService, RoomDto } from 'src/app/services/room.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-manage-rooms',
@@ -10,9 +11,9 @@ export class ManageRoomsComponent implements OnInit {
 
   room: RoomDto;
   rooms: RoomDto[];
-  message = '';
 
-  constructor(private roomService: RoomService) { }
+  constructor(private roomService: RoomService,
+    private snackBar: MatSnackBar) { }
 
   newRoom() {
     this.room = {
@@ -28,7 +29,9 @@ export class ManageRoomsComponent implements OnInit {
     this.roomService.add(this.room).subscribe(() => {
       this.newRoom();
       this.fetchRooms();
-      this.message = 'Room added successfully !';
+      this.snackBar.open('Room addedd successfully', null, {
+        duration: 3000
+      });
     });
   }
 
