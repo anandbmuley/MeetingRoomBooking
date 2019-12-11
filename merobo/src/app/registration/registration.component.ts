@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService, RegistrationDto } from '../user.service';
 
 @Component({
@@ -8,14 +8,15 @@ import { UserService, RegistrationDto } from '../user.service';
 })
 export class RegistrationComponent {
 
-  user:RegistrationDto = new RegistrationDto();
+  user: RegistrationDto = new RegistrationDto();
   message = '';
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
-  register(){
-    this.userService.register(this.user).subscribe((response)=>{
+  register() {
+    this.userService.register(this.user).subscribe(() => {
       this.message = 'Registration Successful !';
+      this.user = new RegistrationDto();
     });
   }
 
