@@ -4,11 +4,9 @@
     <mat-grid-tile>
       <mat-card style="width: 100%;" class="example-card">
         <mat-card-header style="width: 100%; text-align: center;">
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title style="width: 300%">Manage Rooms</mat-card-title>
           <mat-card-subtitle style="width: 300%">Add New Room</mat-card-subtitle>
         </mat-card-header>
-        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
         <mat-card-content>
           <mat-form-field>
             <input matInput [(ngModel)]="room.name" placeholder="Room Name">
@@ -31,56 +29,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-</div>
-<!-- <div class="row">
-  <div class="col s4 offset-s4">
-
-    <div class="row">
-      <input type="text" name="roomName" placeholder="Enter room name" [(ngModel)]="room.name">
-    </div>
-
-    <div class="row">
-      <div class="col s6">
-        <label>
-          <input type="checkbox" name="hasProjector" [(ngModel)]="room.hasProjector" />
-          <span>Projector</span>
-        </label>
-      </div>
-      <div class="col">
-        <label>
-          <input type="checkbox" name="hasAc" [(ngModel)]="room.hasAc" />
-          <span>AC</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col s2">
-        <input type="number" name="capacity" placeholder="Capacity" [(ngModel)]="room.capacity">
-      </div>
-    </div>
-
-    <div class="row">
-      <a (click)="addRoom()" class="waves-effect waves-light btn">Add</a>
-    </div>
-
-    <div *ngIf="message" class="row">
-      {{ message }}
-    </div>
-
-  </div>
-</div> -->
-
-<div>
-  <div *ngFor="let room of rooms">
-    <!-- <room [room]="room"></room> -->
-    <!-- <div class="room-card">
-      <h2>{{ room.name }}</h2>
-      <div class="edit-icon">Edit</div>
-      <img *ngIf="room.hasProjector" class="facilities-icon" src="assets/images/projector.png"
-        alt="The room has Projector">
-      <img *ngIf="room.hasAc" class="facilities-icon" src="assets/images/ac.png" alt="The room has AC">
-      <span>{{ room.capacity }}</span>
-    </div> -->
-  </div>
 </div>

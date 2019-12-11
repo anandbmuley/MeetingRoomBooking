@@ -14,6 +14,24 @@
     background-color: rgb(156, 226, 156);
 }
 
-.room-booked{
+.room-booked {
     background-color: coral;
+}
+
+.room-booked mat-card-title, .room-booked mat-card-subtitle {
+    width: 287%;
+}
+
+.room-available mat-card-title, .room-available mat-card-subtitle {
+    width: 150%;
+}
+
+.room-booked mat-card-subtitle {
+    color: rgb(255, 191, 168);
+    font-weight: bold;
+}
+
+.room-available mat-card-subtitle {
+    color: teal;
+    font-weight: bold;
 }

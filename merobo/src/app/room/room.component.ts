@@ -32,7 +32,6 @@ export class RoomComponent implements OnInit {
         this.message = 'AVAILABLE';
         this.isAvailable = true;
       }
-      // console.log("Something went wrong");
     });
   }
 
