@@ -1,8 +1,8 @@
-<li class="collection-item avatar active">
-  <img src="assets/temp/ironman.png" alt="" class="circle">
-  <div class="row" style="float: left">
-    <div *ngIf="user" class="booked-by">{{ user.name }}</div>
-    <div class="booking-slot">8970098700</div>
-  </div>
-  <!-- <a href="#!" class="secondary-content"><i class="material-icons">cancel</i></a> -->
-</li>
+<mat-list-item *ngIf="user">
+  <img matListAvatar width="50px" src="assets/temp/ironman.png" alt="...">
+  <h2 matLine> {{ user.name }} </h2>
+  <p matLine>
+    <span> 8970089899 </span>
+    <!-- <span> Message Content </span> -->
+  </p>
+</mat-list-item>

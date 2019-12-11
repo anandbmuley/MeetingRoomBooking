@@ -1,3 +1,22 @@
+<div>
+  <mat-card style="width: 100%; height: 100%;" [ngClass]="{ 'room-available' : isAvailable, 'room-booked' : !isAvailable }">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{room.name}}</mat-card-title>
+      <mat-card-subtitle>Room Booking</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+      <mat-list>
+        <booking *ngIf="showBookings && currentBooking" [data]="currentBooking"></booking>
+      </mat-list>
+    </mat-card-content>
+    <!-- <mat-card-actions>
+      <a mat-button routerLink="/register">BOOK</a>
+    </mat-card-actions> -->
+  </mat-card>
+</div>
+<!-- 
 <div [ngClass]="{ 'room-available' : isAvailable }" class="card">
   <div class="card-content white-text">
     <span class="card-title">{{room.name}}</span>
@@ -6,4 +25,4 @@
     </ul>
     <span style="color: teal;">{{ message }}</span>
   </div>
-</div>
+</div> -->

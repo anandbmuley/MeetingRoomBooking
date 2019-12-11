@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 
 @Component({
@@ -6,14 +6,14 @@ import { AuthService } from './auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'MEROBO';
   authenticated = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-    this.authenticated = this.authService.isUserLoggedIn();
+  isUserLoggedIn(): boolean {
+    return this.authService.isUserLoggedIn();
   }
 
 }

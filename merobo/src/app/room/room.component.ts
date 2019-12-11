@@ -26,6 +26,7 @@ export class RoomComponent implements OnInit {
   getCurrentBooking() {
     this.bookingService.getCurrent(this.room.id).subscribe((booking: BookingDto) => {
       this.currentBooking = booking;
+      this.isAvailable = false;
     }, (error: HttpErrorResponse) => {
       if (error.status == 404) {
         this.message = 'AVAILABLE';

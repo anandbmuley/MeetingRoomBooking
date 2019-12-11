@@ -1,35 +1,35 @@
-<div class="row">
-  <div class="col s6 offset-s3">
-    <div class="card blue-grey darken-1">
-      <div class="card-content white-text">
-        <span class="card-title">MEROBO</span>
-        <br/><br/><br/>
-        <div class="row">
-          <div class="col s10 offset-s1">
+<mat-grid-list cols="5" rowHeight="1:2">
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>MEROBO</mat-card-title>
+        <mat-card-subtitle>Room Booking</mat-card-subtitle>
+      </mat-card-header>
+      <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" placeholder="Username" [(ngModel)]="login.username">
+        </mat-form-field>
 
-            <div class="row">
-              <input type="text" name="username" placeholder="Username" [(ngModel)]="login.username">
-            </div>
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="Password" [(ngModel)]="login.password">
+        </mat-form-field>
 
-            <div class="row">
-              <input type="password" name="password" placeholder="Password" [(ngModel)]="login.password">
-            </div>
+        <button mat-raised-button color="primary" (click)="authenticate()">Login</button>
 
-            <div class="row">
-              <button class="waves-effect waves-light btn" (click)="authenticate()">Login</button>
-            </div>
-
-            <div class="row">
-              {{message}}
-            </div>
-
-          </div>
+        <div>
+          {{message}}
         </div>
-      </div>
-      <div class="card-action">
-        <a routerLink="/register">REGISTER</a>
-        <a routerLink="/forgot-password">FORGOT PASSWORD</a>
-      </div>
-    </div>
-  </div>
-</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button routerLink="/register">REGISTER</a>
+        <a mat-button routerLink="/forgot-password">FORGOT PASSWORD</a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>

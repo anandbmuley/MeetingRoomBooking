@@ -23,7 +23,17 @@
     cursor: pointer;
 }
 
-.room-card > span {
+.room-card>span {
     font-size: 30px;
     font-weight: 200;
+}
+
+.example-section {
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.example-margin {
+    margin: 0 25px;
 }

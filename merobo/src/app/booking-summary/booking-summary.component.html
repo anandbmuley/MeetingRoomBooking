@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col s12 m4" *ngFor="let room of rooms">
-    <room (click)="viewDetails(room)" [showBookings]="true" [room]="room"></room>
-  </div>
-</div>
+<mat-grid-list cols="4" rowHeight="3:1">
+  <mat-grid-tile *ngFor="let room of rooms">
+    <room (click)="viewDetails(room)" [showBookings]="false" [room]="room"></room>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -14,10 +14,12 @@ import java.util.stream.Collectors;
 public class RoomService {
 
     private final RoomRepository roomRepository;
+    private final BookingService bookingService;
 
     @Autowired
-    public RoomService(RoomRepository roomRepository) {
+    public RoomService(RoomRepository roomRepository, BookingService bookingService) {
         this.roomRepository = roomRepository;
+        this.bookingService = bookingService;
     }
 
     public String save(RoomDto roomDto) {
@@ -31,11 +33,14 @@ public class RoomService {
 
     public List<RoomDto> fetchAll() {
         return roomRepository.findAll().stream().map($ ->
-                new RoomDto($.getId(),
-                        $.getName(),
-                        $.hasProjector(),
-                        $.hasAc(),
-                        $.getCapacity())
+                {
+                    boolean isBooked = bookingService.getCurrent($.getId()).isPresent();
+                    return new RoomDto($.getId(),
+                            $.getName(),
+                            $.hasProjector(),
+                            $.hasAc(),
+                            $.getCapacity(), isBooked);
+                }
         ).collect(Collectors.toList());
     }
 

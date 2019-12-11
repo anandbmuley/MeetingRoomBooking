@@ -1,6 +1,5 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { UserService, LoginDto } from '../user.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { LoginDto } from '../user.service';
 import { AuthService } from '../auth/auth.service';
 
 @Component({
@@ -13,33 +12,17 @@ export class LoginComponent implements OnInit {
   login: LoginDto;
   message = '';
 
-  constructor(private userService: UserService,
-    private router: Router,
-    private authService: AuthService) {
-  }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.login = {
       username: null,
       password: null
     }
-
   }
 
   authenticate() {
     this.authService.login(this.login);
-    // this.userService.authenticate(this.login).subscribe((response)=>{
-    //   this.message = 'Authentication Successful !';
-    //   this.authService.isLoggedIn = true;
-    //   console.log("REDIRECTING : "+this.authService.redirectUrl);
-    //   if( this.authService.redirectUrl == undefined ){
-    //     this.router.navigate(['home']);
-    //   } else {
-    //     this.router.navigate([this.authService.redirectUrl]);
-    //   }
-    // },(error)=>{
-    //   this.message = 'Something Went Wrong !';
-    // });
   }
 
 }

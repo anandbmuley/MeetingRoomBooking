@@ -1,16 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <nav *ngIf="authenticated">
-    <div class="nav-wrapper">
-      <a routerLink="/home" class="brand-logo">{{ title }}</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a routerLink="/home">HOME</a></li>
-        <li><a routerLink="/admin/rooms">MANAGE ROOMS</a></li>
-        <li><a routerLink="/rooms">BOOK ROOM</a></li>
-        <li><a routerLink="/logout">LOGOUT</a></li>
-      </ul>
-    </div>
-  </nav>
-
+  <mat-grid-list *ngIf="isUserLoggedIn()" style="background-color: teal;" cols="5" rowHeight="5:1">
+    <mat-grid-tile>
+      <a mat-button routerLink="/home">HOME</a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a mat-button routerLink="/admin/rooms">MANAGE ROOMS</a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <a mat-button routerLink="/rooms">BOOK ROOM</a>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+      <a mat-button routerLink="/logout">LOGOUT</a>
+    </mat-grid-tile>
+  </mat-grid-list>
   <router-outlet></router-outlet>
 </div>

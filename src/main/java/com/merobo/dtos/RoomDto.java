@@ -10,6 +10,7 @@ public class RoomDto {
     private Boolean hasProjector;
     private Boolean hasAc;
     private Integer capacity;
+    private boolean booked;
 
     @JsonCreator
     public RoomDto(@JsonProperty String id,
@@ -22,6 +23,15 @@ public class RoomDto {
         this.hasProjector = hasProjector;
         this.hasAc = hasAc;
         this.capacity = capacity;
+    }
+
+    public RoomDto(String id, String name, Boolean hasProjector, Boolean hasAc, Integer capacity, boolean booked) {
+        this.id = id;
+        this.name = name;
+        this.hasProjector = hasProjector;
+        this.hasAc = hasAc;
+        this.capacity = capacity;
+        this.booked = booked;
     }
 
     public String getId() {
@@ -42,5 +52,9 @@ public class RoomDto {
 
     public Integer getCapacity() {
         return capacity;
+    }
+
+    public boolean isBooked() {
+        return booked;
     }
 }

@@ -1,22 +1,19 @@
-<div class="col s12 m7">
-  <h4 *ngIf="room" class="header">{{ room.name }}</h4>
-  <div class="card horizontal">
-    <div class="card-image">
-      <img src="assets/temp/sample-room.jpg">
-    </div>
-    <div class="card-stacked">
-      <div class="card-content">
-        <ul *ngIf="bookings" class="collection">
+<div align="center" style="margin-top: 15px;">
+  <mat-card style="width: 70%;height:100%; background-color:lavender" [ngClass]="{ 'room-available' : isAvailable }">
+    <mat-card-header style="width:fit-content">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title *ngIf="room">{{room.name}}</mat-card-title>
+      <!-- <mat-card-subtitle>Room Booking</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-grid-list cols="2">
+      <mat-grid-tile>
+        <img mat-card-image src="assets/temp/sample-room.jpg" alt="Photo of a Shiba Inu">
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-list>
           <booking [data]="booking" *ngFor="let booking of bookings"></booking>
-        </ul>
-        <div>
-          <h5 style="color: teal;">{{ message }}</h5>
-          <p style="color: darkslategray;">Hurry Up ! Book Now if you need it.</p>
-        </div>
-      </div>
-      <div class="card-action">
-        <button class="btn waves-effect waves-light" (click)="viewBookRoomPage(room.id)">Book</button>
-      </div>
-    </div>
-  </div>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
 </div>

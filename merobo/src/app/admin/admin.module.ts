@@ -7,6 +7,12 @@ import { AdminComponent } from './admin/admin.component';
 import { ManageRoomsComponent } from './manage-rooms/manage-rooms.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +24,12 @@ import { BrowserModule } from '@angular/platform-browser';
     BrowserModule,
     FormsModule,
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule
   ]
 })
 export class AdminModule { }

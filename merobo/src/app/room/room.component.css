@@ -13,3 +13,7 @@
 .room-available {
     background-color: rgb(156, 226, 156);
 }
+
+.room-booked{
+    background-color: coral;
+}

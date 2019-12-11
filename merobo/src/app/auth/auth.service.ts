@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClient } from '@angular/common/http';
 import { LoginDto, UserService } from '../user.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +13,7 @@ export interface AuthResponseDto {
 })
 export class AuthService {
 
-  isLoggedIn = false;
+  loggedIn = false;
   redirectUrl: string;
 
   constructor(private cookieService: CookieService,
@@ -44,16 +41,16 @@ export class AuthService {
     return this.userService.authenticate(loginDto).subscribe((foundUser: AuthResponseDto) => {
       this.createAuthCookie(foundUser);
       this.handleRedirect();
+      this.loggedIn = true;
     });
   }
 
   logout() {
-    this.isLoggedIn = false;
-    this.cookieService.delete('auth');
-    this.cookieService.delete('authId');
+    this.loggedIn = false;
+    this.cookieService.deleteAll();
   }
 
-  isUserLoggedIn() {
+  isUserLoggedIn(): boolean {
     return this.cookieService.get('auth') === 'true';
   }
 
