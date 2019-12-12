@@ -8,7 +8,7 @@
     </mat-card-header>
     <mat-card-content>
       <mat-list>
-        <booking *ngIf="showBookings && currentBooking" [data]="currentBooking"></booking>
+        <booking *ngIf="showBookings && currentBooking" [roomId]="room.id" [data]="currentBooking"></booking>
       </mat-list>
     </mat-card-content>
   </mat-card>

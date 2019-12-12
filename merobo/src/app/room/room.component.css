@@ -19,7 +19,7 @@
 }
 
 .room-booked mat-card-title, .room-booked mat-card-subtitle {
-    width: 287%;
+    width: 280%;
 }
 
 .room-available mat-card-title, .room-available mat-card-subtitle {

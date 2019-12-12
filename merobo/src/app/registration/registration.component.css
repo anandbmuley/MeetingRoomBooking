@@ -1,11 +1,18 @@
 .registration-card {
     width: 30%;
+    background-color: teal;
+    padding: 3%;
+    top: 20px;
 }
 
 mat-card-title {
-    width: 387%;
+    width: 250%;
+    font-size: 35px !important;
+    color: white;
 }
 
 mat-card-subtitle {
-    width: 387%;
+    width: 250%;
+    font-size: 20px;
+    color: white;
 }

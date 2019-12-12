@@ -34,7 +34,7 @@ public class UserService {
 
     public LoginResponseDto login(LoginDto loginDto) throws UserServiceException {
         User founderUser = userRepository.findByUsernameAndPassword(loginDto.getUsername(), encode(loginDto.getPassword())).orElseThrow(UserNotFoundException::new);
-        return new LoginResponseDto(founderUser.getId());
+        return new LoginResponseDto(founderUser.getId(), founderUser.getRole());
     }
 
     public void create(RegisterUserDto registerUserDto) throws UserServiceException {
@@ -46,7 +46,8 @@ public class UserService {
                 registerUserDto.getEmailId(),
                 registerUserDto.getContactNo(),
                 registerUserDto.getUsername(),
-                encode(registerUserDto.getPassword()));
+                encode(registerUserDto.getPassword()),
+                registerUserDto.getRole());
         userRepository.save(newUser);
     }
 
@@ -74,6 +75,6 @@ public class UserService {
     }
 
     public Optional<UserDto> findBy(String userId) {
-        return userRepository.findById(userId).map($ -> new UserDto($.getName()));
+        return userRepository.findById(userId).map($ -> new UserDto($.getName(), $.getEmailId(), $.getContactNo(), $.getRole()));
     }
 }

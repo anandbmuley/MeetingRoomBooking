@@ -20,7 +20,6 @@ public class MeetingRoomBookingApp {
     public Docket meroboAPI() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select().apis(RequestHandlerSelectors.basePackage("com.merobo.resources"))
-//                .paths(regex("/product.*"))
                 .build();
     }
 

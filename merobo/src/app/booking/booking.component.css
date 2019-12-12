@@ -1,28 +1,26 @@
-li {
-    border-radius: 5px;
-    margin: 10px !important;
-}
-
 .booked-by {
     font-size: 25px;
-    color: rgb(132, 233, 233);
+    color: teal;
+    margin: 10px;
 }
 
-.booked-by-person {
-    font-size: 16px;
-    color: rgb(132, 233, 233);
-}
-
-.booking-slot {
+.booked-by-contact-details {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 18px;
     margin-left: 5px;
-    color: black;
+    color: white;
 }
 
 .booking-time {
     margin-top: 10px;
     font-size: 15px;
     margin-left: 5px;
-    color: black;
+}
+
+.cancel-booking-icon {
+    position: relative;
+    right: -88px;
+    width: 10px;
+    top: -45px;
+    cursor: pointer;
 }

@@ -1,6 +1,7 @@
 package com.merobo.dtos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.merobo.beans.UserRole;
 
 public class RegisterUserDto {
 
@@ -9,7 +10,7 @@ public class RegisterUserDto {
     private String contactNo;
     private String username;
     private String password;
-    private String teamName;
+    private UserRole role;
 
     @JsonCreator
     public RegisterUserDto(
@@ -17,13 +18,18 @@ public class RegisterUserDto {
             String emailId,
             String contactNo,
             String username,
-            String password) {
+            String password,
+            UserRole role) {
         this.name = name;
         this.emailId = emailId;
         this.contactNo = contactNo;
         this.username = username;
         this.password = password;
-        this.teamName = teamName;
+        this.role = (role == null ? UserRole.USER : role);
+    }
+
+    public UserRole getRole() {
+        return role;
     }
 
     public String getUsername() {
@@ -32,10 +38,6 @@ public class RegisterUserDto {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getTeamName() {
-        return teamName;
     }
 
     public String getName() {
@@ -50,15 +52,4 @@ public class RegisterUserDto {
         return contactNo;
     }
 
-    @Override
-    public String toString() {
-        return "RegisterUserTo{" +
-                "name='" + name + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", contactNo='" + contactNo + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", teamName='" + teamName + '\'' +
-                '}';
-    }
 }

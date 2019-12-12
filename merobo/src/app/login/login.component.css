@@ -1,0 +1,15 @@
+.login-card {
+    background-color: teal;
+}
+
+mat-card-title {
+    font-size: 35px !important;
+    position: relative;
+    left: -9px;
+}
+
+.login-card mat-card-title, .login-card mat-card-subtitle {
+    color: white;
+    position: relative;
+    left: -9px;
+}

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from 'src/app/auth/auth.service';
 
 export interface ContactDto {
   emailId: string
@@ -12,6 +13,7 @@ export interface BookedByDto {
 }
 
 export interface BookingDto {
+  id: string
   startTime: string
   endTime: string
   bookedById: string
@@ -50,9 +52,8 @@ export class BookingVO {
 })
 export class BookingService {
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private httpClient: HttpClient,
+    private authService: AuthService) { }
 
   getCurrent(roomId: string) {
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/today/current`
@@ -60,8 +61,23 @@ export class BookingService {
   }
 
   getTodays(roomId: string) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'auth-id': this.authService.getAuthId()
+      })
+    };
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/today`
-    return this.httpClient.get(url);
+    return this.httpClient.get(url, httpOptions);
+  }
+
+  cancel(roomId: string, bookingId: string) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'auth-id': this.authService.getAuthId()
+      })
+    };
+    let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/${bookingId}/cancel`
+    return this.httpClient.put(url, null, httpOptions);
   }
 
   getAll(roomId: string) {

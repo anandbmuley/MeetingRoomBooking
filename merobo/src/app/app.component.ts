@@ -10,10 +10,14 @@ export class AppComponent {
   title = 'MEROBO';
   authenticated = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   isUserLoggedIn(): boolean {
     return this.authService.isUserLoggedIn();
+  }
+
+  isAdmin() : boolean {
+    return this.authService.isAdmin();
   }
 
 }

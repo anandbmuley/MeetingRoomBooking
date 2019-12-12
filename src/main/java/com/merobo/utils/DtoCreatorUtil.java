@@ -19,7 +19,6 @@ public abstract class DtoCreatorUtil {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setName(user.getName());
-        userDto.setTeamName(user.getTeamName());
         return userDto;
     }
 

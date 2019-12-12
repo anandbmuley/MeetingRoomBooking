@@ -1,19 +1,26 @@
-<div align="center" style="margin-top: 15px;">
-  <mat-card style="width: 70%;height:100%; background-color:lavender" [ngClass]="{ 'room-available' : isAvailable }">
+<div align="center">
+  <mat-card>
     <mat-card-header style="width:fit-content">
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title *ngIf="room">{{room.name}}</mat-card-title>
-      <!-- <mat-card-subtitle>Room Booking</mat-card-subtitle> -->
+      <mat-card-subtitle>Bookings for Today</mat-card-subtitle>
     </mat-card-header>
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <img mat-card-image src="assets/temp/sample-room.jpg" alt="Photo of a Shiba Inu">
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-list>
-          <booking [data]="booking" *ngFor="let booking of bookings"></booking>
-        </mat-list>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <mat-card-content>
+      <mat-grid-list cols="12" rowHeight="1:4">
+        <mat-grid-tile colspan="8">
+          <img mat-card-image src="assets/temp/sample-room.jpg" alt="Sample Room Photo">
+        </mat-grid-tile>
+        <mat-grid-tile colspan="4" style="overflow: visible">
+          <ul style="list-style-type:none;">
+            <li *ngFor="let booking of bookings">
+              <booking [roomId]="room.id" [data]="booking"></booking>
+            </li>
+          </ul>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="viewBookRoomPage(room.id)">BOOK</button>
+    </mat-card-actions>
   </mat-card>
 </div>

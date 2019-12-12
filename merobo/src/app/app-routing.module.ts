@@ -9,6 +9,7 @@ import { ManageRoomsComponent } from './admin/manage-rooms/manage-rooms.componen
 import { RoomDetailsComponent } from './room-details/room-details.component';
 import { BookComponent } from './room/book/book.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
   {
@@ -24,30 +25,21 @@ const routes: Routes = [
     path: 'home', component: HomeComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'room-details/:id', component: RoomDetailsComponent
+    path: 'room-details/:id', component: RoomDetailsComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'rooms/:id', component: BookComponent
+    path: 'rooms/:id', component: BookComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'rooms', component: BookComponent
+    path: 'rooms', component: BookComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'admin/rooms', component : ManageRoomsComponent, canActivate: [AuthGuard]
+    path: 'admin/rooms', component: ManageRoomsComponent, canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard]
-    // children: [
-    //   {
-    //     path: '',
-    //     canActivateChild : [AuthGuard],
-    //     children: [
-    //       { path: 'rooms', component: ManageRoomsComponent }
-    //     ]
-    //   }
-    // ]
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'

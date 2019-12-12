@@ -14,17 +14,19 @@ public class User {
     private String username;
     private String password;
     private String teamName;
+    private UserRole role;
 
     private User() {
 
     }
 
-    public User(String name, String emailId, String contactNo, String username, String password) {
+    public User(String name, String emailId, String contactNo, String username, String password, UserRole role) {
         this.name = name;
         this.emailId = emailId;
         this.contactNo = contactNo;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
     public String getId() {
@@ -53,6 +55,10 @@ public class User {
 
     public String getTeamName() {
         return teamName;
+    }
+
+    public UserRole getRole() {
+        return role;
     }
 
     public void setName(String name) {

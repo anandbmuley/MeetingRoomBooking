@@ -19,6 +19,7 @@ export class BookComponent implements OnInit {
   hours: Array<number>;
   minutes: Array<number>;
   startHour: number;
+  roomName: string;
 
   bookingVO: BookingVO = new BookingVO();
 
@@ -35,7 +36,7 @@ export class BookComponent implements OnInit {
     }
 
     this.minutes = new Array();
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 60; i += 15) {
       this.minutes.push(i);
     }
   }
@@ -47,6 +48,9 @@ export class BookComponent implements OnInit {
         this.rooms = rooms;
       });
     } else {
+      this.roomService.findOne(roomId).subscribe((room: RoomDto) => {
+        this.roomName = room.name;
+      });
       this.roomId = roomId;
     }
   }
@@ -55,6 +59,7 @@ export class BookComponent implements OnInit {
     let datePipe = new DatePipe('en-US');
     let bookingDtFormatted = datePipe.transform(this.bookingVO.bookingDate, 'dd-MM-yyyy');
     this.booking = {
+      id: null,
       bookedById: this.authService.getAuthId(),
       startTime: bookingDtFormatted + ' ' + this.bookingVO.startTimeModel.getTime(),
       endTime: bookingDtFormatted + ' ' + this.bookingVO.endTimeModel.getTime()

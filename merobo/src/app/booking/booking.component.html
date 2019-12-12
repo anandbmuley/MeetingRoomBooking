@@ -1,8 +1,8 @@
-<mat-list-item *ngIf="user">
-  <img matListAvatar width="50px" src="assets/temp/ironman.png" alt="...">
-  <h2 matLine> {{ user.name }} </h2>
-  <p matLine>
-    <span> 8970089899 </span>
-    <!-- <span> Message Content </span> -->
-  </p>
-</mat-list-item>
+<div *ngIf="user">
+  <div class="booked-by"> {{ user.name }} </div>
+  <div (click)="cancel()" class="cancel-booking-icon" *ngIf="data.bookedByMe">X</div>
+  <div>
+    <div class="booked-by-contact-details"> {{ user.contactNo }} </div>
+    <span class="booking-time"> {{ data.startTime }} - {{ data.endTime }} </span>
+  </div>
+</div>

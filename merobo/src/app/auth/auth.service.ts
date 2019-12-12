@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 export interface AuthResponseDto {
   userId: string
   loginTime: string
+  admin: string
 }
 
 @Injectable({
@@ -31,6 +32,7 @@ export class AuthService {
   createAuthCookie(user: AuthResponseDto) {
     this.cookieService.set('auth', 'true');
     this.cookieService.set('authId', user.userId);
+    this.cookieService.set('admin', user.admin);
   }
 
   getAuthId() {
@@ -54,8 +56,21 @@ export class AuthService {
     return this.cookieService.get('auth') === 'true';
   }
 
+  isAdmin(): boolean {
+    return this.cookieService.get('admin') === 'true';
+  }
+
   checkLogin(url: string): boolean {
     if (this.cookieService.get('auth') === 'true') {
+      return true;
+    }
+    this.redirectUrl = url;
+    this.router.navigate(['/login']);
+    return false;
+  }
+
+  checkAdmin(url: string): boolean {
+    if (this.isAdmin()) {
       return true;
     }
     this.redirectUrl = url;

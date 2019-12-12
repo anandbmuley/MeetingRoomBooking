@@ -11,6 +11,7 @@ import java.util.Date;
 public abstract class DateConverterUtil {
 
     public static String PATTERN_DD_MM_YYYY_HH_MM_MERIDIAN = "dd-MM-yyyy hh:mm a";
+    public static String PATTERN_HH_MM_MERIDIAN = "hh:mm a";
     public static String PATTERN_DD_MM_YYYY = "dd-MM-yyyy";
 
     public static String toString(Date date, String pattern) {
@@ -19,7 +20,7 @@ public abstract class DateConverterUtil {
     }
 
     public static String formatTime(LocalDateTime dateTime) {
-        return DateTimeFormatter.ofPattern(PATTERN_DD_MM_YYYY_HH_MM_MERIDIAN).format(dateTime);
+        return DateTimeFormatter.ofPattern(PATTERN_HH_MM_MERIDIAN).format(dateTime);
     }
 
     public static LocalDate parseDate(String date) {

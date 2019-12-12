@@ -5,8 +5,11 @@
       <mat-card style="width: 100%;" class="example-card">
         <mat-card-header style="width: 100%; text-align: center;">
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title style="width: 300%">Book Room</mat-card-title>
-          <mat-card-subtitle style="width: 300%">Book your time slot</mat-card-subtitle>
+          <mat-card-title style="width: 200%">Book Room</mat-card-title>
+          <mat-card-subtitle style="width: 200%">
+            <span *ngIf="roomName">You are booking room <b>{{ roomName }}</b></span>
+            <span *ngIf="!roomName">Please select a Room to Book</span>
+          </mat-card-subtitle>
         </mat-card-header>
         <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
         <mat-card-content>

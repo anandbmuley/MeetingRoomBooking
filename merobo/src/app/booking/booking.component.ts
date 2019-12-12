@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BookingDto } from './services/booking.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { BookingDto, BookingService } from './services/booking.service';
 import { UserDto, UserService } from '../user.service';
 
 @Component({
@@ -10,15 +10,25 @@ import { UserDto, UserService } from '../user.service';
 export class BookingComponent implements OnInit {
 
   @Input() data: BookingDto;
+  @Input() roomId: string;
   user: UserDto;
 
-  constructor(private userService: UserService) { }
+  @Output() bookingCancelled = new EventEmitter();
+
+  constructor(private userService: UserService,
+    private bookingService: BookingService) { }
 
   ngOnInit() {
     this.userService.getUser(this.data.bookedById).subscribe((userDto: UserDto) => {
       this.user = userDto;
     });
 
+  }
+
+  cancel() {
+    this.bookingService.cancel(this.roomId, this.data.id).subscribe((status) => {
+
+    });
   }
 
 }

@@ -1,16 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <mat-grid-list *ngIf="isUserLoggedIn()" style="background-color: teal;" cols="5" rowHeight="5:1">
+  <mat-grid-list *ngIf="isUserLoggedIn()" style="background-color: teal;" cols="10" rowHeight="2:1">
+    <mat-grid-tile>
+      <a mat-button routerLink="/home" style="font-size: 20px;">MEROBO</a>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!isAdmin()" colspan="6"></mat-grid-tile>
+    <mat-grid-tile *ngIf="isAdmin()" colspan="5"></mat-grid-tile>
     <mat-grid-tile>
       <a mat-button routerLink="/home">HOME</a>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile *ngIf="isAdmin()">
       <a mat-button routerLink="/admin/rooms">MANAGE ROOMS</a>
     </mat-grid-tile>
     <mat-grid-tile>
       <a mat-button routerLink="/rooms">BOOK ROOM</a>
     </mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
     <mat-grid-tile>
       <a mat-button routerLink="/logout">LOGOUT</a>
     </mat-grid-tile>

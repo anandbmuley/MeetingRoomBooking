@@ -21,6 +21,7 @@ public class BookingDto {
     private String bookedById;
     private String roomId;
     private BookingStatus status;
+    private boolean bookedByMe;
 
     @JsonCreator
     public BookingDto(
@@ -79,6 +80,14 @@ public class BookingDto {
 
     public BookingStatus getStatus() {
         return status;
+    }
+
+    public void setBookedByMe(boolean bookedByMe) {
+        this.bookedByMe = bookedByMe;
+    }
+
+    public boolean isBookedByMe() {
+        return bookedByMe;
     }
 
     public void roomBooked(String id) {

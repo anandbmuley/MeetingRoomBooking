@@ -2,6 +2,7 @@ package com.merobo.resources;
 
 import com.merobo.dtos.BookingDto;
 import com.merobo.exceptions.BookingServiceException;
+import com.merobo.exceptions.UnAuthorizedAccessException;
 import com.merobo.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,12 @@ public class BookingResource {
         return bookingService.getCurrent(roomId).map(ResponseEntity::ok).orElseGet(ResponseEntity.notFound()::build);
     }
 
+    @PutMapping("{bookingId}/cancel")
+    public ResponseEntity cancel(@PathVariable("id") String roomId, @PathVariable("bookingId") String bookingId, @RequestHeader("auth-id") String authId) throws UnAuthorizedAccessException {
+        bookingService.cancelBooking(authId, roomId, bookingId);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping
     public ResponseEntity bookRoom(@PathVariable("id") String roomId, @RequestBody BookingDto bookingDto) {
         ResponseEntity response = null;
@@ -45,25 +52,19 @@ public class BookingResource {
     }
 
     @GetMapping
-    public ResponseEntity getAllBookings(@PathVariable("id") String roomId) {
-        return ResponseEntity.ok(bookingService.getAll(roomId));
+    public ResponseEntity getAllBookings(@PathVariable("id") String roomId, @RequestHeader("auth-id") String authId) {
+        return ResponseEntity.ok(bookingService.getAll(roomId, authId));
     }
 
     @GetMapping("today")
-    public ResponseEntity<List<BookingDto>> getTodaysBookings(@PathVariable("id") String roomId) {
-        List<BookingDto> todaysBookings = bookingService.getAll(roomId, LocalDate.now());
+    public ResponseEntity<List<BookingDto>> getTodaysBookings(@PathVariable("id") String roomId, @RequestHeader("auth-id") String authId) {
+        List<BookingDto> todaysBookings = bookingService.getAll(roomId, authId, LocalDate.now());
         return CollectionUtils.isEmpty(todaysBookings) ? ResponseEntity.notFound().build() : ResponseEntity.ok(todaysBookings);
     }
 
     @GetMapping("{bookingDate}")
     public ResponseEntity<List<BookingDto>> getBookingsFor(@PathVariable("id") String roomId, @PathVariable String bookingDate) {
         return ResponseEntity.ok(bookingService.getAll(roomId, bookingDate));
-    }
-
-    @DeleteMapping
-    public ResponseEntity cancelBooking(@RequestParam("bid") String bookingId) {
-        bookingService.cancelBooking(bookingId);
-        return ResponseEntity.ok().build();
     }
 
 }
