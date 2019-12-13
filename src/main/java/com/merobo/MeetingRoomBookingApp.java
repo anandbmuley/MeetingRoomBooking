@@ -8,7 +8,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication(scanBasePackages = "com.merobo")
+@SpringBootApplication(scanBasePackages = {"com.merobo", "abm.contentmanager"})
 @EnableSwagger2
 public class MeetingRoomBookingApp {
 

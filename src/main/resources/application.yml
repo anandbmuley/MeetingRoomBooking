@@ -1,0 +1,21 @@
+upload:
+  location: /home/anandmuley/Uploads
+
+server:
+  port: 8080
+  servlet:
+    context-path: /merobo/api
+
+spring:
+  data.mongodb:
+    hostname: localhost
+    port: 27017
+    database: content-manager
+
+  # Configuring File Size
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true

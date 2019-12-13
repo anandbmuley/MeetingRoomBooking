@@ -40,5 +40,15 @@ public class AdminResource {
         ).build();
     }
 
+//    @PutMapping(value = "rooms/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public ResponseEntity uploadRoomImage(@RequestParam MultipartFile file, @RequestParam String folderName) throws ServiceException {
+//        try {
+//            contentManager.upload(new ContentDto(file, folderName));
+//        } catch (IOException | AppConfigException e) {
+//            throw new RoomServiceException(e);
+//        }
+//        return ResponseEntity.ok().build();
+//    }
+
 
 }

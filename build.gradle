@@ -20,12 +20,16 @@ bootJar {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+    // PROPRIETARY IMPLEMENTATIONS
+    compile("abm:content-manager:1.0.0-SNAPSHOT")
+
     // SWAGGER INTEGRATION
     compile("io.springfox:springfox-swagger2:2.6.1")
     compile("io.springfox:springfox-swagger-ui:2.6.1")
@@ -33,6 +37,7 @@ dependencies {
     compile("org.json:json:20190722")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile("org.springframework.boot:spring-boot-starter-hateoas:2.2.2.RELEASE")
 
 
     testImplementation 'org.codehaus.groovy:groovy-all:2.5.6'
