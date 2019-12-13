@@ -20,6 +20,8 @@ export class BookComponent implements OnInit {
   minutes: Array<number>;
   startHour: number;
   roomName: string;
+  today = new Date()
+  maxDate: Date;
 
   bookingVO: BookingVO = new BookingVO();
 
@@ -39,6 +41,9 @@ export class BookComponent implements OnInit {
     for (let i = 0; i < 60; i += 15) {
       this.minutes.push(i);
     }
+
+    this.maxDate = new Date();
+    this.maxDate.setDate(this.today.getDate() + 2);
   }
 
   ngOnInit() {
