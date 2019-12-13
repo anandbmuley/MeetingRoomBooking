@@ -69,6 +69,18 @@ export class BookComponent implements OnInit {
         duration: 3000
       });
       this.bookingVO = new BookingVO();
+    }, (response) => {
+      if(response.status == 409){
+        let startTime = datePipe.transform(response.error.startTime, 'hh:mm a');
+        let endTime = datePipe.transform(response.error.endTime, 'hh:mm a');
+        this.snackBar.open('Room is already booked from '+startTime+' to '+endTime, null, {
+          duration: 3000
+        });
+      } else if (response.status == 500){
+        this.snackBar.open('Something went wrong !', null, {
+          duration: 3000
+        });
+      }
     });
   }
 

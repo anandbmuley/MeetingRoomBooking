@@ -1,7 +1,7 @@
 package com.merobo.resources;
 
 import com.merobo.dtos.BookingDto;
-import com.merobo.exceptions.BookingServiceException;
+import com.merobo.exceptions.BookingValidationServiceException;
 import com.merobo.exceptions.UnAuthorizedAccessException;
 import com.merobo.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +44,9 @@ public class BookingResource {
             bookingDto.setRoomId(roomId);
             bookingService.bookRoom(bookingDto);
             response = ResponseEntity.created(URI.create(bookingDto.getId())).build();
-        } catch (BookingServiceException e) {
-            response = ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(e.getCause().getMessage());
+        } catch (BookingValidationServiceException e) {
+            response = ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(e.getMessage());
         }
         return response;
     }

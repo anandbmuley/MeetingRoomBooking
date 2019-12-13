@@ -1,0 +1,8 @@
+.book-room-card{
+    background-color: teal;
+    padding: 30px !important;
+}
+
+mat-card-title, mat-card-subtitle {
+    color: white;
+}

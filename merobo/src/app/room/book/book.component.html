@@ -2,7 +2,7 @@
   <mat-grid-list cols="3">
     <mat-grid-tile></mat-grid-tile>
     <mat-grid-tile>
-      <mat-card style="width: 100%;" class="example-card">
+      <mat-card style="width: 100%;" class="book-room-card">
         <mat-card-header style="width: 100%; text-align: center;">
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title style="width: 200%">Book Room</mat-card-title>
@@ -36,19 +36,19 @@
               <mat-grid-tile>Start Time</mat-grid-tile>
               <mat-grid-tile>End Time</mat-grid-tile>
               <mat-grid-tile>
-                <mat-form-field style="width: 40%;">
+                <mat-form-field style="width: 35%;">
                   <mat-label>HH</mat-label>
                   <mat-select [(ngModel)]="bookingVO.startTimeModel.hh">
                     <mat-option *ngFor="let item of hours" [value]="item">{{ item }}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field style="width: 40%;">
+                <mat-form-field style="width: 35%;">
                   <mat-label>MM</mat-label>
                   <mat-select [(ngModel)]="bookingVO.startTimeModel.mm">
                     <mat-option *ngFor="let item of minutes" [value]="item">{{ item }}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field style="width: 20%;">
+                <mat-form-field style="width: 30%;">
                   <mat-label>AM</mat-label>
                   <mat-select [(ngModel)]="bookingVO.startTimeModel.meridian">
                     <mat-option selected value="AM">AM</mat-option>
@@ -57,19 +57,19 @@
                 </mat-form-field>
               </mat-grid-tile>
               <mat-grid-tile style="margin-left: 15px; margin-right: 15px">
-                <mat-form-field style="width: 40%;">
+                <mat-form-field style="width: 35%;">
                   <mat-label>HH</mat-label>
                   <mat-select [(ngModel)]="bookingVO.endTimeModel.hh">
                     <mat-option *ngFor="let item of hours" [value]="item">{{ item }}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field style="width: 40%;">
+                <mat-form-field style="width: 35%;">
                   <mat-label>MM</mat-label>
                   <mat-select [(ngModel)]="bookingVO.endTimeModel.mm">
                     <mat-option *ngFor="let item of minutes" [value]="item">{{ item }}</mat-option>
                   </mat-select>
                 </mat-form-field>
-                <mat-form-field style="width: 20%;">
+                <mat-form-field style="width: 30%;">
                   <mat-label>AM</mat-label>
                   <mat-select [(ngModel)]="bookingVO.endTimeModel.meridian">
                     <mat-option selected value="AM">AM</mat-option>
@@ -83,7 +83,7 @@
 
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="bookRoom()">BOOK</button>
+          <button mat-raised-button (click)="bookRoom()">BOOK</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

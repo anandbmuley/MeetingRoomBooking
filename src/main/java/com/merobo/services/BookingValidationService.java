@@ -4,9 +4,15 @@ import com.merobo.beans.Booking;
 import com.merobo.dtos.BookingDto;
 import com.merobo.exceptions.BookingValidationServiceException;
 import com.merobo.exceptions.booking.BookingClashesException;
+import com.merobo.exceptions.booking.EndTimeClashesException;
+import com.merobo.exceptions.booking.StartTimeClashesException;
 import com.merobo.repositories.BookingRepository;
+import com.merobo.utils.BookingStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookingValidationService {
@@ -14,29 +20,32 @@ public class BookingValidationService {
     @Autowired
     private BookingRepository bookingRepository;
 
-    public void validateBooking(BookingDto bookingDto) throws BookingValidationServiceException {
-//        List<BookingBean> existingBookings = bookingRepository.findByRoomName(bookingTo.getRoomName()).stream().filter(booking -> BookingStatus.BOOKED.equals(booking.getStatus())).collect(Collectors.toList());
-//        for (BookingBean bookingBean : existingBookings) {
-//            checkForClash(bookingTo, bookingBean);
-//        }
+    public void validateBooking(BookingDto bookingTo) throws BookingValidationServiceException {
+        List<Booking> existingBookings = bookingRepository.findByRoomIdAndStatus(bookingTo.getRoomId(), BookingStatus.BOOKED)
+                .stream()
+                .collect(Collectors.toList());
+        for (Booking bookingBean : existingBookings) {
+            checkForClash(bookingTo, bookingBean);
+        }
     }
 
-    public void checkForClash(BookingDto bookingDto, Booking booking) throws BookingClashesException {
-//        if (bookingTo.getStartDateTime().after(bookingBean.getStartTime())
-//                && bookingTo.getStartDateTime().before(bookingBean.getEndTime())) {
-//            throw new StartTimeClashesException(bookingBean.toJSON());
-//        } else if (bookingTo.getEndDateTime().after(bookingBean.getStartTime())
-//                && bookingTo.getEndDateTime().before(bookingBean.getEndTime())) {
-//            throw new EndTimeClashesException(bookingBean.toJSON());
-//        } else if (bookingTo.getStartDateTime().equals(bookingBean.getStartTime())
-//                || bookingTo.getStartDateTime().equals(bookingBean.getEndTime())) {
-//            throw new StartTimeClashesException(bookingBean.toJSON());
-//        } else if (bookingTo.getEndDateTime().equals(bookingBean.getStartTime())
-//                || bookingTo.getEndDateTime().equals(bookingBean.getEndTime())) {
-//            throw new EndTimeClashesException(bookingBean.toJSON());
-//        } else if (bookingBean.getEndTime().after(bookingTo.getStartDateTime())
-//                && bookingBean.getEndTime().before(bookingTo.getEndDateTime())) {
-//            throw new EndTimeClashesException(bookingBean.toJSON());
-//        }
+    private void checkForClash(BookingDto needToBook, Booking existingBooking) throws BookingClashesException {
+        if (needToBook.getStartDateTime().isAfter(existingBooking.getStartTime())
+                && needToBook.getStartDateTime().isBefore(existingBooking.getEndTime())) {
+            throw new StartTimeClashesException(existingBooking.toJSON());
+        } else if (needToBook.getEndDateTime().isAfter(existingBooking.getStartTime())
+                && needToBook.getEndDateTime().isBefore(existingBooking.getEndTime())) {
+            throw new EndTimeClashesException(existingBooking.toJSON());
+        } else if (needToBook.getStartDateTime().equals(existingBooking.getStartTime())
+                && needToBook.getStartDateTime().equals(existingBooking.getEndTime())) {
+            throw new StartTimeClashesException(existingBooking.toJSON());
+        } else if (
+                needToBook.getEndDateTime().equals(existingBooking.getStartTime())
+                        || needToBook.getEndDateTime().equals(existingBooking.getEndTime())) {
+            throw new EndTimeClashesException(existingBooking.toJSON());
+        } else if (existingBooking.getEndTime().isAfter(needToBook.getStartDateTime())
+                && existingBooking.getEndTime().isBefore(needToBook.getEndDateTime())) {
+            throw new EndTimeClashesException(existingBooking.toJSON());
+        }
     }
 }
