@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authenticator: {
+    authBaseUrl: 'http://localhost:8080/merobo/api',
+    appBaseUrl: 'http://localhost:8080/merobo/api',
+    appTitle: 'MEROBO',
+    registrationSubtitle: 'Room Booking',
+    loginSubtitle: 'Meeting Room Booking'
+  }
 };
 
 /*

@@ -1,6 +1,6 @@
 package com.merobo.resources.interceptors;
 
-import com.merobo.beans.UserRole;
+import abm.authenticator.domain.UserRole;
 import com.merobo.exceptions.UnAuthorizedAccessException;
 import com.merobo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

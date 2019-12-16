@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AdminModule } from './admin/admin.module';
 
@@ -18,7 +16,6 @@ import { RoomDetailsComponent } from './room-details/room-details.component';
 import { BookingSummaryComponent } from './booking-summary/booking-summary.component';
 import { BookingService } from './booking/services/booking.service';
 import { BookComponent } from './room/book/book.component';
-import { LogoutComponent } from './logout/logout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
@@ -30,19 +27,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthenticatorModule } from 'abm-authenticator';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
-    LoginComponent,
     HomeComponent,
     RoomComponent,
     BookingComponent,
     RoomDetailsComponent,
     BookingSummaryComponent,
     BookComponent,
-    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +56,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatNativeDateModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AuthenticatorModule.forRoot(environment)
   ],
   providers: [CookieService, RoomService, BookingService],
   bootstrap: [AppComponent]

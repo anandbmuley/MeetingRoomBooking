@@ -1,5 +1,6 @@
 package com.merobo.beans;
 
+import abm.authenticator.domain.User;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

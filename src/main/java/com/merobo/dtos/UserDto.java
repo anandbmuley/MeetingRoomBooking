@@ -1,7 +1,7 @@
 package com.merobo.dtos;
 
+import abm.authenticator.domain.UserRole;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.merobo.beans.UserRole;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
@@ -12,7 +12,7 @@ public class UserDto {
     private String name;
     private String emailId;
     private String contactNo;
-    private UserRole role;
+    private UserRole  role;
 
     public UserDto() {
     }

@@ -23,12 +23,6 @@ public class TeamResource {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("members")
-    public ResponseEntity<List<TeamDto>> getAllTeam() {
-        List<TeamDto> teams = teamService.getAllTeams();
-        return ResponseEntity.ok(teams);
-    }
-
     @GetMapping
     public ResponseEntity<List<TeamDto>> teamList() {
         try {

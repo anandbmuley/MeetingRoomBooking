@@ -1,3 +1,14 @@
+auth:
+  token:
+    expiryInSeconds: 60
+#  cors:
+#    allowedOrigins: http://localhost:4200
+
+#logging:
+#  level:
+#    root: DEBUG
+#    org.springframework.web: DEBUG
+
 upload:
   location: /home/anandmuley/Uploads
 
@@ -10,7 +21,7 @@ spring:
   data.mongodb:
     hostname: localhost
     port: 27017
-    database: content-manager
+    database: merobo
 
   # Configuring File Size
 

@@ -1,8 +1,8 @@
 package com.merobo.utils;
 
+import abm.authenticator.domain.User;
 import com.merobo.beans.Booking;
 import com.merobo.beans.Team;
-import com.merobo.beans.User;
 import com.merobo.dtos.BookingDto;
 import com.merobo.dtos.TeamDto;
 import com.merobo.dtos.UserDto;
