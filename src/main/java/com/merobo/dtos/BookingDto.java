@@ -6,8 +6,8 @@ import com.merobo.utils.BookingStatus;
 
 import java.time.LocalDateTime;
 
-import static abm.authenticator.common.DateConverterUtil.formatTime;
-import static abm.authenticator.common.DateConverterUtil.parseTime;
+import static abm.commons.DateConverterUtil.formatTime;
+import static abm.commons.DateConverterUtil.parseTime;
 
 public class BookingDto {
 

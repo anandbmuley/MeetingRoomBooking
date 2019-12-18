@@ -1,6 +1,6 @@
 package com.merobo.services;
 
-import abm.authenticator.common.DateConverterUtil;
+import abm.commons.DateConverterUtil;
 import com.merobo.beans.Booking;
 import com.merobo.dtos.BookingDto;
 import com.merobo.exceptions.BookingValidationServiceException;
