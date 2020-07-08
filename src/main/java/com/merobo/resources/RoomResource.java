@@ -21,7 +21,7 @@ public class RoomResource {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity findOne(@PathVariable String id) {
+    public ResponseEntity findOne(@PathVariable("id") String id) {
         return roomService.findOne(id).map(ResponseEntity::ok).orElseGet(ResponseEntity.notFound()::build);
     }
 

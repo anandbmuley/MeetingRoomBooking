@@ -13,9 +13,12 @@ public class MeroboConfig implements WebMvcConfigurer {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AdminAccessInterceptor adminAccessInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AdminAccessInterceptor(userService))
-                .addPathPatterns("/admin/rooms");
+        WebMvcConfigurer.super.addInterceptors(registry);
+        registry.addInterceptor(adminAccessInterceptor).addPathPatterns("/admin/rooms");
     }
 }

@@ -1,23 +1,23 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar *ngIf="isUserLoggedIn()" color="primary">
+  <mat-toolbar-row>
+    <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Menu Icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>
+      <a class="home-link" href="/home">MEROBO</a>
+    </span>
+    <span class="spacer"></span>
+    <mat-icon (click)="logout()" class="icon" aria-hidden="false" aria-label="Logout Icon">lock</mat-icon>
+  </mat-toolbar-row>
+  <mat-menu #menu="matMenu">
+    <button *ngIf="isAdmin()" mat-menu-item>
+      <a class="link" routerLink="/admin/rooms">MANAGE ROOMS</a>
+    </button>
+    <button mat-menu-item>
+      <a class="link" routerLink="/rooms">BOOK ROOM</a>
+    </button>
+  </mat-menu>
+</mat-toolbar>
 <div style="text-align:center">
-  <mat-grid-list *ngIf="isUserLoggedIn()" style="background-color: teal;" cols="10" rowHeight="2:1">
-    <mat-grid-tile>
-      <a mat-button routerLink="/home" style="font-size: 20px;">MEROBO</a>
-    </mat-grid-tile>
-    <mat-grid-tile *ngIf="!isAdmin()" colspan="6"></mat-grid-tile>
-    <mat-grid-tile *ngIf="isAdmin()" colspan="5"></mat-grid-tile>
-    <mat-grid-tile>
-      <a mat-button routerLink="/home">HOME</a>
-    </mat-grid-tile>
-    <mat-grid-tile *ngIf="isAdmin()">
-      <a mat-button routerLink="/admin/rooms">MANAGE ROOMS</a>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <a mat-button routerLink="/rooms">BOOK ROOM</a>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <a mat-button routerLink="/logout">LOGOUT</a>
-    </mat-grid-tile>
-  </mat-grid-list>
   <router-outlet></router-outlet>
 </div>

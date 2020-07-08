@@ -32,7 +32,7 @@ public class BookingResource {
     }
 
     @PutMapping("{bookingId}/cancel")
-    public ResponseEntity cancel(@PathVariable("id") String roomId, @PathVariable("bookingId") String bookingId, @RequestHeader("auth-id") String authId) throws UnAuthorizedAccessException {
+    public ResponseEntity cancel(@PathVariable("id") String roomId, @PathVariable("bookingId") String bookingId, @RequestHeader("user_id") String authId) throws UnAuthorizedAccessException {
         bookingService.cancelBooking(authId, roomId, bookingId);
         return ResponseEntity.noContent().build();
     }
@@ -52,12 +52,12 @@ public class BookingResource {
     }
 
     @GetMapping
-    public ResponseEntity getAllBookings(@PathVariable("id") String roomId, @RequestHeader("auth-id") String authId) {
+    public ResponseEntity getAllBookings(@PathVariable("id") String roomId, @RequestHeader("user_id") String authId) {
         return ResponseEntity.ok(bookingService.getAll(roomId, authId));
     }
 
     @GetMapping("today")
-    public ResponseEntity<List<BookingDto>> getTodaysBookings(@PathVariable("id") String roomId, @RequestHeader("auth-id") String authId) {
+    public ResponseEntity<List<BookingDto>> getTodaysBookings(@PathVariable("id") String roomId, @RequestHeader("user_id") String authId) {
         List<BookingDto> todaysBookings = bookingService.getAll(roomId, authId, LocalDate.now());
         return CollectionUtils.isEmpty(todaysBookings) ? ResponseEntity.notFound().build() : ResponseEntity.ok(todaysBookings);
     }

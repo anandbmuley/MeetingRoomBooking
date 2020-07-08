@@ -1,12 +1,14 @@
-room:hover {
-    cursor: pointer;
+.room {
+    width: 20%;
+    float: left;
+    margin: 2%;
 }
 
 .booked {
     background-color: rgb(250, 176, 176);
 }
 
-.available {
+.room-available {
     color: teal;
 }
 

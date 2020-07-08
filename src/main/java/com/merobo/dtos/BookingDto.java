@@ -25,9 +25,9 @@ public class BookingDto {
 
     @JsonCreator
     public BookingDto(
-            @JsonProperty String startTime,
-            @JsonProperty String endTime,
-            @JsonProperty String bookedById) {
+            @JsonProperty("startTime") String startTime,
+            @JsonProperty("endTime") String endTime,
+            @JsonProperty("bookedById") String bookedById) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.bookedById = bookedById;

@@ -16,8 +16,12 @@ export class AppComponent {
     return this.authService.isUserLoggedIn();
   }
 
-  isAdmin() : boolean {
+  isAdmin(): boolean {
     return this.authService.isAdmin();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

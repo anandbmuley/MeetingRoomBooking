@@ -1,15 +1,23 @@
-<div>
-  <mat-card style="width: 100%; height: 100%;"
-    [ngClass]="{ 'room-available' : isAvailable, 'room-booked' : !isAvailable }">
-    <mat-card-header>
-      <mat-card-title>{{room.name}}</mat-card-title>
-      <mat-card-subtitle *ngIf="room.booked">Booked</mat-card-subtitle>
-      <mat-card-subtitle *ngIf="!room.booked">Available</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <booking *ngIf="showBookings && currentBooking" [roomId]="room.id" [data]="currentBooking"></booking>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-card class="card">
+  <mat-card-header class="header">
+    <mat-card-title class="title">{{room.name}}</mat-card-title>
+    <mat-card-subtitle class="sub-title" [ngClass]="{ 'room-available' : !room.booked, 'room-booked' : room.booked }"
+      *ngIf="room.booked">Booked</mat-card-subtitle>
+    <mat-card-subtitle class="sub-title" [ngClass]="{ 'room-available' : !room.booked, 'room-booked' : room.booked }"
+      *ngIf="!room.booked">Available</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-icon class="ac-icon" [ngClass]="{'has-facility' : room.hasAc, 'no-facility' : !room.hasAc}" aria-hidden="false"
+      aria-label="Room has AC">ac_unit</mat-icon>
+    <mat-icon class="projector-icon"
+      [ngClass]="{'has-facility' : room.hasProjector, 'no-facility' : !room.hasProjector}" aria-hidden="false"
+      aria-label="Room has Projector">tv</mat-icon>
+    <div class="capacity-icon-container">
+      <mat-icon class="capacity-icon" aria-hidden="false" aria-label="Capacity">people</mat-icon>
+      <span class="room-capacity">{{room.capacity}}</span>
+    </div>
+    <mat-list>
+      <booking *ngIf="showBookings && currentBooking" [roomId]="room.id" [data]="currentBooking"></booking>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

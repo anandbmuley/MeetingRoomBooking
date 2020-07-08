@@ -1,8 +1,6 @@
-<mat-grid-list cols="4" rowHeight="1.5:1">
-  <mat-grid-tile *ngFor="let room of rooms">
-    <room (click)="viewDetails(room)" [showBookings]="true" [room]="room"></room>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="room" *ngFor="let room of rooms">
+  <room (click)="viewDetails(room)" [showBookings]="true" [room]="room"></room>
+</div>
 <!-- <div *ngIf="rooms.length == 0">
   <h2>No Rooms Added Yet</h2>
   <div>Please contact your administrator to Configure the System</div>

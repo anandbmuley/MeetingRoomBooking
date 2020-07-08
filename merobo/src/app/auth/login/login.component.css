@@ -1,0 +1,98 @@
+.card {
+    width: 30%;
+    margin-left: 35%;
+    top: 100px;
+    position: relative;
+    height: 400px;
+    background-color: rgb(14, 105, 241);
+}
+
+.main-content {
+    margin-top: 2%;
+}
+
+.header {
+    margin-top: 10% !important;
+}
+
+.full-width {
+    width: 70%;
+}
+
+.card-title {
+    margin-left: 37%;
+    width: 100%;
+}
+
+.card-subtitle {
+    margin-left: 37%;
+    width: 100%;
+    color: white;
+}
+
+.card-button {
+    width: 30%;
+}
+
+.button-separator {
+    margin-top: 4% !important;
+}
+
+.large-font {
+    font-size: 25px;
+}
+
+.medium-font {
+    font-size: 18px;
+}
+
+.error-message {
+    color: rgb(232, 158, 183);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 3%;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 90%;
+        height: 360px;
+        margin-left: 0.5%;
+        top: 0px;
+        position: relative;
+        background-color: rgb(14, 105, 241);
+    }
+    .card-title {
+        width: 100%;
+        margin-left: 7%;
+        font-size: 25px;
+    }
+    .card-subtitle {
+        width: 100%;
+        margin-left: 7%;
+        font-size: 14px;
+        color: white;
+    }
+    .full-width-half-display {
+        padding-left: 0%;
+        padding-right: 0%;
+        width: 80%;
+    }
+    .half-width {
+        width: 80%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .header {
+        margin-top: 10% !important;
+    }
+    .main-content {
+        margin-top: 0%;
+    }
+    .large-font {
+        font-size: 16px;
+    }
+    .medium-font {
+        font-size: 16px;
+    }
+}

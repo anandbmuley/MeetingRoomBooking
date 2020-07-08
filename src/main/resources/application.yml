@@ -1,8 +1,8 @@
 auth:
   token:
-    expiryInSeconds: 60
-#  cors:
-#    allowedOrigins: http://localhost:4200
+    expiryInSeconds: 3600
+  cors:
+    allowedOrigins: http://localhost:4200
 
 #logging:
 #  level:

@@ -1,22 +1,90 @@
-mat-card {
-    background-color: teal;
-    padding: 10% !important;
+.card {
+    width: 40%;
+    margin-top: 2%;
+    height: auto;
 }
 
-mat-card-title, mat-card-subtitle {
-    color: white;
+.header {
+    padding-top: 5%;
 }
 
-.example-section {
-    align-content: center;
-    align-items: center;
-    height: 40px;
+.title {
+    margin-left: 68%;
+    font-size: 30px;
+    width: 100%;
 }
 
-.example-margin {
-    margin: 0 25px;
+.sub-title {
+    margin-left: 68%;
+    width: 100%;
+    font-size: 20px;
 }
 
-.mat-form-field-empty , .mat-form-field-label {
-    color: white;
+.room-name {
+    font-size: 30px;
+    width: 80%;
+}
+
+.section {
+    margin-bottom: 10%;
+}
+
+.checkbox {
+    font-size: 20px;
+    margin-left: 23%;
+    float: left;
+}
+
+.capacity {
+    font-size: 20px;
+    width: 13%;
+}
+
+.card-actions {
+    margin-bottom: 6% !important;
+}
+
+.add-btn {
+    width: 20%;
+}
+
+.mat-snack-bar-container {
+    margin-top: 17% !important;
+}
+
+.success-message {
+    color: rgb(16, 150, 150);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 90%;
+        margin-top: 1%;
+        height: auto;
+        border: solid 0px white;
+    }
+    .title {
+        margin-left: 25%;
+        font-size: 30px;
+        width: 100%;
+    }
+    .sub-title {
+        margin-left: 25%;
+        width: 100%;
+        font-size: 20px;
+    }
+    .checkbox {
+        font-size: 20px;
+        margin-left: 16%;
+        float: left;
+    }
+    .capacity {
+        font-size: 20px;
+        width: 20%;
+    }
+    .add-btn {
+        width: 35%;
+    }
 }

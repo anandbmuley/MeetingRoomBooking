@@ -55,39 +55,39 @@ export class BookingService {
   constructor(private httpClient: HttpClient,
     private authService: AuthService) { }
 
+  generateCommonHeaders(): Object {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'user_id': this.authService.getAuthId(),
+        'auth_token': this.authService.getAuthToken()
+      })
+    }
+    return httpOptions;
+  }
+
   getCurrent(roomId: string) {
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/today/current`
-    return this.httpClient.get(url);
+    return this.httpClient.get(url, this.generateCommonHeaders());
   }
 
   getTodays(roomId: string) {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'auth-id': this.authService.getAuthId()
-      })
-    };
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/today`
-    return this.httpClient.get(url, httpOptions);
+    return this.httpClient.get(url, this.generateCommonHeaders());
   }
 
   cancel(roomId: string, bookingId: string) {
-    let httpOptions = {
-      headers: new HttpHeaders({
-        'auth-id': this.authService.getAuthId()
-      })
-    };
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings/${bookingId}/cancel`
-    return this.httpClient.put(url, null, httpOptions);
+    return this.httpClient.put(url, null, this.generateCommonHeaders());
   }
 
   getAll(roomId: string) {
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings`
-    return this.httpClient.get(url);
+    return this.httpClient.get(url, this.generateCommonHeaders());
   }
 
   book(roomId: string, bookingDto: BookingDto) {
     let url = `http://localhost:8080/merobo/api/rooms/${roomId}/bookings`
-    return this.httpClient.post(url, bookingDto);
+    return this.httpClient.post(url, bookingDto, this.generateCommonHeaders());
   }
 
 }

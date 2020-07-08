@@ -6,6 +6,10 @@ import com.merobo.beans.Team;
 import com.merobo.dtos.BookingDto;
 import com.merobo.dtos.TeamDto;
 import com.merobo.dtos.UserDto;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -13,7 +17,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class DtoCreatorUtil {
+@Component
+public class DtoCreatorUtil implements ApplicationContextAware {
+
+    private static ApplicationContext applicationContext;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        DtoCreatorUtil.applicationContext = applicationContext;
+    }
 
     public static UserDto createUserTo(User user) {
         UserDto userDto = new UserDto();
@@ -23,7 +35,7 @@ public abstract class DtoCreatorUtil {
     }
 
     public static TeamDto createTeamTo(Team team) {
-        TeamDto teamDto = new TeamDto(team.getName());
+        TeamDto teamDto = applicationContext.getBean(TeamDto.class, team.getName());
         teamDto.setId(team.getId());
         if (!CollectionUtils.isEmpty(team.getMembers())) {
             List<UserDto> userDtos = team.getMembers()

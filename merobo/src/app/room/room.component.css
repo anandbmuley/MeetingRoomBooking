@@ -1,37 +1,52 @@
-.card-title {
-    color: #26a69a;
+.card {
+    width: 100%;
+    height: 200px !important;
 }
 
-.card {
-    background-color: rgb(235, 235, 235);
+.title {
+    color: rgb(40, 40, 255);
 }
 
 .card:hover {
-    background-color: rgb(219, 219, 219);
+    border: solid 2px rgb(114, 114, 114);
+    cursor: pointer;
+}
+
+.header {
+    justify-content: center;
 }
 
 .room-available {
-    background-color: rgb(156, 226, 156);
+    color: rgb(29, 158, 29);
 }
 
 .room-booked {
-    background-color: coral;
+    color: rgb(255, 106, 80);
 }
 
-.room-booked mat-card-title, .room-booked mat-card-subtitle {
-    width: 280%;
+.ac-icon {
+    font-size: 30px;
+    float: left;
+    padding-left: 25%;
 }
 
-.room-available mat-card-title, .room-available mat-card-subtitle {
-    width: 150%;
+.has-facility {
+    color: rgb(29, 158, 29);
 }
 
-.room-booked mat-card-subtitle {
-    color: rgb(255, 191, 168);
-    font-weight: bold;
+.no-facility {
+    color: rgb(209, 63, 37);
 }
 
-.room-available mat-card-subtitle {
-    color: teal;
-    font-weight: bold;
+.capacity-icon-container {
+    margin-top: 10%;
+    font-size: 20px;
+}
+
+.capacity-icon {
+    font-size: 30px;
+}
+
+.room-capacity {
+    margin-left: 3%;
 }

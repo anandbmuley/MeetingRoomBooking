@@ -1,0 +1,118 @@
+.card {
+    width: 40%;
+    margin-left: 30%;
+    top: 50px;
+    position: relative;
+    background-color: rgb(14, 105, 241);
+    height: 520px;
+}
+
+.large-font {
+    font-size: 25px;
+}
+
+.medium-font {
+    font-size: 18px;
+}
+
+.main-content {
+    margin-top: 2%;
+}
+
+.header {
+    margin-top: 10% !important;
+}
+
+.full-width {
+    width: 70%;
+}
+
+.full-width-half-display {
+    padding-left: 15%;
+    padding-right: 15%;
+    width: 50%;
+}
+
+.half-width {
+    width: 40%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.card-title {
+    margin-left: 25%;
+    font-size: xx-large;
+    width: 100%;
+}
+
+.card-subtitle {
+    margin-left: 25%;
+    font-size: large;
+    width: 100%;
+    color: white;
+}
+
+.card-button {
+    width: 30%;
+}
+
+.button-separator {
+    margin-top: 4% !important;
+}
+
+.success-message {
+    color: rgb(0, 187, 171);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 0%;
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 90%;
+        margin-left: 0.5%;
+        top: 0px;
+        position: relative;
+        background-color: rgb(14, 105, 241);
+        height: auto;
+    }
+    .card-title {
+        width: 100%;
+        margin-left: 7%;
+        font-size: 25px;
+    }
+    .card-subtitle {
+        width: 100%;
+        margin-left: 7%;
+        font-size: 14px;
+        color: white;
+    }
+    .full-width-half-display {
+        padding-left: 0%;
+        padding-right: 0%;
+        width: 80%;
+    }
+    .half-width {
+        width: 80%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .header {
+        margin-top: 10% !important;
+    }
+    .main-content {
+        margin-top: 0%;
+    }
+    .large-font {
+        font-size: 25px;
+    }
+    .medium-font {
+        font-size: 16px;
+    }
+    .success-message {
+        color: rgb(0, 187, 171);
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: -7%;
+    }
+}

@@ -2,10 +2,15 @@ package com.merobo.dtos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@Scope(WebApplicationContext.SCOPE_REQUEST)
 public class TeamDto {
 
     private String id;

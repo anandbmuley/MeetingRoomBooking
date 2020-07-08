@@ -8,6 +8,7 @@ export class RegistrationDto {
   username: String
   password: String
   emailId: String
+  contactNo: String
 }
 
 export class LoginDto {
@@ -24,7 +25,7 @@ export class UserDto {
 })
 export class UserService {
 
-  baseUrl = "http://localhost:8080/merobo/api/users";
+  baseUrl = "http://localhost:8080/merobo/api/auth";
   authBaseUrl = "http://localhost:8080/merobo/api/auth/login";
 
   constructor(private httpClient: HttpClient) { }

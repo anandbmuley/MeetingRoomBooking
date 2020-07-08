@@ -7,6 +7,7 @@ export interface AuthResponseDto {
   userId: string
   loginTime: string
   admin: string
+  token: string
 }
 
 @Injectable({
@@ -33,6 +34,11 @@ export class AuthService {
     this.cookieService.set('auth', 'true');
     this.cookieService.set('authId', user.userId);
     this.cookieService.set('admin', user.admin);
+    this.cookieService.set('authToken', user.token);
+  }
+
+  getAuthToken(): string {
+    return this.cookieService.get('authToken');
   }
 
   getAuthId() {
@@ -50,6 +56,11 @@ export class AuthService {
   logout() {
     this.loggedIn = false;
     this.cookieService.deleteAll();
+    this.cookieService.delete('auth');
+    this.cookieService.delete('authId');
+    this.cookieService.delete('admin');
+    this.cookieService.delete('authToken');
+    this.router.navigate(['/login']);
   }
 
   isUserLoggedIn(): boolean {

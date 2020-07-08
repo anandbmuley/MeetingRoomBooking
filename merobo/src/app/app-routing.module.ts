@@ -7,7 +7,9 @@ import { ManageRoomsComponent } from './admin/manage-rooms/manage-rooms.componen
 import { RoomDetailsComponent } from './room-details/room-details.component';
 import { BookComponent } from './room/book/book.component';
 import { AdminGuard } from './admin.guard';
-import { RegistrationComponent, LogoutComponent, LoginComponent } from 'abm-authenticator';
+import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 const routes: Routes = [
   {

@@ -11,6 +11,7 @@ export class ManageRoomsComponent implements OnInit {
 
   room: RoomDto;
   rooms: RoomDto[];
+  message = '';
 
   constructor(private roomService: RoomService,
     private snackBar: MatSnackBar) { }
@@ -29,9 +30,7 @@ export class ManageRoomsComponent implements OnInit {
     this.roomService.add(this.room).subscribe(() => {
       this.newRoom();
       this.fetchRooms();
-      this.snackBar.open('Room addedd successfully', null, {
-        duration: 3000
-      });
+      this.message = 'Room addedd successfully';
     });
   }
 

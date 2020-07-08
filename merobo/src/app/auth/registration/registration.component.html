@@ -1,0 +1,33 @@
+<mat-card class="card">
+  <mat-card-header class="header">
+    <mat-card-title class="card-title">Meeting Room Booking</mat-card-title>
+    <mat-card-subtitle class="card-subtitle">MEROBO</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="main-content">
+    <div *ngIf="message" class="success-message">{{message}}</div>
+    <mat-form-field class="full-width-half-display large-font">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="registration.name" placeholder="John Doe">
+    </mat-form-field>
+    <mat-form-field class="half-width medium-font">
+      <mat-label>Contact No</mat-label>
+      <input matInput type="tel" maxlength="10" [(ngModel)]="registration.contactNo" placeholder="9870098600">
+    </mat-form-field>
+    <mat-form-field class="half-width medium-font">
+      <mat-label>Email Id</mat-label>
+      <input matInput [(ngModel)]="registration.emailId" placeholder="johndoe@example.com">
+    </mat-form-field>
+    <mat-form-field class="half-width medium-font">
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="registration.username" placeholder="johndoe">
+    </mat-form-field>
+    <mat-form-field class="half-width medium-font">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="registration.password" type="password" placeholder="******">
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="save()" class="card-button">REGISTER</button><br>
+    <a class="button-separator" mat-button href="login">LOGIN</a>
+  </mat-card-actions>
+</mat-card>

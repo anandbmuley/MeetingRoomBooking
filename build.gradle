@@ -29,7 +29,9 @@ targetCompatibility = 1.8
 dependencies {
     // PROPRIETARY IMPLEMENTATIONS
     compile("abm:content-manager:1.0.0-SNAPSHOT")
-    compile("abm:authenticator:1.0.0")
+    compile("abm:authenticator:1.0.3")
+    compile("abm:jsonised-unit-testing:1.0.0")
+
 
     // SWAGGER INTEGRATION
     compile("io.springfox:springfox-swagger2:2.6.1")
@@ -41,6 +43,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-hateoas:2.2.2.RELEASE")
 
 
+    // https://mvnrepository.com/artifact/org.objenesis/objenesis
+    testCompile group: 'org.objenesis', name: 'objenesis', version: '3.1'
+
+    // https://mvnrepository.com/artifact/cglib/cglib-nodep
+    testCompile group: 'cglib', name: 'cglib-nodep', version: '3.3.0'
     testImplementation 'org.codehaus.groovy:groovy-all:2.5.6'
     testImplementation 'org.spockframework:spock-core:1.2-groovy-2.5'
 }

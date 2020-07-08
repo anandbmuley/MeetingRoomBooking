@@ -1,7 +1,21 @@
-.nav-wrapper {
-    text-align: left;
+.icon {
+    padding: 0 14px;
+    cursor: pointer;
 }
 
-.brand-logo {
-    margin-left: 15px;
+.icon:hover {
+    color: tomato;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.home-link {
+    text-decoration: none;
+    color: white;
 }

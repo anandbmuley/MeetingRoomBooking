@@ -27,8 +27,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthenticatorModule } from 'abm-authenticator';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { LogoutComponent } from './auth/logout/logout.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,9 @@ import { environment } from '../environments/environment';
     RoomDetailsComponent,
     BookingSummaryComponent,
     BookComponent,
+    LoginComponent,
+    RegistrationComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,8 @@ import { environment } from '../environments/environment';
     MatNativeDateModule,
     MatListModule,
     MatSnackBarModule,
-    AuthenticatorModule.forRoot(environment)
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [CookieService, RoomService, BookingService],
   bootstrap: [AppComponent]
