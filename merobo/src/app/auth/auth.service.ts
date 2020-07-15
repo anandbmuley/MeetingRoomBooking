@@ -10,6 +10,10 @@ export interface AuthResponseDto {
   token: string
 }
 
+export interface ErrorContainer {
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,10 +35,11 @@ export class AuthService {
   }
 
   createAuthCookie(user: AuthResponseDto) {
-    this.cookieService.set('auth', 'true');
-    this.cookieService.set('authId', user.userId);
-    this.cookieService.set('admin', user.admin);
-    this.cookieService.set('authToken', user.token);
+    // TODO Need to make this cookie secure and https
+    this.cookieService.set('auth', 'true', null, null, null, false, 'Strict');
+    this.cookieService.set('authId', user.userId, null, null, null, false, 'Strict');
+    this.cookieService.set('admin', user.admin, null, null, null, false, 'Strict');
+    this.cookieService.set('authToken', user.token, null, null, null, false, 'Strict');
   }
 
   getAuthToken(): string {
@@ -45,11 +50,13 @@ export class AuthService {
     return this.cookieService.get('authId');
   }
 
-  login(loginDto: LoginDto) {
+  login(loginDto: LoginDto, errorContainer: ErrorContainer) {
     return this.userService.authenticate(loginDto).subscribe((foundUser: AuthResponseDto) => {
       this.createAuthCookie(foundUser);
       this.handleRedirect();
       this.loggedIn = true;
+    }, (error) => {
+      errorContainer.message = error;
     });
   }
 

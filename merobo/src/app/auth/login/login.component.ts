@@ -13,6 +13,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   login = new LoginDto();
+  errorContainer = { message: '' };
 
   constructor(private authService: AuthService) { }
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   authenticate() {
-    this.authService.login(this.login);
+    this.authService.login(this.login, this.errorContainer);
   }
 
 }

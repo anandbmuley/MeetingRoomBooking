@@ -1,20 +1,22 @@
-.booked-by {
-    font-size: 25px;
-    color: teal;
-    margin: 10px;
+.booking-container {
+    border: solid 1px rgb(255, 186, 57);
+    padding: 3%;
+    border-radius: 3px;
+    background-color: rgb(255, 186, 57);
+    font-size: 15px;
 }
 
-.booked-by-contact-details {
-    margin-top: 10px;
-    font-size: 18px;
-    margin-left: 5px;
-    color: white;
+.booked-by {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.contact-details {
+    font-size: 13px;
 }
 
 .booking-time {
-    margin-top: 10px;
-    font-size: 15px;
-    margin-left: 5px;
+    font-size: 13px;
 }
 
 .cancel-booking-icon {

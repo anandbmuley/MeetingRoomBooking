@@ -1,8 +1,8 @@
-<div *ngIf="user">
-  <div class="booked-by"> {{ user.name }} </div>
+<div *ngIf="user" class="booking-container">
+  <div class="booked-by">{{ user.name }} </div>
   <div (click)="cancel()" class="cancel-booking-icon" *ngIf="data.bookedByMe">X</div>
   <div>
-    <div class="booked-by-contact-details"> {{ user.contactNo }} </div>
+    <div *ngIf="user.contactNo" class="contact-details"> {{ user.contactNo }} </div>
     <span class="booking-time"> {{ data.startTime }} - {{ data.endTime }} </span>
   </div>
 </div>

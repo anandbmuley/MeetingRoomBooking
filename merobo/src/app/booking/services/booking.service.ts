@@ -22,7 +22,7 @@ export interface BookingDto {
 export class Time {
   hh: number
   mm: number
-  meridian: string
+  meridian: string = 'AM'
 
   getTime(): string {
     return this.prefixZero(this.hh) + ":" + this.prefixZero(this.mm) + " " + this.meridian;

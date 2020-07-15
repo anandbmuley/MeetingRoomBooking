@@ -47,7 +47,7 @@
 }
 
 .error-message {
-    color: rgb(232, 158, 183);
+    color: rgba(158, 13, 13, 0.62);
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 3%;

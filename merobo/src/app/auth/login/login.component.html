@@ -3,7 +3,7 @@
     <mat-card-title class="card-title">Meeting Room Booking</mat-card-title>
     <mat-card-subtitle class="card-subtitle">MEROBO</mat-card-subtitle>
   </mat-card-header>
-  <div *ngIf="message" class="error-message">{{message}}</div>
+  <div *ngIf="errorContainer.message" class="error-message">{{errorContainer.message}}</div>
   <mat-card-content class="main-content">
     <mat-form-field class="full-width medium-font">
       <mat-label>Username</mat-label>

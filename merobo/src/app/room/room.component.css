@@ -1,10 +1,11 @@
 .card {
     width: 100%;
-    height: 200px !important;
+    min-height: 200px !important;
 }
 
 .title {
     color: rgb(40, 40, 255);
+    text-transform: uppercase;
 }
 
 .card:hover {
@@ -17,11 +18,26 @@
 }
 
 .room-available {
-    color: rgb(29, 158, 29);
+    border: solid 1px rgb(99, 204, 99);
+    min-height: 68px;
+    border-radius: 3px;
+    background-color: rgb(99, 204, 99);
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.status-text {
+    padding-top: 10%;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(14, 116, 14);
 }
 
 .room-booked {
     color: rgb(255, 106, 80);
+    text-transform: uppercase;
+    font-size: 12px;
 }
 
 .ac-icon {

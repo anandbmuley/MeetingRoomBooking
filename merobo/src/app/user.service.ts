@@ -49,9 +49,10 @@ export class UserService {
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('Client side error occured');
-    } else {
-      console.error(`Backend returned and error ${error.status}, body was ${error.error}`);
+    } else if (error.status == 403) {
+      return throwError('Authentication Failed');
     }
+    console.error(`Backend returned and error ${error.status}, body was ${error.error}`);
     return throwError('Something went wrong');
   }
 

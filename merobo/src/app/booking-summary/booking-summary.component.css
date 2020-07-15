@@ -4,14 +4,8 @@
     margin: 2%;
 }
 
-.booked {
-    background-color: rgb(250, 176, 176);
-}
-
-.room-available {
-    color: teal;
-}
-
-.booked-by {
-    color: teal;
+@media only screen and (max-width: 600px) {
+    .room {
+        width: 88%;
+    }
 }
