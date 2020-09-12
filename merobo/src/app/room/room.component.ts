@@ -12,6 +12,7 @@ export class RoomComponent implements OnInit {
 
   @Input() showBookings = false;
   @Input() room: RoomDto;
+  @Input() displayContactNo = false;
 
   currentBooking: BookingDto;
   message = '';

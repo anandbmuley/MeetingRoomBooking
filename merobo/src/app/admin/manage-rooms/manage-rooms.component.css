@@ -1,7 +1,27 @@
 .card {
-    width: 40%;
+    width: 50%;
     margin-top: 2%;
     height: auto;
+}
+
+.upload-room-image {
+    font-size: 127px;
+    color: darkgrey;
+    cursor: pointer;
+}
+
+.upload-room-image:hover {
+    color: rgb(138, 138, 138);
+}
+
+.room-image-title {
+    margin-left: 18%;
+    color: darkgrey;
+    cursor: pointer;
+}
+
+.room-image-title:hover {
+    color: rgb(138, 138, 138);
 }
 
 .header {
@@ -9,19 +29,21 @@
 }
 
 .title {
-    margin-left: 68%;
-    font-size: 30px;
+    margin-left: 37%;
+    font-size: 20px;
     width: 100%;
+    color: rgb(40, 40, 255);
 }
 
 .sub-title {
-    margin-left: 68%;
+    margin-left: 37%;
     width: 100%;
-    font-size: 20px;
+    font-size: 14px;
+    color: rgb(40, 40, 255);
 }
 
 .room-name {
-    font-size: 30px;
+    font-size: 14px;
     width: 80%;
 }
 
@@ -30,14 +52,14 @@
 }
 
 .checkbox {
-    font-size: 20px;
-    margin-left: 23%;
+    font-size: 14px;
+    margin-left: 18%;
     float: left;
 }
 
 .capacity {
-    font-size: 20px;
-    width: 13%;
+    font-size: 14px;
+    width: 17%;
 }
 
 .card-actions {
@@ -56,6 +78,31 @@
     color: rgb(16, 150, 150);
     font-size: 15px;
     font-weight: 500;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.room-details-section {
+    float: left;
+    width: 45%;
+}
+
+.room-list-container {
+    height: 40px;
+    margin-top: 2%;
+}
+
+.card-image {
+    width: 86%;
+    border-radius: 5px;
+}
+
+.room-image-container {
+    width: 40%;
+    float: left;
+    margin-top: 5%;
+    margin-left: 5%;
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 600px) {

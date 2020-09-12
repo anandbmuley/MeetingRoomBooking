@@ -27,12 +27,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { environment } from '../environments/environment';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     BrowserModule,
     FormsModule,
+    MatFormFieldModule,
     HttpClientModule,
     AdminModule,
     AppRoutingModule,
@@ -60,12 +61,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatGridListModule,
     MatMenuModule,
-    MatSelectModule,
     MatNativeDateModule,
     MatListModule,
     MatSnackBarModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [CookieService, RoomService, BookingService],
   bootstrap: [AppComponent]

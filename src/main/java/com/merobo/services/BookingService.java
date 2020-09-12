@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -47,7 +48,7 @@ public class BookingService {
     public List<BookingDto> getAll(String roomId, String authId, LocalDate bookedOn) {
         return getAll(roomId, authId).stream().filter(bookingTo ->
                 bookingTo.getStartDateTime().toLocalDate().equals(bookedOn)
-        ).collect(Collectors.toList());
+        ).sorted(Comparator.comparing(BookingDto::getStartDateTime)).collect(Collectors.toList());
     }
 
     public List<BookingDto> getAll(String roomId, String authId, String bookingDate) {

@@ -28,8 +28,9 @@
 }
 
 .status-text {
-    padding-top: 10%;
-    font-size: 15px;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    font-size: 16px;
     font-weight: 500;
     color: rgb(14, 116, 14);
 }
@@ -65,4 +66,8 @@
 
 .room-capacity {
     margin-left: 3%;
+}
+
+.card-image {
+    width: 150px;
 }

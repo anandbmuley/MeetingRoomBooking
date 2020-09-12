@@ -1,92 +1,83 @@
 <div align="center">
-  <mat-grid-list cols="3">
-    <mat-grid-tile></mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card style="width: 100%;" class="book-room-card">
-        <mat-card-header style="width: 100%; text-align: center;">
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title style="width: 200%">Book Room</mat-card-title>
-          <mat-card-subtitle style="width: 200%">
-            <span *ngIf="roomName">You are booking room <b>{{ roomName }}</b></span>
-            <span *ngIf="!roomName">Please select a Room to Book</span>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-        <mat-card-content>
+  <mat-card class="book-room-card">
+    <mat-card-header class="card-header">
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title class="card-title">Book Room</mat-card-title>
+      <mat-card-subtitle class="card-subtitle">
+        <span *ngIf="roomName">You are booking room <b>{{ roomName }}</b></span>
+        <span *ngIf="!roomName">Please select a Room to Book</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
 
-          <mat-form-field *ngIf="rooms">
-            <mat-label>Select Room</mat-label>
-            <mat-select [(ngModel)]="roomId">
-              <mat-option *ngFor="let item of rooms" [value]="item.id">
-                {{item.name}}
-              </mat-option>
+      <mat-form-field *ngIf="rooms">
+        <mat-label>Select Room</mat-label>
+        <mat-select [(ngModel)]="roomId">
+          <mat-option *ngFor="let item of rooms" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-form-field>
+          <input matInput [min]="today" [max]="maxDate" [(ngModel)]="bookingVO.bookingDate" [matDatepicker]="picker"
+            placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="time-selection-container">
+        <div class="time-selection">
+          <div class="time-label">Start Time</div>
+          <mat-form-field class="time-field">
+            <mat-label>HH</mat-label>
+            <mat-select [(ngModel)]="bookingVO.startTimeModel.hh">
+              <mat-option *ngFor="let item of hours" [value]="item">{{ item }}</mat-option>
             </mat-select>
           </mat-form-field>
-
-          <div>
-            <mat-form-field>
-              <input matInput [min]="today" [max]="maxDate" [(ngModel)]="bookingVO.bookingDate" [matDatepicker]="picker" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-
-          <div>
-            <mat-grid-list cols="2" rows="2" rowHeight="4:1">
-              <mat-grid-tile>Start Time</mat-grid-tile>
-              <mat-grid-tile>End Time</mat-grid-tile>
-              <mat-grid-tile>
-                <mat-form-field style="width: 35%;">
-                  <mat-label>HH</mat-label>
-                  <mat-select [(ngModel)]="bookingVO.startTimeModel.hh">
-                    <mat-option *ngFor="let item of hours" [value]="item">{{ item }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field style="width: 35%;">
-                  <mat-label>MM</mat-label>
-                  <mat-select [(ngModel)]="bookingVO.startTimeModel.mm">
-                    <mat-option *ngFor="let item of minutes" [value]="item">{{ item }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field style="width: 30%;">
-                  <mat-label>AM</mat-label>
-                  <mat-select [(ngModel)]="bookingVO.startTimeModel.meridian">
-                    <mat-option selected value="AM">AM</mat-option>
-                    <mat-option value="PM">PM</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </mat-grid-tile>
-              <mat-grid-tile style="margin-left: 15px; margin-right: 15px">
-                <mat-form-field style="width: 35%;">
-                  <mat-label>HH</mat-label>
-                  <mat-select [(ngModel)]="bookingVO.endTimeModel.hh">
-                    <mat-option *ngFor="let item of hours" [value]="item">{{ item }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field style="width: 35%;">
-                  <mat-label>MM</mat-label>
-                  <mat-select [(ngModel)]="bookingVO.endTimeModel.mm">
-                    <mat-option *ngFor="let item of minutes" [value]="item">{{ item }}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field style="width: 30%;">
-                  <mat-label>AM</mat-label>
-                  <mat-select [(ngModel)]="bookingVO.endTimeModel.meridian">
-                    <mat-option selected value="AM">AM</mat-option>
-                    <mat-option value="PM">PM</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </mat-grid-tile>
-            </mat-grid-list>
-
-          </div>
-
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button (click)="bookRoom()">BOOK</button>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-
+          <mat-form-field class="time-field">
+            <mat-label>MM</mat-label>
+            <mat-select [(ngModel)]="bookingVO.startTimeModel.mm">
+              <mat-option *ngFor="let item of minutes" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="time-field">
+            <!-- <mat-label>AM</mat-label> -->
+            <mat-select [(ngModel)]="bookingVO.startTimeModel.meridian">
+              <mat-option selected value="AM">AM</mat-option>
+              <mat-option value="PM">PM</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="time-selection">
+          <div class="time-label">End Time</div>
+          <mat-form-field class="time-field">
+            <mat-label>HH</mat-label>
+            <mat-select [(ngModel)]="bookingVO.endTimeModel.hh">
+              <mat-option *ngFor="let item of hours" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="time-field">
+            <mat-label>MM</mat-label>
+            <mat-select [(ngModel)]="bookingVO.endTimeModel.mm">
+              <mat-option *ngFor="let item of minutes" [value]="item">{{ item }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="time-field">
+            <!-- <mat-label>AM</mat-label> -->
+            <mat-select [(ngModel)]="bookingVO.endTimeModel.meridian">
+              <mat-option selected value="AM">AM</mat-option>
+              <mat-option value="PM">PM</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="book-btn" mat-raised-button color="primary" (click)="bookRoom()">BOOK</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

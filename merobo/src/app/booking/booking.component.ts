@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BookingDto, BookingService } from './services/booking.service';
 import { UserDto, UserService } from '../user.service';
+import { RoomDto } from '../services/room.service';
 
 @Component({
   selector: 'booking',
@@ -12,6 +13,8 @@ export class BookingComponent implements OnInit {
   @Input() data: BookingDto;
   @Input() roomId: string;
   user: UserDto;
+  room: RoomDto;
+  @Input() displayPhone: boolean = false;
 
   @Output() bookingCancelled = new EventEmitter();
 
@@ -25,8 +28,12 @@ export class BookingComponent implements OnInit {
 
   }
 
+  showPhoneNumber() {
+    this.displayPhone = true;
+  }
+
   cancel() {
-    this.bookingService.cancel(this.roomId, this.data.id).subscribe((status) => {
+    this.bookingService.cancel(this.roomId, this.data.id).subscribe(() => {
 
     });
   }

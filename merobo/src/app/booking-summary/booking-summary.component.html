@@ -1,5 +1,5 @@
 <div class="room" *ngFor="let room of rooms">
-  <room (click)="viewDetails(room)" [showBookings]="true" [room]="room"></room>
+  <room (click)="viewDetails(room)" [displayContactNo]="true" [showBookings]="true" [room]="room"></room>
 </div>
 <!-- <div *ngIf="rooms.length == 0">
   <h2>No Rooms Added Yet</h2>

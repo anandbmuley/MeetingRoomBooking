@@ -1,9 +1,13 @@
 .booking-container {
     border: solid 1px rgb(255, 186, 57);
     padding: 3%;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: rgb(255, 186, 57);
     font-size: 15px;
+}
+
+.contact-details-container {
+    margin-top: -15px !important;
 }
 
 .booked-by {
@@ -15,14 +19,34 @@
     font-size: 13px;
 }
 
+.contact-icon {
+    cursor: pointer;
+}
+
+.contact-icon:hover {
+    color: rgb(207, 148, 38);
+}
+
 .booking-time {
     font-size: 13px;
 }
 
 .cancel-booking-icon {
     position: relative;
-    right: -88px;
-    width: 10px;
-    top: -45px;
+    right: -110px;
+    width: 0px;
+    top: -21px;
     cursor: pointer;
+    font-weight: bold;
+}
+
+.contact-details-height-adjuster {
+    margin-top: 2.7%;
+    margin-bottom: 2.5%;
+}
+
+@media only screen and (max-width: 600px) {
+    .cancel-booking-icon {
+        right: -90px;
+    }
 }

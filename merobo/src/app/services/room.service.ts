@@ -32,6 +32,10 @@ export class RoomService {
     return this.httpClient.post(this.url, room, this.generateCommonHeaders());
   }
 
+  update(room: RoomDto) {
+    return this.httpClient.put(this.url + "/" + room.id, room, this.generateCommonHeaders());
+  }
+
   findOne(roomId: string) {
     return this.httpClient.get(this.getAllRoomsApiUrl + "/" + roomId, this.generateCommonHeaders());
   }
@@ -44,4 +48,5 @@ export interface RoomDto {
   hasProjector: boolean
   hasAc: boolean
   capacity: number
+  imageUrl: string
 }

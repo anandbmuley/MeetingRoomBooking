@@ -32,6 +32,12 @@ public class AdminResource {
         ).build();
     }
 
+    @PutMapping("rooms/{roomID}")
+    public ResponseEntity updateRoom(@PathVariable("roomID") String roomId, @RequestBody RoomDto roomDto) {
+        roomService.update(roomId, roomDto);
+        return ResponseEntity.noContent().build();
+    }
+
 //    @PutMapping(value = "rooms/{id}/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 //    public ResponseEntity uploadRoomImage(@RequestParam MultipartFile file, @RequestParam String folderName) throws ServiceException {
 //        try {

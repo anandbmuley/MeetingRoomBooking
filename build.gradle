@@ -29,6 +29,7 @@ targetCompatibility = 1.8
 dependencies {
     // PROPRIETARY IMPLEMENTATIONS
     compile("abm:content-manager:1.0.0-SNAPSHOT")
+    compile("abm:abm-files:1.0.0-SNAPSHOT")
     compile("abm:authenticator:1.0.3")
     compile("abm:jsonised-unit-testing:1.0.0")
 

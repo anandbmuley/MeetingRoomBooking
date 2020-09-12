@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService, RoomDto } from '../services/room.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.roomService.fetchAll().subscribe((rooms: RoomDto[]) => {
       this.rooms = rooms;
+    }, (error: HttpErrorResponse) => {
+
     });
   }
 

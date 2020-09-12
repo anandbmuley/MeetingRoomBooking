@@ -11,7 +11,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @EnableMongoRepositories(basePackages = {"abm.authenticator.repositories", "com.merobo.repositories"})
-@SpringBootApplication(scanBasePackages = {"com.merobo", "abm.contentmanager", "abm.authenticator"})
+@SpringBootApplication(scanBasePackages = {"com.merobo", "abm.contentmanager", "abm.authenticator",
+        "com.abm.files"})
 public class MeetingRoomBookingApp {
 
     public static void main(String[] args) {

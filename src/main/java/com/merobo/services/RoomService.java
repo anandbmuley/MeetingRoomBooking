@@ -49,4 +49,9 @@ public class RoomService {
                 room.getId(), room.getName(), room.hasProjector(), room.hasAc(), room.getCapacity()
         ));
     }
+
+    public void update(String roomId, RoomDto roomDto) {
+        roomRepository.findById(roomId).map(foundRoom -> foundRoom.map(roomDto))
+                .ifPresent(roomRepository::save);
+    }
 }

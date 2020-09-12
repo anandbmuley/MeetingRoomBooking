@@ -1,9 +1,59 @@
-booking {
-    border: solid 1px rgb(0, 177, 177);
-    background-color: rgb(0, 177, 177);
+.book-btn {
+    width: 30%;
+    margin-left: 20%;
+}
+
+.room-name {
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 2%;
+    margin-left: 18%;
+}
+
+.room-image {
+    width: 100%;
     float: left;
-    width: 200px;
-    margin-top: 10px;
-    border-radius: 5px;
-    padding-bottom: 17px;
+    margin-left: 10%;
+    border-radius: 3%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.booking-list {
+    width: 46%;
+    float: left;
+    margin-top: 2.5%;
+    margin-left: 5%;
+}
+
+.no-bookings-msg {
+    font-size: 25px;
+    margin-top: 15%;
+}
+
+.room-image-display {
+    width: 45%;
+    float: left;
+}
+
+.booking-list-item {
+    margin-top: 3%;
+    float: left;
+    margin-left: 3%;
+    width: 44%;
+}
+
+@media only screen and (max-width: 600px) {
+    .room-image-display {
+        width: 83%;
+    }
+    .room-image {
+        width: 100%;
+    }
+    .booking-list {
+        width: 80%;
+    }
+    .booking-list-item {
+        width: 80%;
+    }
 }

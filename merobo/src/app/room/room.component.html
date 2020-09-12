@@ -2,6 +2,7 @@
   <mat-card-header class="header">
     <mat-card-title class="title">{{room.name}}</mat-card-title>
   </mat-card-header>
+  <img mat-card-image class="card-image" src="assets/temp/sample-room.jpg" alt="Room Image">
   <mat-card-content>
     <mat-icon class="ac-icon" [ngClass]="{'has-facility' : room.hasAc, 'no-facility' : !room.hasAc}" aria-hidden="false"
       aria-label="Room has AC">ac_unit</mat-icon>
@@ -13,7 +14,9 @@
       <span class="room-capacity">{{room.capacity}}</span>
     </div>
     <mat-list>
-      <booking *ngIf="showBookings && currentBooking" [roomId]="room.id" [data]="currentBooking"></booking>
+      <booking [displayPhone]="displayContactNo" *ngIf="showBookings && currentBooking" [roomId]="room.id"
+        [data]="currentBooking">
+      </booking>
       <div class="room-available" *ngIf="!room.booked">
         <div class="status-text">AVAILABLE</div>
       </div>

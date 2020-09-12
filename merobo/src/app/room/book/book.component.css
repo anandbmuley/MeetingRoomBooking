@@ -1,7 +1,57 @@
 .book-room-card {
     padding: 30px !important;
+    width: 30%;
+}
+
+.card-header {
+    width: 100%;
+    text-align: center;
+}
+
+.card-title {
+    width: 200%
+}
+
+.card-subtitle {
+    width: 200%
 }
 
 mat-card-title, mat-card-subtitle {
     color: rgb(40, 40, 255);
+}
+
+.time-selection {
+    width: 90%;
+}
+
+.time-label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.time-field {
+    width: 13%;
+}
+
+@media only screen and (max-width: 600px) {
+    .book-room-card {
+        width: 88%;
+        padding: 0px !important;
+    }
+    .card-title {
+        width: 131%;
+    }
+    .card-subtitle {
+        width: 131%
+    }
+    .card-header {
+        width: 90%;
+    }
+    .time-field {
+        width: 20%;
+        text-align: center;
+    }
+    .book-btn {
+        margin-bottom: 5% !important;
+    }
 }

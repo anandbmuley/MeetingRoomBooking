@@ -30,7 +30,7 @@ export class RoomDetailsComponent implements OnInit {
     this.bookingService.getTodays(roomId).subscribe((bookings: BookingDto[]) => {
       this.bookings = bookings;
     }, (errorResponse) => {
-      if(errorResponse.status == 404){
+      if (errorResponse.status == 404) {
         this.message = 'No bookings for today';
       }
     });

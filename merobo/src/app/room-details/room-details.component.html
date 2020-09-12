@@ -1,26 +1,17 @@
 <div align="center">
-  <mat-card>
-    <mat-card-header style="width:fit-content">
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title *ngIf="room">{{room.name}}</mat-card-title>
-      <mat-card-subtitle>Bookings for Today</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-grid-list cols="12" rowHeight="1:4">
-        <mat-grid-tile colspan="8">
-          <img mat-card-image src="assets/temp/sample-room.jpg" alt="Sample Room Photo">
-        </mat-grid-tile>
-        <mat-grid-tile colspan="4" style="overflow: visible">
-          <ul style="list-style-type:none;">
-            <li *ngFor="let booking of bookings">
-              <booking [roomId]="room.id" [data]="booking"></booking>
-            </li>
-          </ul>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="viewBookRoomPage(room.id)">BOOK</button>
-    </mat-card-actions>
-  </mat-card>
+  <div align="center" class="room-image-display">
+    <div class="room-name">{{room?.name}}</div>
+    <img class="room-image" src="assets/temp/sample-room.jpg" alt="Sample Room Photo">
+    <button class="book-btn" mat-raised-button color="primary" (click)="viewBookRoomPage(room.id)">BOOK</button>
+  </div>
+  <div class="booking-display">
+    <ul class="booking-list" style="list-style-type:none;">
+      <li *ngIf="bookings?.length == 0">
+        <div class="no-bookings-msg">No bookings for this room !</div>
+      </li>
+      <li class="booking-list-item" *ngFor="let booking of bookings">
+        <booking [roomId]="room.id" [data]="booking"></booking>
+      </li>
+    </ul>
+  </div>
 </div>
